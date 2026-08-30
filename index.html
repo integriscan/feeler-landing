@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feeler — 마음에 드는 사진, 그대로 따라 찍기</title>
+<meta name="description" content="사진 한 장을 고르면 포즈와 구도를 분석해 똑같이 따라 찍게 실시간으로 맞춰주는 카메라 앱. 모든 분석은 기기 안에서만.">
+<meta property="og:title" content="Feeler — 마음에 드는 사진, 그대로 따라 찍기">
+<meta property="og:description" content="사진은 폰 밖으로 나가지 않아요. 100% 온디바이스 분석 카메라 앱.">
+<meta property="og:image" content="https://integriscan.github.io/feeler-landing/feeler-icon.png">
+<link rel="icon" href="feeler-icon.png">
+<link rel="apple-touch-icon" href="feeler-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  :root { --bg:#F8F5F1; --ink:#26221E; --sub:#5F584E; --mut:#948B7E; --accent:#E8641E; --card:#FFFFFF; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:'Noto Sans KR','Apple SD Gothic Neo',sans-serif; }
+  .wrap { max-width:420px; margin:0 auto; padding:48px 24px 40px; display:flex; flex-direction:column; align-items:center; }
+  .icon { width:88px; height:88px; border-radius:22px; }
+  .brand { font-family:'Black Han Sans','Apple SD Gothic Neo',sans-serif; font-size:30px; margin-top:14px; }
+  h1 { font-family:'Black Han Sans','Apple SD Gothic Neo',sans-serif; font-weight:400; font-size:30px; line-height:1.3; text-align:center; margin:22px 0 10px; }
+  .sub { color:var(--sub); font-size:15px; text-align:center; margin:0 0 30px; line-height:1.6; }
+  .btns { width:100%; display:flex; flex-direction:column; gap:12px; }
+  .btn { display:flex; align-items:center; justify-content:space-between; width:100%; padding:16px 20px; border-radius:16px; background:var(--card); border:1px solid #E5DFD6; color:var(--ink); text-decoration:none; font-size:16px; font-weight:700; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#F8F5F1; }
+  .btn .tag { font-size:12px; font-weight:500; color:var(--mut); }
+  .btn.primary .tag { color:rgba(248,245,241,.85); }
+  .btn.disabled { opacity:.55; pointer-events:none; }
+  .privacy { margin-top:34px; background:#26221E; color:#F5F1EA; border-radius:16px; padding:18px 20px; font-size:14px; line-height:1.6; width:100%; text-align:center; }
+  .privacy b { color:#fff; }
+  footer { margin-top:28px; color:var(--mut); font-size:12px; text-align:center; line-height:1.8; }
+  footer a { color:var(--sub); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="icon" src="feeler-icon.png" alt="Feeler 앱 아이콘">
+  <div class="brand">Feeler</div>
+  <h1>마음에 드는 사진,<br>그대로 따라 찍기</h1>
+  <p class="sub">사진 한 장을 고르면 포즈와 구도를 분석해<br>똑같이 따라 찍게 실시간으로 맞춰드려요.</p>
+
+  <div class="btns" id="btns">
+    <a class="btn primary" data-key="testflight" href="#"><span>iPhone 베타 참여 (TestFlight)</span><span class="tag">iOS</span></a>
+    <a class="btn" data-key="android" href="#"><span>Android</span><span class="tag">준비 중</span></a>
+    <a class="btn" data-key="instagram" href="#"><span>Instagram</span><span class="tag">@feeler</span></a>
+    <a class="btn" data-key="tiktok" href="#"><span>TikTok</span><span class="tag"></span></a>
+    <a class="btn" data-key="kakao" href="#"><span>카카오톡 채널</span><span class="tag">문의·소식</span></a>
+  </div>
+
+  <div class="privacy"><b>사진은 폰 밖으로 나가지 않아요.</b><br>모든 분석은 100% 기기 안에서 이루어집니다.</div>
+
+  <footer>
+    <a href="privacy.html">개인정보 처리방침</a><br>
+    © 2026 Feeler
+  </footer>
+</div>
+<script>
+  // ── 채널 링크는 여기만 고치면 됩니다. 빈 문자열이면 버튼이 "준비 중"으로 비활성화됩니다. ──
+  var LINKS = {
+    testflight: "",   // TestFlight 공개 링크 확정 시 입력
+    android:    "",
+    instagram:  "",
+    tiktok:     "",
+    kakao:      ""
+  };
+  document.querySelectorAll('#btns .btn').forEach(function (el) {
+    var url = LINKS[el.dataset.key];
+    if (url) { el.href = url; }
+    else {
+      el.classList.add('disabled');
+      var tag = el.querySelector('.tag');
+      if (tag) tag.textContent = '준비 중';
+    }
+  });
+  // 기기 감지: Android 접속이면 Android 버튼을 맨 위로
+  if (/Android/i.test(navigator.userAgent)) {
+    var btns = document.getElementById('btns');
+    var android = btns.querySelector('[data-key="android"]');
+    btns.prepend(android);
+  }
+</script>
+</body>
+</html>
