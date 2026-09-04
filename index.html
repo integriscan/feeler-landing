@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Feeler — 막 찍어도, 알아서 예쁘게</title>
-<meta name="description" content="사진을 못 찍어도 괜찮아요. AI가 알아서 예쁘게 만들어주는 카메라, Feeler. 찍은 사진은 가까운 매장에서 실물 포토카드로.">
+<meta name="description" content="사진을 못 찍어도 괜찮아요. 셔터만 누르면 AI가 알아서 예쁘게 — 그리고 가까운 매장에서 실물 포토카드로.">
 <meta property="og:title" content="Feeler — 막 찍어도, 알아서 예쁘게">
 <meta property="og:description" content="AI 자동 보정 카메라. 찍은 사진은 실물 포토카드로.">
 <meta property="og:image" content="https://feeler.kr/feeler-icon.png">
@@ -17,86 +17,132 @@
   * { box-sizing:border-box; margin:0; }
   html { scroll-behavior:smooth; }
   body { background:var(--bg); color:var(--ink); font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
-  .container { max-width:960px; margin:0 auto; padding:0 24px; }
+  .container { max-width:1040px; margin:0 auto; padding:0 24px; }
   a { color:inherit; text-decoration:none; }
+  img { max-width:100%; }
 
-  nav { position:sticky; top:0; background:rgba(255,255,255,.86); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); z-index:10; }
+  nav { position:sticky; top:0; background:rgba(255,255,255,.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); z-index:10; }
   .nav-in { display:flex; align-items:center; justify-content:space-between; height:60px; }
   .nav-brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; }
   .nav-brand img { width:28px; height:28px; border-radius:7px; }
+  .nav-menu { display:flex; gap:22px; font-size:14px; color:var(--sub); font-weight:600; }
+  .nav-menu a:hover { color:var(--ink); }
+  @media (max-width:640px){ .nav-menu{ display:none; } }
   .nav-cta { font-size:14px; font-weight:700; padding:9px 18px; border-radius:99px; background:var(--ink); color:#fff; }
 
-  .hero { padding:88px 0 72px; text-align:center; }
-  .hero h1 { font-size:clamp(34px,7vw,58px); font-weight:800; letter-spacing:-.02em; line-height:1.22; }
-  .hero .lead { margin:22px auto 0; max-width:560px; font-size:clamp(15px,2.5vw,18px); color:var(--sub); }
-  .hero .btns { margin-top:36px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .hero { padding:84px 0 64px; text-align:center; position:relative; overflow:hidden; }
+  .hero h1 { font-size:clamp(36px,7vw,64px); font-weight:800; letter-spacing:-.02em; line-height:1.18; }
+  .hero .lead { margin:20px auto 0; max-width:560px; font-size:clamp(15px,2.5vw,18px); color:var(--sub); }
+  .hero .btns { margin-top:34px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
   .btn { display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:99px; font-size:15px; font-weight:700; border:1px solid var(--ink); }
   .btn.fill { background:var(--ink); color:#fff; }
   .btn.line { background:#fff; color:var(--ink); }
   .btn.disabled { opacity:.4; pointer-events:none; }
   .btn .tag { font-size:12px; font-weight:500; opacity:.7; }
+  .hero-cards { margin-top:52px; display:flex; justify-content:center; gap:0; }
+  .pola { background:#fff; border:1px solid var(--line); padding:10px 10px 26px; box-shadow:0 14px 34px rgba(0,0,0,.10); width:min(240px,38vw); }
+  .pola img { display:block; width:100%; aspect-ratio:2/3; object-fit:cover; }
+  .pola.a { transform:rotate(-4deg) translateX(8px); }
+  .pola.b { transform:rotate(3deg) translateX(-8px); }
 
-  section { padding:72px 0; }
+  section { padding:76px 0; }
   section.alt { background:var(--soft); }
   .kicker { font-size:13px; font-weight:700; letter-spacing:.18em; color:var(--mut); text-transform:uppercase; }
-  h2 { margin-top:10px; font-size:clamp(24px,4.5vw,36px); font-weight:800; letter-spacing:-.01em; line-height:1.3; }
-  .desc { margin-top:14px; color:var(--sub); max-width:620px; }
+  h2 { margin-top:10px; font-size:clamp(24px,4.5vw,38px); font-weight:800; letter-spacing:-.01em; line-height:1.3; }
+  .desc { margin-top:14px; color:var(--sub); max-width:640px; }
+  .badge { display:inline-block; margin-left:10px; vertical-align:middle; font-size:11px; font-weight:700; color:var(--mut); border:1px solid var(--line); border-radius:99px; padding:3px 10px; background:#fff; }
 
-  .grid { margin-top:40px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
-  .card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:26px 24px; }
-  section.alt .card { border-color:#EDEDED; }
-  .card .no { font-size:13px; font-weight:800; color:var(--mut); letter-spacing:.1em; }
-  .card h3 { margin-top:10px; font-size:18px; font-weight:800; }
-  .card p { margin-top:8px; font-size:14px; color:var(--sub); }
+  .styles { margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .style { border:1px solid var(--line); border-radius:14px; background:#fff; padding:20px 18px; }
+  .style .sw { height:72px; border-radius:10px; margin-bottom:14px; }
+  .style h3 { font-size:15px; font-weight:800; }
+  .style p { font-size:12.5px; color:var(--mut); margin-top:4px; }
 
-  .flow { margin-top:40px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
+  .actions { margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; }
+  .act { background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px 26px; }
+  section.alt .act { border-color:#ECECEC; }
+  .act .no { font-size:13px; font-weight:800; color:var(--mut); letter-spacing:.1em; }
+  .act h3 { margin-top:10px; font-size:19px; font-weight:800; }
+  .act p { margin-top:8px; font-size:14px; color:var(--sub); }
+
+  .flow { margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
   .step { border-top:2px solid var(--ink); padding-top:18px; }
   .step .n { font-weight:800; font-size:14px; }
   .step h3 { margin-top:6px; font-size:17px; font-weight:800; }
   .step p { margin-top:6px; font-size:14px; color:var(--sub); }
 
-  .badge { display:inline-block; margin-left:10px; vertical-align:middle; font-size:11px; font-weight:700; color:var(--mut); border:1px solid var(--line); border-radius:99px; padding:3px 10px; }
+  .empty { margin-top:36px; border:1.5px dashed var(--line); border-radius:16px; padding:44px 24px; text-align:center; color:var(--mut); font-size:15px; }
 
-  .cta-final { text-align:center; padding:88px 0; }
-  .cta-final h2 { font-size:clamp(26px,5vw,40px); }
+  details { border-bottom:1px solid var(--line); padding:20px 4px; }
+  details:first-of-type { border-top:1px solid var(--line); margin-top:36px; }
+  summary { cursor:pointer; font-size:16px; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  summary::after { content:'+'; font-size:20px; color:var(--mut); }
+  details[open] summary::after { content:'–'; }
+  details p { margin-top:12px; font-size:14.5px; color:var(--sub); max-width:720px; }
+
+  .cta-final { text-align:center; }
   .cta-final .btns { margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
 
-  footer { border-top:1px solid var(--line); padding:36px 0 48px; font-size:13px; color:var(--mut); }
-  .foot-in { display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-  footer a { color:var(--sub); }
-  .sns { display:flex; gap:16px; }
+  footer { border-top:1px solid var(--line); padding:44px 0 56px; font-size:13.5px; }
+  .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:28px; }
+  @media (max-width:640px){ .foot-grid{ grid-template-columns:1fr; } }
+  .foot-brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:17px; }
+  .foot-brand img { width:26px; height:26px; border-radius:7px; }
+  .foot-desc { margin-top:12px; color:var(--sub); max-width:340px; }
+  .foot-h { font-weight:800; margin-bottom:12px; }
+  .foot-col a { display:block; color:var(--sub); margin-bottom:9px; }
+  .copyright { margin-top:36px; padding-top:20px; border-top:1px solid var(--line); color:var(--mut); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
 </style>
 </head>
 <body>
 
 <nav><div class="container nav-in">
   <a class="nav-brand" href="#"><img src="feeler-icon.png" alt=""><span>Feeler</span></a>
-  <a class="nav-cta" data-key="testflight" href="#down">앱 받기</a>
+  <div class="nav-menu">
+    <a href="#styles">스타일</a><a href="#features">기능</a><a href="#print">출력망</a><a href="#faq">FAQ</a>
+  </div>
+  <a class="nav-cta" href="#down">앱 받기</a>
 </div></nav>
 
-<header class="hero container">
-  <h1>막 찍어도,<br>알아서 예쁘게.</h1>
-  <p class="lead">구도가 어긋나도, 빛이 아쉬워도 괜찮아요.<br>셔터만 누르면 AI가 알아서 예쁘게 만들어드립니다.</p>
+<header class="hero"><div class="container">
+  <h1>'그' 사진,<br>그냥 찍으세요.</h1>
+  <p class="lead">구도가 어긋나도, 빛이 아쉬워도 괜찮아요.<br>셔터만 누르면 끝 — 편집 없이 완성되는 사진.</p>
   <div class="btns" id="down">
     <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">준비 중</span></a>
     <a class="btn line" data-key="android" href="#"><span>Android</span><span class="tag">준비 중</span></a>
   </div>
-</header>
+  <div class="hero-cards">
+    <div class="pola a"><img src="photo1.jpg" alt="포토카드 예시"></div>
+    <div class="pola b"><img src="photo2.jpg" alt="포토카드 예시"></div>
+  </div>
+</div></header>
 
-<section class="alt"><div class="container">
-  <div class="kicker">Auto Remaster</div>
-  <h2>손대지 않아도, 전부 자동<span class="badge">출시 준비 중</span></h2>
-  <p class="desc">슬라이더도, 편집 공부도 필요 없습니다. 결과가 마음에 안 들 때만 되돌리면 돼요. 원본은 항상 그대로 보관됩니다.</p>
-  <div class="grid">
-    <div class="card"><div class="no">01</div><h3>보정</h3><p>빛·색·톤을 자동으로 리마스터합니다.</p></div>
-    <div class="card"><div class="no">02</div><h3>선명</h3><p>흐릿한 디테일을 살려냅니다.</p></div>
-    <div class="card"><div class="no">03</div><h3>프레이밍</h3><p>어긋난 구도를 알아서 다듬습니다.</p></div>
-    <div class="card"><div class="no">04</div><h3>배경</h3><p>지저분한 배경을 정리합니다.</p></div>
-    <div class="card"><div class="no">05</div><h3>잡티 제거</h3><p>피부와 화면의 잡티를 지웁니다.</p></div>
+<section class="alt" id="styles"><div class="container">
+  <div class="kicker">Styles Gallery</div>
+  <h2>고르기만 하세요.<br>나머지는 알아서.<span class="badge">출시 준비 중</span></h2>
+  <p class="desc">원하는 무드를 고르면 보정은 Feeler가 합니다. 스타일 프리셋은 출시와 함께 공개돼요.</p>
+  <div class="styles">
+    <div class="style"><div class="sw" style="background:linear-gradient(135deg,#DDD,#FAFAFA)"></div><h3>Clean</h3><p>맑고 투명하게</p></div>
+    <div class="style"><div class="sw" style="background:linear-gradient(135deg,#C9C9C9,#EFEFEF)"></div><h3>Film</h3><p>따뜻한 필름 감성</p></div>
+    <div class="style"><div class="sw" style="background:linear-gradient(135deg,#BFBFBF,#E8E8E8)"></div><h3>Digicam</h3><p>2000년대 디카 무드</p></div>
+    <div class="style"><div class="sw" style="background:linear-gradient(135deg,#8F8F8F,#D6D6D6)"></div><h3>Mono</h3><p>흑백의 힘</p></div>
   </div>
 </div></section>
 
-<section><div class="container">
+<section id="features"><div class="container">
+  <div class="kicker">Feeler in Action</div>
+  <h2>손대지 않아도, 전부 자동<span class="badge">출시 준비 중</span></h2>
+  <p class="desc">슬라이더도, 편집 공부도 필요 없습니다. 결과가 마음에 안 들 때만 되돌리면 돼요. 원본은 항상 그대로 보관됩니다.</p>
+  <div class="actions">
+    <div class="act"><div class="no">01</div><h3>보정</h3><p>빛·색·톤을 자동으로 리마스터합니다.</p></div>
+    <div class="act"><div class="no">02</div><h3>선명</h3><p>흐릿한 디테일을 살려냅니다.</p></div>
+    <div class="act"><div class="no">03</div><h3>프레이밍</h3><p>어긋난 구도를 알아서 다듬습니다.</p></div>
+    <div class="act"><div class="no">04</div><h3>배경</h3><p>지저분한 배경을 정리합니다.</p></div>
+    <div class="act"><div class="no">05</div><h3>잡티 제거</h3><p>피부와 화면의 잡티를 지웁니다.</p></div>
+  </div>
+</div></section>
+
+<section class="alt" id="print"><div class="container">
   <div class="kicker">Print Network</div>
   <h2>찍은 사진은, 실물로<span class="badge">확산 준비 중</span></h2>
   <p class="desc">포토부스까지 갈 필요 없어요. 앱으로 찍은 사진을 가까운 카페에서 포토카드 실물로 출력하는 동네 출력망을 만들고 있습니다.</p>
@@ -107,41 +153,81 @@
   </div>
 </div></section>
 
+<section><div class="container">
+  <div class="kicker">Reviews</div>
+  <h2>사용자 후기</h2>
+  <div class="empty">아직 준비 중이에요 — 베타 테스터들의 첫 후기가 이곳에 올라옵니다.<br>먼저 써보고 싶다면 인스타그램 DM으로 알려주세요.</div>
+</div></section>
+
 <section class="alt cta-final"><div class="container">
-  <h2>사진 잘 못 찍어도 괜찮아요.</h2>
-  <p class="desc" style="margin:14px auto 0;">Feeler가 곧 찾아갑니다. 소식은 인스타그램에서 가장 먼저 알려드려요.</p>
+  <h2>인생 사진, 탭 한 번 거리.</h2>
+  <p class="desc" style="margin:14px auto 0;">한 번 받아두면, 찍을 때마다 예뻐집니다.</p>
   <div class="btns">
-    <a class="btn fill" data-key="instagram" href="#"><span>Instagram</span><span class="tag">@feeler.official</span></a>
+    <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">준비 중</span></a>
+    <a class="btn line" data-key="instagram" href="#"><span>Instagram</span><span class="tag">@feeler.official</span></a>
+  </div>
+</div></section>
+
+<section id="faq"><div class="container">
+  <div class="kicker">FAQ</div>
+  <h2>자주 묻는 질문</h2>
+  <details><summary>Feeler는 어떤 앱인가요?</summary><p>사진을 잘 못 찍어도 되는 카메라 앱입니다. 셔터만 누르면 AI가 빛·선명도·구도·배경·잡티를 알아서 다듬고, 찍은 사진은 가까운 매장에서 실물 포토카드로 출력할 수 있게 만들고 있어요.</p></details>
+  <details><summary>사진 실력이 필요한가요?</summary><p>아니요, 그게 Feeler의 존재 이유예요. 막 찍으세요 — 예쁘게 만드는 건 저희 몫입니다.</p></details>
+  <details><summary>보정을 직접 조절할 수 있나요?</summary><p>기본은 전부 자동입니다. 결과가 마음에 안 들 때만 되돌리거나 강도를 조절할 수 있고, 원본은 항상 보관됩니다.</p></details>
+  <details><summary>무료인가요?</summary><p>베타 기간에는 무료로 사용할 수 있습니다. 정식 출시 후의 가격 정책은 확정되면 이곳에서 알려드릴게요.</p></details>
+  <details><summary>제 사진은 안전한가요?</summary><p>현재 베타 버전의 사진 처리는 기기 안에서 이루어집니다. 앞으로 추가될 AI 보정 기능은 더 좋은 품질을 위해 서버 처리가 필요할 수 있는데, 이 경우에도 반드시 사전 동의를 받고, 처리 목적 외에는 사용하지 않으며, 처리 후 파기를 원칙으로 합니다. 자세한 내용은 개인정보 처리방침에서 확인하세요.</p></details>
+  <details><summary>어떤 기기를 지원하나요?</summary><p>iPhone(iOS 15.5 이상)을 먼저 지원하고, Android 버전을 준비하고 있습니다.</p></details>
+  <details><summary>포토카드 출력은 어떻게 하나요?</summary><p>행사·제휴 매장에서 시범 운영 중이며, 앱에서 주문하고 가까운 매장에서 받는 출력망으로 확장할 예정입니다. 소식은 인스타그램에서 가장 먼저 알려드려요.</p></details>
+</div></section>
+
+<section class="alt cta-final"><div class="container">
+  <h2>궁금한 게 있나요?</h2>
+  <p class="desc" style="margin:14px auto 0;">Feeler 팀에게 직접 물어보세요. 여러분의 피드백이 로드맵이 됩니다.</p>
+  <div class="btns">
+    <a class="btn fill" data-key="instagram" href="#"><span>Instagram DM</span></a>
     <a class="btn line" data-key="kakao" href="#"><span>카카오톡 채널</span><span class="tag">준비 중</span></a>
   </div>
 </div></section>
 
-<footer><div class="container foot-in">
-  <div>© 2026 Feeler · <a href="privacy.html">개인정보 처리방침</a></div>
-  <div class="sns">
-    <a data-key="instagram" href="#">Instagram</a>
-    <a data-key="tiktok" href="#">TikTok</a>
+<footer><div class="container">
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand"><img src="feeler-icon.png" alt=""><span>Feeler</span></div>
+      <p class="foot-desc">알아서 보정하는 AI 카메라와 실물 포토카드 출력망. 잘 찍은 사진이 아니라, 예쁘게 남는 사진.</p>
+    </div>
+    <div class="foot-col">
+      <div class="foot-h">바로가기</div>
+      <a href="#styles">스타일</a><a href="#features">기능</a><a href="#print">출력망</a><a href="#faq">FAQ</a>
+    </div>
+    <div class="foot-col">
+      <div class="foot-h">소셜</div>
+      <a data-key="instagram" href="#">Instagram</a>
+      <a data-key="tiktok" href="#">TikTok</a>
+      <a href="links.html">링크 모음</a>
+    </div>
+  </div>
+  <div class="copyright">
+    <span>© 2026 Feeler (team pozy)</span>
+    <a href="privacy.html" style="color:var(--sub)">개인정보 처리방침</a>
   </div>
 </div></footer>
 
 <script>
   // ── 채널 링크는 여기만 고치면 됩니다. 빈 문자열이면 "준비 중"으로 비활성화됩니다. ──
   var LINKS = {
-    testflight: "",   // TestFlight/앱스토어 링크 확정 시 입력
+    testflight: "",
     android:    "",
-    instagram:  "",   // 예: https://instagram.com/feeler.official
+    instagram:  "https://instagram.com/feeler.official",
     tiktok:     "",
     kakao:      ""
   };
   document.querySelectorAll('[data-key]').forEach(function (el) {
     var url = LINKS[el.dataset.key];
-    if (url) { el.href = url; }
+    if (url) { el.href = url; el.target = "_blank"; }
     else if (el.classList.contains('btn')) {
       el.classList.add('disabled');
       var tag = el.querySelector('.tag');
       if (tag) tag.textContent = '준비 중';
-    } else if (el.classList.contains('nav-cta')) {
-      el.setAttribute('href', '#down');
     } else {
       el.style.opacity = .5; el.style.pointerEvents = 'none';
     }

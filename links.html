@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feeler — 링크</title>
+<meta name="description" content="Feeler 공식 링크 모음">
+<meta property="og:title" content="Feeler — 링크">
+<meta property="og:image" content="https://feeler.kr/feeler-icon.png">
+<link rel="icon" href="feeler-icon.png">
+<link rel="apple-touch-icon" href="feeler-icon.png">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root { --ink:#111; --sub:#666; --mut:#9A9A9A; --bg:#F4F4F2; --card:#FFF; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--ink); font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo',sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:560px; margin:0 auto; padding:64px 20px 60px; }
+  .profile { text-align:center; }
+  .icon { width:92px; height:92px; border-radius:26px; box-shadow:0 8px 24px rgba(0,0,0,.10); }
+  .handle { margin-top:20px; font-size:26px; font-weight:800; letter-spacing:-.01em; }
+  .bio { margin-top:8px; color:var(--sub); font-size:15px; }
+  .sns { margin-top:18px; display:flex; justify-content:center; gap:22px; }
+  .sns a { width:26px; height:26px; display:block; opacity:.9; }
+  .sns svg { width:100%; height:100%; }
+  .links { margin-top:36px; display:flex; flex-direction:column; gap:14px; }
+  .lbtn { display:flex; align-items:center; gap:14px; background:var(--card); border-radius:99px; padding:10px 22px 10px 10px; min-height:64px; box-shadow:0 2px 10px rgba(0,0,0,.05); color:var(--ink); text-decoration:none; transition:transform .12s; }
+  .lbtn:active { transform:scale(.98); }
+  .lbtn .thumb { width:46px; height:46px; border-radius:50%; background:#111 center/cover no-repeat; flex:0 0 46px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; }
+  .lbtn .t { flex:1; text-align:center; font-size:16px; font-weight:700; margin-right:46px; }
+  .lbtn.disabled { opacity:.45; pointer-events:none; }
+  .lbtn.dark { background:#111; color:#fff; }
+  .lbtn.dark .thumb { background:#fff; color:#111; }
+  footer { margin-top:44px; text-align:center; color:var(--mut); font-size:12.5px; line-height:1.8; }
+  footer a { color:var(--sub); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="profile">
+    <img class="icon" src="feeler-icon.png" alt="Feeler">
+    <div class="handle">@feeler.official</div>
+    <div class="bio">막 찍어도, 알아서 예쁘게 📸 AI 카메라 &amp; 포토카드</div>
+    <div class="sns">
+      <a data-key="instagram" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="#111" stroke="none"/></svg></a>
+      <a data-key="tiktok" href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="#111"><path d="M16.6 3c.4 2.1 1.8 3.7 3.9 4v3c-1.5 0-2.9-.5-3.9-1.2v6.3c0 3.3-2.6 5.9-5.9 5.9S4.8 18.4 4.8 15.1c0-3.2 2.6-5.9 5.9-5.9.3 0 .7 0 1 .1v3.1c-.3-.1-.6-.2-1-.2-1.6 0-2.8 1.3-2.8 2.9s1.3 2.9 2.8 2.9c1.6 0 2.9-1.3 2.9-2.9V3h3z"/></svg></a>
+    </div>
+  </div>
+
+  <div class="links">
+    <a class="lbtn dark" href="https://feeler.kr"><span class="thumb"><img src="feeler-icon.png" style="width:46px;height:46px;border-radius:50%"></span><span class="t">Feeler 홈페이지 🏠</span></a>
+    <a class="lbtn" data-key="testflight" href="#"><span class="thumb">📱</span><span class="t">앱 다운로드 (iPhone)</span></a>
+    <a class="lbtn" data-key="instagram" href="#"><span class="thumb" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">◎</span><span class="t">INSTAGRAM</span></a>
+    <a class="lbtn" data-key="tiktok" href="#"><span class="thumb">♪</span><span class="t">TIKTOK</span></a>
+    <a class="lbtn" data-key="kakao" href="#"><span class="thumb" style="background:#FEE500;color:#111">💬</span><span class="t">카카오톡 채널</span></a>
+  </div>
+
+  <footer>
+    © 2026 Feeler · <a href="privacy.html">개인정보 처리방침</a>
+  </footer>
+</div>
+<script>
+  var LINKS = {
+    testflight: "",
+    instagram:  "https://instagram.com/feeler.official",
+    tiktok:     "",
+    kakao:      ""
+  };
+  document.querySelectorAll('[data-key]').forEach(function (el) {
+    var url = LINKS[el.dataset.key];
+    if (url) { el.href = url; el.target = "_blank"; }
+    else { el.classList.add('disabled'); el.style.opacity = .45; el.style.pointerEvents = 'none'; }
+  });
+</script>
+</body>
+</html>
