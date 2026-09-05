@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="feeler-icon.png">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-  :root { --ink:#111; --sub:#555; --mut:#999; --line:#E8E8E8; --bg:#FFF; --soft:#F6F6F6; --kakao:#FEE500; }
+  :root { --ink:#111; --sub:#555; --mut:#999; --line:#E8E8E8; --bg:#FFF; --soft:#F6F6F6; }
   * { box-sizing:border-box; margin:0; }
   html { scroll-behavior:smooth; }
   body { background:var(--bg); color:var(--ink); font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
@@ -61,8 +61,7 @@
   .btn.line { background:#fff; color:var(--ink); }
   .btn.disabled { opacity:.4; pointer-events:none; }
   .btn .tag { font-size:12px; font-weight:500; opacity:.7; }
-  .btn.kakao { background:var(--kakao); border-color:var(--kakao); color:#191919; }
-  .btn.kakao svg { width:18px; height:18px; flex:none; }
+  .btn.dm svg { width:18px; height:18px; flex:none; }
   .survey-cta { display:inline-block; margin-top:16px; padding:11px 22px; border-radius:99px; background:#F7F7F7; border:1px dashed var(--ink); color:var(--ink); font-size:14px; font-weight:600; }
   .survey-cta b { font-weight:800; }
 
@@ -105,7 +104,6 @@
   .feat p { font-size:14px; color:var(--sub); }
   .phone-wrap { display:flex; justify-content:center; }
   .phone { width:min(290px,74vw); border-radius:46px; border:9px solid #111; background:#000; overflow:hidden; box-shadow:0 30px 70px rgba(0,0,0,.28); position:relative; }
-  .phone::before { content:''; position:absolute; top:12px; left:50%; transform:translateX(-50%); width:86px; height:24px; border-radius:99px; background:#111; z-index:2; }
   .phone img { display:block; width:100%; }
   .phone-cap { margin-top:16px; text-align:center; font-size:13px; color:var(--mut); font-weight:600; }
 
@@ -134,7 +132,7 @@
   .pola-zone:hover .pola.a { transform:rotate(-7deg) translateX(4px) translateY(-4px); }
   .pola-zone:hover .pola.b { transform:rotate(6deg) translateX(-4px) translateY(10px); }
 
-  /* 카카오 체험 섹션 */
+  /* DM 체험 섹션 */
   .try { background:#111; color:#fff; text-align:center; }
   .try .kicker { color:#8A8A8A; }
   .try .desc { color:#B9B9B9; margin-left:auto; margin-right:auto; }
@@ -143,7 +141,7 @@
   .try-step .n { font-size:12px; font-weight:800; color:#777; letter-spacing:.1em; }
   .try-step h3 { margin-top:8px; font-size:15.5px; font-weight:800; color:#fff; }
   .try-step p { margin-top:5px; font-size:13px; color:#A5A5A5; }
-  .try .btn.kakao { margin-top:36px; padding:16px 34px; font-size:16px; box-shadow:0 10px 30px rgba(254,229,0,.25); }
+  .try .btn.dm { margin-top:36px; padding:16px 34px; font-size:16px; background:#fff; border-color:#fff; color:#111; box-shadow:0 10px 30px rgba(255,255,255,.18); }
   .try .fine { margin-top:16px; font-size:12.5px; color:#8A8A8A; }
 
   details { border-bottom:1px solid var(--line); padding:20px 4px; }
@@ -173,7 +171,7 @@
 <nav><div class="container nav-in">
   <a class="nav-brand" href="#"><img src="feeler-icon.png" alt=""><span>Feeler</span></a>
   <div class="nav-menu">
-    <a href="#features">기능</a><a href="#styles">스타일</a><a href="#print">출력망</a><a href="#try">체험</a><a href="#faq">FAQ</a>
+    <a href="#try">체험</a><a href="#features">기능</a><a href="#styles">스타일</a><a href="#print">출력망</a><a href="#faq">FAQ</a>
   </div>
   <a class="nav-cta" href="#down">앱 받기</a>
 </div></nav>
@@ -183,7 +181,11 @@
   <h1>막 찍으세요.<br><span class="thin">예쁘게는, 저희가.</span></h1>
   <p class="lead">빛이 아쉬워도, 손이 흔들려도 괜찮아요.<br>셔터만 누르면 AI가 알아서 완성하는 사진.</p>
   <div class="btns" id="down">
-    <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">출시 준비 중</span></a>
+    <a class="btn fill dm" data-key="dm" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <span>DM으로 사진 보내고 체험하기</span>
+    </a>
+    <a class="btn line" data-key="testflight" href="#"><span>iPhone</span><span class="tag">출시 준비 중</span></a>
     <a class="btn line" data-key="android" href="#"><span>Android</span><span class="tag">APK 바로 설치</span></a>
   </div>
   <a class="survey-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSd3A0rv4iTWh4ET5Ue1AssP5AWzmmnz5oxkDNfZ3un6hckmcA/viewform" target="_blank">📋 30초 설문하고 <b>포토카드 할인</b> 받기 →</a>
@@ -201,6 +203,26 @@
     <p class="ba-hint">◂ 직접 밀어보세요 — <b>실제 Feeler 보정 결과</b>입니다</p>
   </div>
 </div></header>
+
+<section class="try" id="try"><div class="container">
+  <div data-rv>
+    <div class="kicker">Try it now</div>
+    <h2>내 사진으로<br>직접 확인해보세요</h2>
+    <p class="desc">인스타그램 DM으로 사진 한 장을 보내주세요.<br>Feeler 팀이 보정한 결과로 바로 답장드립니다. 무료예요.</p>
+  </div>
+  <div class="try-steps" data-rv>
+    <div class="try-step"><div class="n">STEP 1</div><h3>DM 열기</h3><p>아래 버튼 하나로 대화창이 바로 열려요.</p></div>
+    <div class="try-step"><div class="n">STEP 2</div><h3>사진 전송</h3><p>아쉬웠던 사진 아무거나 보내주세요.</p></div>
+    <div class="try-step"><div class="n">STEP 3</div><h3>보정본 받기</h3><p>알아서 예뻐진 사진으로 답장드려요.</p></div>
+  </div>
+  <div data-rv>
+    <a class="btn dm" data-key="dm" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <span>DM으로 사진 보내기</span>
+    </a>
+    <p class="fine">보내주신 사진은 보정 체험 용도로만 사용하고, 다른 곳에 쓰지 않아요.</p>
+  </div>
+</div></section>
 
 <section id="features"><div class="container">
   <div class="feat-grid">
@@ -256,31 +278,11 @@
   </div>
 </div></section>
 
-<section class="try" id="try"><div class="container">
-  <div data-rv>
-    <div class="kicker">Try it now</div>
-    <h2>내 사진으로<br>직접 확인해보세요</h2>
-    <p class="desc">카카오톡 오픈채팅에 사진 한 장을 보내주세요.<br>Feeler 팀이 보정한 결과로 바로 답장드립니다. 무료예요.</p>
-  </div>
-  <div class="try-steps" data-rv>
-    <div class="try-step"><div class="n">STEP 1</div><h3>오픈채팅 입장</h3><p>아래 버튼 하나로 끝. 익명 참여 가능해요.</p></div>
-    <div class="try-step"><div class="n">STEP 2</div><h3>사진 전송</h3><p>아쉬웠던 사진 아무거나 보내주세요.</p></div>
-    <div class="try-step"><div class="n">STEP 3</div><h3>보정본 받기</h3><p>알아서 예뻐진 사진으로 답장드려요.</p></div>
-  </div>
-  <div data-rv>
-    <a class="btn kakao" data-key="kakao" href="#">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.86 5.33 4.66 6.74-.15.55-.68 2.47-.78 2.86-.12.48.18.47.37.34.15-.1 2.4-1.63 3.38-2.29.76.11 1.55.17 2.37.17 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
-      <span>오픈채팅에 사진 보내기</span>
-    </a>
-    <p class="fine">보내주신 사진은 보정 체험 용도로만 사용하고, 다른 곳에 쓰지 않아요.</p>
-  </div>
-</div></section>
-
 <section id="faq"><div class="container">
   <div class="kicker">FAQ</div>
   <h2>자주 묻는 질문</h2>
   <details><summary>Feeler는 어떤 앱인가요?</summary><p>사진을 잘 못 찍어도 되는 카메라 앱입니다. 셔터만 누르면 AI가 빛·선명도·구도·배경·잡티를 알아서 다듬고, 찍은 사진은 가까운 매장에서 실물 포토카드로 출력할 수 있게 만들고 있어요.</p></details>
-  <details><summary>보정 체험은 어떻게 하나요?</summary><p>카카오톡 오픈채팅에 사진을 보내주시면 Feeler 팀이 보정 결과로 답장드려요. 무료이고, 익명으로 참여할 수 있습니다. 보내주신 사진은 체험 용도 외에는 사용하지 않아요.</p></details>
+  <details><summary>보정 체험은 어떻게 하나요?</summary><p>인스타그램 @feeler.official DM으로 사진을 보내주시면 Feeler 팀이 보정 결과로 답장드려요. 무료이고, 보내주신 사진은 체험 용도 외에는 사용하지 않아요.</p></details>
   <details><summary>사진 실력이 필요한가요?</summary><p>아니요, 그게 Feeler의 존재 이유예요. 막 찍으세요 — 예쁘게 만드는 건 저희 몫입니다.</p></details>
   <details><summary>보정을 직접 조절할 수 있나요?</summary><p>기본은 전부 자동입니다. 결과가 마음에 안 들 때만 되돌리거나 강도를 조절할 수 있고, 원본은 항상 보관됩니다.</p></details>
   <details><summary>무료인가요?</summary><p>베타 기간에는 무료로 사용할 수 있습니다. 정식 출시 후의 가격 정책은 확정되면 이곳에서 알려드릴게요.</p></details>
@@ -293,11 +295,11 @@
   <h2>인생 사진, 탭 한 번 거리.</h2>
   <p class="desc" style="margin:14px auto 0;">한 번 받아두면, 찍을 때마다 예뻐집니다.</p>
   <div class="btns">
-    <a class="btn fill" data-key="android" href="#"><span>Android</span><span class="tag">APK 바로 설치</span></a>
-    <a class="btn kakao" data-key="kakao" href="#">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.86 5.33 4.66 6.74-.15.55-.68 2.47-.78 2.86-.12.48.18.47.37.34.15-.1 2.4-1.63 3.38-2.29.76.11 1.55.17 2.37.17 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
+    <a class="btn fill dm" data-key="dm" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
       <span>사진 보내고 체험하기</span>
     </a>
+    <a class="btn line" data-key="android" href="#"><span>Android</span><span class="tag">APK 바로 설치</span></a>
     <a class="btn line" data-key="instagram" href="#"><span>Instagram</span><span class="tag">@feeler.official</span></a>
   </div>
 </div></section>
@@ -310,12 +312,12 @@
     </div>
     <div class="foot-col">
       <div class="foot-h">바로가기</div>
-      <a href="#features">기능</a><a href="#styles">스타일</a><a href="#print">출력망</a><a href="#try">체험</a><a href="#faq">FAQ</a>
+      <a href="#try">체험</a><a href="#features">기능</a><a href="#styles">스타일</a><a href="#print">출력망</a><a href="#faq">FAQ</a>
     </div>
     <div class="foot-col">
       <div class="foot-h">소셜 · 문의</div>
       <a data-key="instagram" href="#">Instagram</a>
-      <a data-key="kakao" href="#">카카오톡 오픈채팅</a>
+      <a data-key="dm" href="#">DM으로 사진 보내기</a>
       <a href="links.html">링크 모음</a>
     </div>
   </div>
@@ -331,8 +333,8 @@
     testflight: "",
     android:    "https://raw.githubusercontent.com/integriscan/feeler-landing/main/Feeler.apk",
     instagram:  "https://instagram.com/feeler.official",
-    tiktok:     "",
-    kakao:      ""
+    dm:         "https://ig.me/m/feeler.official",
+    tiktok:     ""
   };
   document.querySelectorAll('[data-key]').forEach(function (el) {
     var url = LINKS[el.dataset.key];
@@ -342,12 +344,6 @@
       el.addEventListener('click', function (e) {
         e.preventDefault();
         alert('iPhone 앱은 출시 준비 중입니다! \n\n지금 체험해보고 싶으시면 관리자(부스 운영자)에게 문의해주세요 🙌');
-      });
-    } else if (el.dataset.key === 'kakao') {
-      // 오픈채팅 링크 연결 전 — 클릭 가능, 안내 팝업 (클릭은 GA에 기록됨)
-      el.addEventListener('click', function (e) {
-        e.preventDefault();
-        alert('오픈채팅방을 열고 있어요! \n\n지금은 Instagram @feeler.official DM으로 사진을 보내주시면 보정해서 답장드릴게요 🙌');
       });
     } else if (el.classList.contains('btn')) {
       el.classList.add('disabled');
