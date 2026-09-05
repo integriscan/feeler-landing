@@ -81,6 +81,9 @@
   document.querySelectorAll('[data-key]').forEach(function (el) {
     var url = LINKS[el.dataset.key];
     if (url) { el.href = url; el.target = "_blank"; }
+    else if (el.dataset.key === 'testflight') {
+      el.addEventListener('click', function (e) { e.preventDefault(); alert('iPhone 앱은 출시 준비 중입니다! \n\n지금 체험해보고 싶으시면 관리자(부스 운영자)에게 문의해주세요 🙌'); });
+    }
     else { el.classList.add('disabled'); el.style.opacity = .45; el.style.pointerEvents = 'none'; }
   });
 

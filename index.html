@@ -236,7 +236,13 @@
   document.querySelectorAll('[data-key]').forEach(function (el) {
     var url = LINKS[el.dataset.key];
     if (url) { el.href = url; el.target = "_blank"; }
-    else if (el.classList.contains('btn')) {
+    else if (el.dataset.key === 'testflight') {
+      // 출시 준비 중 — 클릭 가능, 안내 팝업 (클릭은 GA에 기록됨)
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('iPhone 앱은 출시 준비 중입니다! \n\n지금 체험해보고 싶으시면 관리자(부스 운영자)에게 문의해주세요 🙌');
+      });
+    } else if (el.classList.contains('btn')) {
       el.classList.add('disabled');
     } else {
       el.style.opacity = .5; el.style.pointerEvents = 'none';
