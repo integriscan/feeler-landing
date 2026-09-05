@@ -22,71 +22,134 @@
 <link rel="apple-touch-icon" href="feeler-icon.png">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-  :root { --ink:#111; --sub:#555; --mut:#999; --line:#E8E8E8; --bg:#FFF; --soft:#F6F6F6; }
+  :root { --ink:#111; --sub:#555; --mut:#999; --line:#E8E8E8; --bg:#FFF; --soft:#F6F6F6; --kakao:#FEE500; }
   * { box-sizing:border-box; margin:0; }
   html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--ink); font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  body { background:var(--bg); color:var(--ink); font-family:'Pretendard Variable',Pretendard,'Apple SD Gothic Neo',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
   .container { max-width:1040px; margin:0 auto; padding:0 24px; }
   a { color:inherit; text-decoration:none; }
   img { max-width:100%; }
 
-  nav { position:sticky; top:0; background:rgba(255,255,255,.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); z-index:10; }
+  /* 스크롤 리빌 */
+  [data-rv] { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  [data-rv].rv-in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ [data-rv]{ opacity:1; transform:none; transition:none; } }
+
+  nav { position:sticky; top:0; background:rgba(255,255,255,.86); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--line); z-index:10; }
   .nav-in { display:flex; align-items:center; justify-content:space-between; height:60px; }
-  .nav-brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; }
+  .nav-brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; letter-spacing:-.01em; }
   .nav-brand img { width:28px; height:28px; border-radius:7px; }
   .nav-menu { display:flex; gap:22px; font-size:14px; color:var(--sub); font-weight:600; }
   .nav-menu a:hover { color:var(--ink); }
   @media (max-width:640px){ .nav-menu{ display:none; } }
-  .nav-cta { font-size:14px; font-weight:700; padding:9px 18px; border-radius:99px; background:var(--ink); color:#fff; }
+  .nav-cta { font-size:14px; font-weight:700; padding:9px 18px; border-radius:99px; background:var(--ink); color:#fff; transition:transform .15s ease; }
+  .nav-cta:active { transform:scale(.96); }
 
-  .hero { padding:84px 0 64px; text-align:center; position:relative; overflow:hidden; }
-  .hero h1 { font-size:clamp(36px,7vw,64px); font-weight:800; letter-spacing:-.02em; line-height:1.18; }
-  .hero .lead { margin:20px auto 0; max-width:560px; font-size:clamp(15px,2.5vw,18px); color:var(--sub); }
-  .hero .btns { margin-top:34px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .btn { display:inline-flex; align-items:center; gap:8px; padding:14px 26px; border-radius:99px; font-size:15px; font-weight:700; border:1px solid var(--ink); }
+  .hero { padding:72px 0 84px; text-align:center; position:relative; }
+  .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(60% 46% at 50% 0%, #F1F1F1 0%, rgba(255,255,255,0) 70%); pointer-events:none; }
+  .hero > .container { position:relative; }
+  .hero .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:var(--sub); border:1px solid var(--line); background:#fff; border-radius:99px; padding:7px 16px; }
+  .hero .eyebrow .dot { width:7px; height:7px; border-radius:99px; background:#1DC97A; box-shadow:0 0 0 3px rgba(29,201,122,.18); }
+  .hero h1 { margin-top:22px; font-size:clamp(38px,7.4vw,68px); font-weight:800; letter-spacing:-.03em; line-height:1.14; }
+  .hero h1 .thin { color:var(--mut); }
+  .hero .lead { margin:18px auto 0; max-width:540px; font-size:clamp(15px,2.5vw,18px); color:var(--sub); }
+  .hero .btns { margin-top:32px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:14px 26px; border-radius:99px; font-size:15px; font-weight:700; border:1px solid var(--ink); transition:transform .15s ease, box-shadow .2s ease; }
+  .btn:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.10); }
+  .btn:active { transform:scale(.97); }
   .btn.fill { background:var(--ink); color:#fff; }
   .btn.line { background:#fff; color:var(--ink); }
   .btn.disabled { opacity:.4; pointer-events:none; }
   .btn .tag { font-size:12px; font-weight:500; opacity:.7; }
-  .survey-cta { display:inline-block; margin-top:16px; padding:11px 22px; border-radius:99px; background:var(--paper, #F7F7F7); border:1px dashed var(--ink); color:var(--ink); font-size:14px; font-weight:600; }
+  .btn.kakao { background:var(--kakao); border-color:var(--kakao); color:#191919; }
+  .btn.kakao svg { width:18px; height:18px; flex:none; }
+  .survey-cta { display:inline-block; margin-top:16px; padding:11px 22px; border-radius:99px; background:#F7F7F7; border:1px dashed var(--ink); color:var(--ink); font-size:14px; font-weight:600; }
   .survey-cta b { font-weight:800; }
-  .hero-cards { margin-top:52px; display:flex; justify-content:center; gap:0; }
-  .pola { background:#fff; border:1px solid var(--line); padding:10px 10px 26px; box-shadow:0 14px 34px rgba(0,0,0,.10); width:min(240px,38vw); }
-  .pola img { display:block; width:100%; aspect-ratio:2/3; object-fit:cover; }
-  .pola.a { transform:rotate(-4deg) translateX(8px); }
-  .pola.b { transform:rotate(3deg) translateX(-8px); }
 
-  section { padding:76px 0; }
+  /* Before / After 슬라이더 */
+  .ba-zone { margin-top:56px; display:flex; flex-direction:column; align-items:center; }
+  .ba { position:relative; width:min(430px,88vw); aspect-ratio:780/965; border-radius:22px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.22); touch-action:none; user-select:none; -webkit-user-select:none; background:#000; --p:92%; }
+  .ba.anim { transition:--p 0s; }
+  .ba img { position:absolute; top:0; left:0; height:100%; width:100%; object-fit:cover; pointer-events:none; -webkit-user-drag:none; }
+  .ba-clip { position:absolute; top:0; left:0; height:100%; width:var(--p); overflow:hidden; z-index:2; }
+  .ba-clip.gliding { transition:width .9s cubic-bezier(.22,.61,.36,1); }
+  .ba-clip img { width:auto; max-width:none; }
+  .ba-clip::after { content:''; position:absolute; top:0; right:0; width:1.5px; height:100%; background:rgba(255,255,255,.95); }
+  .ba-tag { position:absolute; top:14px; z-index:3; font-size:12px; font-weight:800; letter-spacing:.02em; padding:6px 13px; border-radius:99px; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .ba-tag.before { left:14px; background:rgba(0,0,0,.55); color:#fff; }
+  .ba-tag.after { right:14px; background:rgba(255,255,255,.92); color:#111; z-index:1; }
+  .ba-handle { position:absolute; top:0; left:var(--p); height:100%; z-index:4; transform:translateX(-50%); display:flex; align-items:center; pointer-events:none; }
+  .ba-handle.gliding { transition:left .9s cubic-bezier(.22,.61,.36,1); }
+  .ba-knob { width:44px; height:44px; border-radius:99px; background:#fff; box-shadow:0 4px 16px rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; gap:3px; }
+  .ba-knob span { border:solid #111; border-width:0 2px 2px 0; padding:3.5px; }
+  .ba-knob .l { transform:rotate(135deg); }
+  .ba-knob .r { transform:rotate(-45deg); }
+  .ba-hint { margin-top:18px; font-size:13.5px; color:var(--mut); font-weight:600; }
+  .ba-hint b { color:var(--ink); font-weight:800; }
+
+  section { padding:84px 0; }
   section.alt { background:var(--soft); }
   .kicker { font-size:13px; font-weight:700; letter-spacing:.18em; color:var(--mut); text-transform:uppercase; }
-  h2 { margin-top:10px; font-size:clamp(24px,4.5vw,38px); font-weight:800; letter-spacing:-.01em; line-height:1.3; }
+  h2 { margin-top:10px; font-size:clamp(25px,4.5vw,40px); font-weight:800; letter-spacing:-.02em; line-height:1.28; }
   .desc { margin-top:14px; color:var(--sub); max-width:640px; }
   .badge { display:inline-block; margin-left:10px; vertical-align:middle; font-size:11px; font-weight:700; color:var(--mut); border:1px solid var(--line); border-radius:99px; padding:3px 10px; background:#fff; }
 
+  /* 기능 — 텍스트 + 폰 목업 */
+  .feat-grid { margin-top:44px; display:grid; grid-template-columns:1.15fr .85fr; gap:52px; align-items:center; }
+  @media (max-width:760px){ .feat-grid{ grid-template-columns:1fr; gap:44px; } }
+  .feat-list { display:flex; flex-direction:column; }
+  .feat { display:flex; gap:18px; padding:19px 4px; border-bottom:1px solid var(--line); align-items:baseline; }
+  .feat:first-child { border-top:1px solid var(--line); }
+  .feat .no { font-size:13px; font-weight:800; color:var(--mut); letter-spacing:.08em; width:28px; flex:none; }
+  .feat h3 { font-size:17px; font-weight:800; width:96px; flex:none; }
+  .feat p { font-size:14px; color:var(--sub); }
+  .phone-wrap { display:flex; justify-content:center; }
+  .phone { width:min(290px,74vw); border-radius:46px; border:9px solid #111; background:#000; overflow:hidden; box-shadow:0 30px 70px rgba(0,0,0,.28); position:relative; }
+  .phone::before { content:''; position:absolute; top:12px; left:50%; transform:translateX(-50%); width:86px; height:24px; border-radius:99px; background:#111; z-index:2; }
+  .phone img { display:block; width:100%; }
+  .phone-cap { margin-top:16px; text-align:center; font-size:13px; color:var(--mut); font-weight:600; }
+
   .styles { margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
-  .style { border:1px solid var(--line); border-radius:14px; background:#fff; padding:20px 18px; }
+  .style { border:1px solid var(--line); border-radius:14px; background:#fff; padding:20px 18px; transition:transform .2s ease, box-shadow .2s ease; }
+  .style:hover { transform:translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,.08); }
   .style .sw { height:72px; border-radius:10px; margin-bottom:14px; }
   .style h3 { font-size:15px; font-weight:800; }
   .style p { font-size:12.5px; color:var(--mut); margin-top:4px; }
 
-  .actions { margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; }
-  .act { background:#fff; border:1px solid var(--line); border-radius:16px; padding:28px 26px; }
-  section.alt .act { border-color:#ECECEC; }
-  .act .no { font-size:13px; font-weight:800; color:var(--mut); letter-spacing:.1em; }
-  .act h3 { margin-top:10px; font-size:19px; font-weight:800; }
-  .act p { margin-top:8px; font-size:14px; color:var(--sub); }
+  /* 출력망 — 폴라로이드 */
+  .print-grid { margin-top:44px; display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:center; }
+  @media (max-width:760px){ .print-grid{ grid-template-columns:1fr; } }
+  .flow { display:flex; flex-direction:column; gap:0; }
+  .step { display:flex; gap:18px; padding:20px 4px; border-bottom:1px solid #E2E2E2; align-items:baseline; }
+  .step:first-child { border-top:2px solid var(--ink); }
+  .step .n { font-weight:800; font-size:14px; width:24px; flex:none; }
+  .step h3 { font-size:17px; font-weight:800; width:150px; flex:none; }
+  .step p { font-size:14px; color:var(--sub); }
+  @media (max-width:420px){ .step h3{ width:auto; } .step p{ display:none; } }
+  .pola-zone { display:flex; justify-content:center; }
+  .pola { background:#fff; border:1px solid var(--line); padding:10px 10px 30px; box-shadow:0 16px 38px rgba(0,0,0,.14); width:min(215px,36vw); transition:transform .25s ease; }
+  .pola img { display:block; width:100%; aspect-ratio:2/3; object-fit:cover; }
+  .pola.a { transform:rotate(-5deg) translateX(10px); z-index:1; }
+  .pola.b { transform:rotate(4deg) translateX(-10px) translateY(14px); }
+  .pola-zone:hover .pola.a { transform:rotate(-7deg) translateX(4px) translateY(-4px); }
+  .pola-zone:hover .pola.b { transform:rotate(6deg) translateX(-4px) translateY(10px); }
 
-  .flow { margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; }
-  .step { border-top:2px solid var(--ink); padding-top:18px; }
-  .step .n { font-weight:800; font-size:14px; }
-  .step h3 { margin-top:6px; font-size:17px; font-weight:800; }
-  .step p { margin-top:6px; font-size:14px; color:var(--sub); }
-
-  .empty { margin-top:36px; border:1.5px dashed var(--line); border-radius:16px; padding:44px 24px; text-align:center; color:var(--mut); font-size:15px; }
+  /* 카카오 체험 섹션 */
+  .try { background:#111; color:#fff; text-align:center; }
+  .try .kicker { color:#8A8A8A; }
+  .try .desc { color:#B9B9B9; margin-left:auto; margin-right:auto; }
+  .try-steps { margin:40px auto 0; display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .try-step { background:#1C1C1C; border:1px solid #2A2A2A; border-radius:14px; padding:20px 22px; width:200px; text-align:left; }
+  .try-step .n { font-size:12px; font-weight:800; color:#777; letter-spacing:.1em; }
+  .try-step h3 { margin-top:8px; font-size:15.5px; font-weight:800; color:#fff; }
+  .try-step p { margin-top:5px; font-size:13px; color:#A5A5A5; }
+  .try .btn.kakao { margin-top:36px; padding:16px 34px; font-size:16px; box-shadow:0 10px 30px rgba(254,229,0,.25); }
+  .try .fine { margin-top:16px; font-size:12.5px; color:#8A8A8A; }
 
   details { border-bottom:1px solid var(--line); padding:20px 4px; }
   details:first-of-type { border-top:1px solid var(--line); margin-top:36px; }
   summary { cursor:pointer; font-size:16px; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+  summary::-webkit-details-marker { display:none; }
   summary::after { content:'+'; font-size:20px; color:var(--mut); }
   details[open] summary::after { content:'–'; }
   details p { margin-top:12px; font-size:14.5px; color:var(--sub); max-width:720px; }
@@ -110,30 +173,63 @@
 <nav><div class="container nav-in">
   <a class="nav-brand" href="#"><img src="feeler-icon.png" alt=""><span>Feeler</span></a>
   <div class="nav-menu">
-    <a href="#styles">스타일</a><a href="#features">기능</a><a href="#print">출력망</a><a href="#faq">FAQ</a>
+    <a href="#features">기능</a><a href="#styles">스타일</a><a href="#print">출력망</a><a href="#try">체험</a><a href="#faq">FAQ</a>
   </div>
   <a class="nav-cta" href="#down">앱 받기</a>
 </div></nav>
 
 <header class="hero"><div class="container">
-  <h1>'그' 사진,<br>그냥 찍으세요.</h1>
-  <p class="lead">구도가 어긋나도, 빛이 아쉬워도 괜찮아요.<br>셔터만 누르면 끝 — 편집 없이 완성되는 사진.</p>
+  <div class="eyebrow"><span class="dot"></span>현장 베타 운영 중</div>
+  <h1>막 찍으세요.<br><span class="thin">예쁘게는, 저희가.</span></h1>
+  <p class="lead">빛이 아쉬워도, 손이 흔들려도 괜찮아요.<br>셔터만 누르면 AI가 알아서 완성하는 사진.</p>
   <div class="btns" id="down">
     <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">출시 준비 중</span></a>
     <a class="btn line" data-key="android" href="#"><span>Android</span><span class="tag">APK 바로 설치</span></a>
   </div>
   <a class="survey-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSd3A0rv4iTWh4ET5Ue1AssP5AWzmmnz5oxkDNfZ3un6hckmcA/viewform" target="_blank">📋 30초 설문하고 <b>포토카드 할인</b> 받기 →</a>
-  <div class="hero-cards">
-    <div class="pola a"><img src="photo1.jpg" alt="포토카드 예시"></div>
-    <div class="pola b"><img src="photo2.jpg" alt="포토카드 예시"></div>
+
+  <div class="ba-zone">
+    <div class="ba" id="ba">
+      <img src="ba-after.webp" alt="Feeler 보정 후 사진">
+      <span class="ba-tag after">보정 후</span>
+      <div class="ba-clip" id="baClip">
+        <img src="ba-before.webp" alt="보정 전 원본 사진">
+        <span class="ba-tag before">보정 전</span>
+      </div>
+      <div class="ba-handle" id="baHandle"><div class="ba-knob"><span class="l"></span><span class="r"></span></div></div>
+    </div>
+    <p class="ba-hint">◂ 직접 밀어보세요 — <b>실제 Feeler 보정 결과</b>입니다</p>
   </div>
 </div></header>
 
+<section id="features"><div class="container">
+  <div class="feat-grid">
+    <div data-rv>
+      <div class="kicker">Feeler in Action</div>
+      <h2>손대지 않아도,<br>전부 자동</h2>
+      <p class="desc">슬라이더도, 편집 공부도 필요 없습니다. 결과가 마음에 안 들 때만 되돌리면 돼요. 원본은 항상 그대로 보관됩니다.</p>
+      <div class="feat-list" style="margin-top:32px;">
+        <div class="feat"><div class="no">01</div><h3>보정</h3><p>빛·색·톤을 자동으로 리마스터합니다.</p></div>
+        <div class="feat"><div class="no">02</div><h3>선명</h3><p>흐릿한 디테일을 살려냅니다.</p></div>
+        <div class="feat"><div class="no">03</div><h3>프레이밍</h3><p>어긋난 구도를 알아서 다듬습니다.</p></div>
+        <div class="feat"><div class="no">04</div><h3>배경</h3><p>지저분한 배경을 정리합니다.</p></div>
+        <div class="feat"><div class="no">05</div><h3>잡티 제거</h3><p>피부와 화면의 잡티를 지웁니다.</p></div>
+      </div>
+    </div>
+    <div data-rv>
+      <div class="phone-wrap"><div class="phone"><img src="app-shot.webp" alt="Feeler 앱 실제 화면 — AI 보정 필터 선택"></div></div>
+      <p class="phone-cap">실제 앱 화면 — 찍고, 고르고, 저장. 끝.</p>
+    </div>
+  </div>
+</div></section>
+
 <section class="alt" id="styles"><div class="container">
-  <div class="kicker">Styles Gallery</div>
-  <h2>고르기만 하세요.<br>나머지는 알아서.<span class="badge">출시 준비 중</span></h2>
-  <p class="desc">원하는 무드를 고르면 보정은 Feeler가 합니다. 스타일 프리셋은 출시와 함께 공개돼요.</p>
-  <div class="styles">
+  <div data-rv>
+    <div class="kicker">Styles Gallery</div>
+    <h2>고르기만 하세요.<br>나머지는 알아서.<span class="badge">출시 준비 중</span></h2>
+    <p class="desc">원하는 무드를 고르면 보정은 Feeler가 합니다. 스타일 프리셋은 출시와 함께 공개돼요.</p>
+  </div>
+  <div class="styles" data-rv>
     <div class="style"><div class="sw" style="background:linear-gradient(135deg,#DDD,#FAFAFA)"></div><h3>Clean</h3><p>맑고 투명하게</p></div>
     <div class="style"><div class="sw" style="background:linear-gradient(135deg,#C9C9C9,#EFEFEF)"></div><h3>Film</h3><p>따뜻한 필름 감성</p></div>
     <div class="style"><div class="sw" style="background:linear-gradient(135deg,#BFBFBF,#E8E8E8)"></div><h3>Digicam</h3><p>2000년대 디카 무드</p></div>
@@ -141,42 +237,42 @@
   </div>
 </div></section>
 
-<section id="features"><div class="container">
-  <div class="kicker">Feeler in Action</div>
-  <h2>손대지 않아도, 전부 자동<span class="badge">출시 준비 중</span></h2>
-  <p class="desc">슬라이더도, 편집 공부도 필요 없습니다. 결과가 마음에 안 들 때만 되돌리면 돼요. 원본은 항상 그대로 보관됩니다.</p>
-  <div class="actions">
-    <div class="act"><div class="no">01</div><h3>보정</h3><p>빛·색·톤을 자동으로 리마스터합니다.</p></div>
-    <div class="act"><div class="no">02</div><h3>선명</h3><p>흐릿한 디테일을 살려냅니다.</p></div>
-    <div class="act"><div class="no">03</div><h3>프레이밍</h3><p>어긋난 구도를 알아서 다듬습니다.</p></div>
-    <div class="act"><div class="no">04</div><h3>배경</h3><p>지저분한 배경을 정리합니다.</p></div>
-    <div class="act"><div class="no">05</div><h3>잡티 제거</h3><p>피부와 화면의 잡티를 지웁니다.</p></div>
+<section id="print"><div class="container">
+  <div class="print-grid">
+    <div data-rv>
+      <div class="kicker">Print Network</div>
+      <h2>찍은 사진은,<br>실물로<span class="badge">확산 준비 중</span></h2>
+      <p class="desc">포토부스까지 갈 필요 없어요. 앱으로 찍은 사진을 가까운 카페에서 포토카드 실물로 출력하는 동네 출력망을 만들고 있습니다.</p>
+      <div class="flow" style="margin-top:32px;">
+        <div class="step"><div class="n">1</div><h3>앱으로 촬영</h3><p>언제 어디서든, 막 찍으세요.</p></div>
+        <div class="step"><div class="n">2</div><h3>알아서 보정</h3><p>AI가 예쁘게 다듬습니다.</p></div>
+        <div class="step"><div class="n">3</div><h3>매장에서 출력</h3><p>포토카드 실물로 받아보세요.</p></div>
+      </div>
+    </div>
+    <div class="pola-zone" data-rv>
+      <div class="pola a"><img src="photo1.jpg" alt="포토카드 예시"></div>
+      <div class="pola b"><img src="photo2.jpg" alt="포토카드 예시"></div>
+    </div>
   </div>
 </div></section>
 
-<section class="alt" id="print"><div class="container">
-  <div class="kicker">Print Network</div>
-  <h2>찍은 사진은, 실물로<span class="badge">확산 준비 중</span></h2>
-  <p class="desc">포토부스까지 갈 필요 없어요. 앱으로 찍은 사진을 가까운 카페에서 포토카드 실물로 출력하는 동네 출력망을 만들고 있습니다.</p>
-  <div class="flow">
-    <div class="step"><div class="n">1</div><h3>앱으로 촬영</h3><p>언제 어디서든, 막 찍으세요.</p></div>
-    <div class="step"><div class="n">2</div><h3>알아서 보정</h3><p>AI가 예쁘게 다듬습니다.</p></div>
-    <div class="step"><div class="n">3</div><h3>가까운 매장에서 출력</h3><p>포토카드 실물로 받아보세요.</p></div>
+<section class="try" id="try"><div class="container">
+  <div data-rv>
+    <div class="kicker">Try it now</div>
+    <h2>내 사진으로<br>직접 확인해보세요</h2>
+    <p class="desc">카카오톡 오픈채팅에 사진 한 장을 보내주세요.<br>Feeler 팀이 보정한 결과로 바로 답장드립니다. 무료예요.</p>
   </div>
-</div></section>
-
-<section><div class="container">
-  <div class="kicker">Reviews</div>
-  <h2>사용자 후기</h2>
-  <div class="empty">아직 준비 중이에요 — 베타 테스터들의 첫 후기가 이곳에 올라옵니다.<br>먼저 써보고 싶다면 인스타그램 DM으로 알려주세요.</div>
-</div></section>
-
-<section class="alt cta-final"><div class="container">
-  <h2>인생 사진, 탭 한 번 거리.</h2>
-  <p class="desc" style="margin:14px auto 0;">한 번 받아두면, 찍을 때마다 예뻐집니다.</p>
-  <div class="btns">
-    <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">출시 준비 중</span></a>
-    <a class="btn line" data-key="instagram" href="#"><span>Instagram</span><span class="tag">@feeler.official</span></a>
+  <div class="try-steps" data-rv>
+    <div class="try-step"><div class="n">STEP 1</div><h3>오픈채팅 입장</h3><p>아래 버튼 하나로 끝. 익명 참여 가능해요.</p></div>
+    <div class="try-step"><div class="n">STEP 2</div><h3>사진 전송</h3><p>아쉬웠던 사진 아무거나 보내주세요.</p></div>
+    <div class="try-step"><div class="n">STEP 3</div><h3>보정본 받기</h3><p>알아서 예뻐진 사진으로 답장드려요.</p></div>
+  </div>
+  <div data-rv>
+    <a class="btn kakao" data-key="kakao" href="#">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.86 5.33 4.66 6.74-.15.55-.68 2.47-.78 2.86-.12.48.18.47.37.34.15-.1 2.4-1.63 3.38-2.29.76.11 1.55.17 2.37.17 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
+      <span>오픈채팅에 사진 보내기</span>
+    </a>
+    <p class="fine">보내주신 사진은 보정 체험 용도로만 사용하고, 다른 곳에 쓰지 않아요.</p>
   </div>
 </div></section>
 
@@ -184,6 +280,7 @@
   <div class="kicker">FAQ</div>
   <h2>자주 묻는 질문</h2>
   <details><summary>Feeler는 어떤 앱인가요?</summary><p>사진을 잘 못 찍어도 되는 카메라 앱입니다. 셔터만 누르면 AI가 빛·선명도·구도·배경·잡티를 알아서 다듬고, 찍은 사진은 가까운 매장에서 실물 포토카드로 출력할 수 있게 만들고 있어요.</p></details>
+  <details><summary>보정 체험은 어떻게 하나요?</summary><p>카카오톡 오픈채팅에 사진을 보내주시면 Feeler 팀이 보정 결과로 답장드려요. 무료이고, 익명으로 참여할 수 있습니다. 보내주신 사진은 체험 용도 외에는 사용하지 않아요.</p></details>
   <details><summary>사진 실력이 필요한가요?</summary><p>아니요, 그게 Feeler의 존재 이유예요. 막 찍으세요 — 예쁘게 만드는 건 저희 몫입니다.</p></details>
   <details><summary>보정을 직접 조절할 수 있나요?</summary><p>기본은 전부 자동입니다. 결과가 마음에 안 들 때만 되돌리거나 강도를 조절할 수 있고, 원본은 항상 보관됩니다.</p></details>
   <details><summary>무료인가요?</summary><p>베타 기간에는 무료로 사용할 수 있습니다. 정식 출시 후의 가격 정책은 확정되면 이곳에서 알려드릴게요.</p></details>
@@ -192,12 +289,16 @@
   <details><summary>포토카드 출력은 어떻게 하나요?</summary><p>행사·제휴 매장에서 시범 운영 중이며, 앱에서 주문하고 가까운 매장에서 받는 출력망으로 확장할 예정입니다. 소식은 인스타그램에서 가장 먼저 알려드려요.</p></details>
 </div></section>
 
-<section class="alt cta-final"><div class="container">
-  <h2>궁금한 게 있나요?</h2>
-  <p class="desc" style="margin:14px auto 0;">Feeler 팀에게 직접 물어보세요. 여러분의 피드백이 로드맵이 됩니다.</p>
+<section class="alt cta-final"><div class="container" data-rv>
+  <h2>인생 사진, 탭 한 번 거리.</h2>
+  <p class="desc" style="margin:14px auto 0;">한 번 받아두면, 찍을 때마다 예뻐집니다.</p>
   <div class="btns">
-    <a class="btn fill" data-key="instagram" href="#"><span>Instagram DM</span></a>
-    <a class="btn line" data-key="kakao" href="#"><span>카카오톡 채널</span><span class="tag">준비 중</span></a>
+    <a class="btn fill" data-key="android" href="#"><span>Android</span><span class="tag">APK 바로 설치</span></a>
+    <a class="btn kakao" data-key="kakao" href="#">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.86 5.33 4.66 6.74-.15.55-.68 2.47-.78 2.86-.12.48.18.47.37.34.15-.1 2.4-1.63 3.38-2.29.76.11 1.55.17 2.37.17 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>
+      <span>사진 보내고 체험하기</span>
+    </a>
+    <a class="btn line" data-key="instagram" href="#"><span>Instagram</span><span class="tag">@feeler.official</span></a>
   </div>
 </div></section>
 
@@ -209,12 +310,12 @@
     </div>
     <div class="foot-col">
       <div class="foot-h">바로가기</div>
-      <a href="#styles">스타일</a><a href="#features">기능</a><a href="#print">출력망</a><a href="#faq">FAQ</a>
+      <a href="#features">기능</a><a href="#styles">스타일</a><a href="#print">출력망</a><a href="#try">체험</a><a href="#faq">FAQ</a>
     </div>
     <div class="foot-col">
-      <div class="foot-h">소셜</div>
+      <div class="foot-h">소셜 · 문의</div>
       <a data-key="instagram" href="#">Instagram</a>
-      <a data-key="tiktok" href="#">TikTok</a>
+      <a data-key="kakao" href="#">카카오톡 오픈채팅</a>
       <a href="links.html">링크 모음</a>
     </div>
   </div>
@@ -225,7 +326,7 @@
 </div></footer>
 
 <script>
-  // ── 채널 링크는 여기만 고치면 됩니다. 빈 문자열이면 "준비 중"으로 비활성화됩니다. ──
+  // ── 채널 링크는 여기만 고치면 됩니다. 빈 문자열이면 안내 팝업/비활성으로 처리됩니다. ──
   var LINKS = {
     testflight: "",
     android:    "https://raw.githubusercontent.com/integriscan/feeler-landing/main/Feeler.apk",
@@ -242,6 +343,12 @@
         e.preventDefault();
         alert('iPhone 앱은 출시 준비 중입니다! \n\n지금 체험해보고 싶으시면 관리자(부스 운영자)에게 문의해주세요 🙌');
       });
+    } else if (el.dataset.key === 'kakao') {
+      // 오픈채팅 링크 연결 전 — 클릭 가능, 안내 팝업 (클릭은 GA에 기록됨)
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        alert('오픈채팅방을 열고 있어요! \n\n지금은 Instagram @feeler.official DM으로 사진을 보내주시면 보정해서 답장드릴게요 🙌');
+      });
     } else if (el.classList.contains('btn')) {
       el.classList.add('disabled');
     } else {
@@ -255,6 +362,58 @@
       if (typeof gtag === 'function') gtag('event', 'click_' + (el.dataset.key || 'survey'), { page: location.pathname });
     });
   });
+
+  // Before/After 슬라이더
+  (function () {
+    var ba = document.getElementById('ba');
+    var clip = document.getElementById('baClip');
+    var handle = document.getElementById('baHandle');
+    if (!ba) return;
+
+    function setP(pct) {
+      pct = Math.max(6, Math.min(94, pct));
+      ba.style.setProperty('--p', pct + '%');
+    }
+
+    // 첫 진입 애니메이션: 92% → 50%로 스르륵 (보정 후가 드러남)
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) { setP(50); }
+    else {
+      setTimeout(function () {
+        clip.classList.add('gliding'); handle.classList.add('gliding');
+        setP(50);
+        setTimeout(function () { clip.classList.remove('gliding'); handle.classList.remove('gliding'); }, 1000);
+      }, 600);
+    }
+
+    var dragging = false, tracked = false;
+    function move(clientX) {
+      var r = ba.getBoundingClientRect();
+      setP((clientX - r.left) / r.width * 100);
+      if (!tracked && typeof gtag === 'function') { tracked = true; gtag('event', 'ba_slider_drag', { page: location.pathname }); }
+    }
+    ba.addEventListener('pointerdown', function (e) {
+      dragging = true; clip.classList.remove('gliding'); handle.classList.remove('gliding');
+      ba.setPointerCapture(e.pointerId); move(e.clientX);
+    });
+    ba.addEventListener('pointermove', function (e) { if (dragging) move(e.clientX); });
+    ba.addEventListener('pointerup', function () { dragging = false; });
+    ba.addEventListener('pointercancel', function () { dragging = false; });
+  })();
+
+  // 스크롤 리빌
+  (function () {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-rv]').forEach(function (el) { el.classList.add('rv-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('rv-in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('[data-rv]').forEach(function (el) { io.observe(el); });
+  })();
 </script>
 </body>
 </html>
