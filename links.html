@@ -2,6 +2,15 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1XJJ3QRW6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-G1XJJ3QRW6');
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Feeler — 링크</title>
 <meta name="description" content="Feeler 공식 링크 모음">
@@ -73,6 +82,13 @@
     var url = LINKS[el.dataset.key];
     if (url) { el.href = url; el.target = "_blank"; }
     else { el.classList.add('disabled'); el.style.opacity = .45; el.style.pointerEvents = 'none'; }
+  });
+
+  // CTA 클릭 이벤트 (GA4)
+  document.querySelectorAll('[data-key], .survey-cta').forEach(function (el) {
+    el.addEventListener('click', function () {
+      if (typeof gtag === 'function') gtag('event', 'click_' + (el.dataset.key || 'survey'), { page: location.pathname });
+    });
   });
 </script>
 </body>
