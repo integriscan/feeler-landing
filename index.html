@@ -39,6 +39,8 @@
   .btn.line { background:#fff; color:var(--ink); }
   .btn.disabled { opacity:.4; pointer-events:none; }
   .btn .tag { font-size:12px; font-weight:500; opacity:.7; }
+  .survey-cta { display:inline-block; margin-top:16px; padding:11px 22px; border-radius:99px; background:var(--paper, #F7F7F7); border:1px dashed var(--ink); color:var(--ink); font-size:14px; font-weight:600; }
+  .survey-cta b { font-weight:800; }
   .hero-cards { margin-top:52px; display:flex; justify-content:center; gap:0; }
   .pola { background:#fff; border:1px solid var(--line); padding:10px 10px 26px; box-shadow:0 14px 34px rgba(0,0,0,.10); width:min(240px,38vw); }
   .pola img { display:block; width:100%; aspect-ratio:2/3; object-fit:cover; }
@@ -108,9 +110,10 @@
   <h1>'그' 사진,<br>그냥 찍으세요.</h1>
   <p class="lead">구도가 어긋나도, 빛이 아쉬워도 괜찮아요.<br>셔터만 누르면 끝 — 편집 없이 완성되는 사진.</p>
   <div class="btns" id="down">
-    <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">준비 중</span></a>
+    <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">출시 준비 중</span></a>
     <a class="btn line" data-key="android" href="#"><span>Android</span><span class="tag">APK 바로 설치</span></a>
   </div>
+  <a class="survey-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSd3A0rv4iTWh4ET5Ue1AssP5AWzmmnz5oxkDNfZ3un6hckmcA/viewform" target="_blank">📋 30초 설문하고 <b>포토카드 할인</b> 받기 →</a>
   <div class="hero-cards">
     <div class="pola a"><img src="photo1.jpg" alt="포토카드 예시"></div>
     <div class="pola b"><img src="photo2.jpg" alt="포토카드 예시"></div>
@@ -163,7 +166,7 @@
   <h2>인생 사진, 탭 한 번 거리.</h2>
   <p class="desc" style="margin:14px auto 0;">한 번 받아두면, 찍을 때마다 예뻐집니다.</p>
   <div class="btns">
-    <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">준비 중</span></a>
+    <a class="btn fill" data-key="testflight" href="#"><span>iPhone</span><span class="tag">출시 준비 중</span></a>
     <a class="btn line" data-key="instagram" href="#"><span>Instagram</span><span class="tag">@feeler.official</span></a>
   </div>
 </div></section>
@@ -226,8 +229,6 @@
     if (url) { el.href = url; el.target = "_blank"; }
     else if (el.classList.contains('btn')) {
       el.classList.add('disabled');
-      var tag = el.querySelector('.tag');
-      if (tag) tag.textContent = '준비 중';
     } else {
       el.style.opacity = .5; el.style.pointerEvents = 'none';
     }
