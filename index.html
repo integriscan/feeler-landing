@@ -155,6 +155,25 @@
   .done h3 { margin: 8px 0 6px; font-size: 22px; }
   .done p { margin: 0; color: var(--sub); }
 
+  .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+  .benefits div { display: grid; justify-items: center; gap: 2px; padding: 16px 10px; border-radius: 16px; background: var(--soft); }
+  .benefits span { font-size: 28px; }
+  .benefits small { color: var(--sub); font-size: 13px; }
+  .req, .opt { font-size: 12px; font-weight: 600; margin-left: 4px; }
+  .req { color: #dc2743; }
+  .opt { color: var(--sub); }
+  div.f { display: grid; gap: 6px; font-size: 14px; font-weight: 600; }
+  input[type=tel] { height: 50px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--text); padding: 0 14px; font: inherit; outline: none; width: 100%; }
+  input[type=tel]:focus { border-color: #dc2743; box-shadow: 0 0 0 4px rgba(220, 39, 67, .12); }
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .seg label { position: relative; }
+  .seg input { position: absolute; opacity: 0; inset: 0; }
+  .seg span { display: grid; place-items: center; height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg); font-weight: 600; cursor: pointer; }
+  .seg input:checked + span { border: 2px solid #dc2743; color: #dc2743; }
+  .seg input:focus-visible + span { box-shadow: 0 0 0 4px rgba(220, 39, 67, .15); }
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .fine { margin: 22px 0 0; padding: 14px 16px 14px 30px; border-radius: 12px; background: var(--soft); color: var(--sub); font-size: 12.5px; text-align: left; display: grid; gap: 2px; }
+
   /* FAQ */
   .faq { max-width: 720px; margin: 0 auto; display: grid; gap: 10px; }
   .faq details { border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; background: var(--card); }
@@ -189,11 +208,11 @@
   <section class="hero">
     <div class="wrap">
       <div>
-        <span class="pill"><i></i>사전신청 받는 중</span>
+        <a class="pill" href="#join" style="text-decoration:none"><i></i>사전신청 혜택 · 10만원 크레딧 + 한정 굿즈</a>
         <h1>내가 주인공인 세계,<br><span class="grad-text">오늘도 다들 내 얘기 중</span></h1>
         <p class="lead">직업만 고르면 팬·라이벌·기자·썸 상대가 생겨나요. 내가 안 보는 사이에도 게시물이 올라오고, 댓글이 달리고, DM이 먼저 와요. 나만을 위한 인스타그램, Feeler.</p>
         <div class="cta">
-          <a class="btn" href="#join">사전신청하기</a>
+          <a class="btn" href="#join">사전신청하고 혜택 받기</a>
           <a class="btn ghost" href="#how">어떻게 돌아가나요?</a>
         </div>
         <p class="jobs-line">🎤 아이돌 · 🎬 배우 · 📸 인플루언서 · 🎮 스트리머 · ⚽ 운동선수 · 🍳 셰프</p>
@@ -305,40 +324,63 @@
     <div class="wrap">
       <div class="join">
         <div class="eyebrow grad-text">사전신청</div>
-        <h2>내 세계가 열리면<br>가장 먼저 알려드릴게요</h2>
-        <p class="sec-lead" style="margin:0 auto">베타가 열리면 신청하신 이메일로 가장 먼저 안내해 드려요.</p>
+        <h2>지금 사전신청하면<br><span class="grad-text">10만원 크레딧 + 한정 굿즈</span></h2>
+        <div class="benefits">
+          <div><span>💳</span><b>10만원 상당 크레딧</b><small>정식 출시 후 지급</small></div>
+          <div><span>🎁</span><b>Feeler 한정 굿즈</b><small>한정 수량</small></div>
+        </div>
 
         <form id="join-form" novalidate>
-          <label class="f">이메일
-            <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required maxlength="254">
-          </label>
-          <label class="f">가장 해보고 싶은 직업 <span style="font-weight:400;color:var(--sub)">(선택)</span>
-            <select name="job">
-              <option value="">선택 안 함</option>
-              <option>아이돌</option><option>배우</option><option>인플루언서</option>
-              <option>스트리머</option><option>운동선수</option><option>셰프</option><option>기타</option>
+          <div class="f"><span>성별 <span class="req">필수</span></span>
+            <div class="seg" role="radiogroup" aria-label="성별">
+              <label><input type="radio" name="gender" value="여성" required><span>여성</span></label>
+              <label><input type="radio" name="gender" value="남성"><span>남성</span></label>
+              <label><input type="radio" name="gender" value="기타"><span>기타</span></label>
+            </div>
+          </div>
+          <label class="f"><span>연령 <span class="req">필수</span></span>
+            <select name="age" required>
+              <option value="">선택해 주세요</option>
+              <option>만 14~19세</option><option>20~24세</option><option>25~29세</option>
+              <option>30~34세</option><option>35~39세</option><option>40세 이상</option>
             </select>
           </label>
+          <label class="f"><span>이메일 <span class="req">필수</span></span>
+            <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required maxlength="254">
+          </label>
+          <label class="f"><span>전화번호 <span class="opt">선택</span></span>
+            <input type="tel" name="phone" placeholder="010-1234-5678" autocomplete="tel" inputmode="tel" maxlength="13">
+          </label>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="trap">
           <label class="consent"><input type="checkbox" name="consent" required><span>개인정보 수집·이용에 동의합니다 (필수)</span></label>
+          <label class="consent"><input type="checkbox" name="marketing"><span>이벤트·혜택 소식을 이메일·문자로 받을게요 (선택)</span></label>
           <details class="terms">
             <summary>수집 항목과 이용 목적 보기</summary>
             <ul>
-              <li>수집 항목: 이메일 주소, 관심 직업(선택)</li>
-              <li>이용 목적: Feeler 출시 및 베타 테스트 안내</li>
-              <li>보유 기간: 출시 안내를 마친 뒤 또는 동의를 철회하면 지체 없이 파기 (최대 1년)</li>
-              <li>동의를 거부할 수 있으며, 거부하면 사전신청을 할 수 없어요.</li>
+              <li>수집 항목: (필수) 성별, 연령대, 이메일 주소 / (선택) 전화번호</li>
+              <li>이용 목적: Feeler 출시·베타 안내, 사전신청 혜택(크레딧·굿즈) 지급과 안내, 서비스 기획을 위한 통계(성별·연령대)</li>
+              <li>보유 기간: 혜택 지급을 마친 뒤 또는 동의를 철회하면 지체 없이 파기 (최대 1년)</li>
+              <li>처리 위탁·보관: Google(명단 관리·알림 메일), Supabase(신청 기록 보관) — 해외 서버에 보관될 수 있어요.</li>
+              <li>만 14세 미만은 신청할 수 없어요. 동의를 거부할 수 있으며, 거부하면 사전신청을 할 수 없어요.</li>
               <li>동의 철회·삭제 요청: <a id="contact-link" href="mailto:seocpryrhk@gmail.com">seocpryrhk@gmail.com</a></li>
             </ul>
           </details>
-          <button class="btn" type="submit">사전신청하기</button>
+          <button class="btn" type="submit">사전신청하고 혜택 받기</button>
           <p class="msg" id="msg" role="status" aria-live="polite"></p>
         </form>
 
         <div class="done" id="done">
           <div class="big">💌</div>
           <h3>신청이 완료됐어요</h3>
-          <p>세계가 열리면 가장 먼저 연락드릴게요.<br>그때까지 팬들이 기다리고 있을 거예요.</p>
+          <p>10만원 크레딧과 한정 굿즈는 정식 출시 때 신청하신 이메일로 안내해 드릴게요.<br>그때까지 팬들이 기다리고 있을 거예요.</p>
         </div>
+
+        <ul class="fine">
+          <li>크레딧은 정식 출시 후, 사전신청한 이메일로 가입하면 1인 1회 지급돼요.</li>
+          <li>굿즈는 한정 수량이며, 지급 대상자에게는 배송 정보를 따로 요청해요.</li>
+          <li>혜택의 세부 조건과 지급 일정은 출시 전에 이메일로 안내해요.</li>
+          <li>잘못된 정보나 중복 신청은 혜택 대상에서 빠질 수 있어요.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -348,6 +390,7 @@
       <h2 style="text-align:center">자주 묻는 질문</h2>
       <div class="faq" style="margin-top:28px">
         <details><summary>언제 쓸 수 있나요?</summary><p>지금은 사전신청을 받고 있어요. 베타가 열리면 신청하신 이메일로 가장 먼저 알려드려요.</p></details>
+        <details><summary>사전신청 혜택은 언제, 어떻게 받나요?</summary><p>10만원 상당 크레딧은 정식 출시 후 사전신청한 이메일로 가입하면 1인 1회 지급돼요. 한정 굿즈는 대상자에게 배송 정보를 따로 요청드려요. 세부 조건과 일정은 출시 전에 이메일로 안내해요.</p></details>
         <details><summary>등장인물은 진짜 사람인가요?</summary><p>아니요. 모두 AI가 연기하는 가상의 인물이에요. 실존 인물과는 관계가 없어요.</p></details>
         <details><summary>다른 사람도 내 게시물을 볼 수 있나요?</summary><p>아니요. Feeler는 공개 SNS가 아니라 나만 보는 세계예요.</p></details>
         <details><summary>요금은 얼마인가요?</summary><p>요금 정책은 베타를 열기 전에 사전신청자분들께 먼저 안내할게요.</p></details>
@@ -370,9 +413,17 @@
 <script>
   (() => {
     'use strict';
-    // 사전신청은 Supabase의 join_feeler_waitlist 함수로만 들어간다(방문자는 명단을 읽을 수 없음).
+    // 사전신청은 구글 Apps Script 웹 앱으로 보낸다: 시트에 한 줄 기록 + 운영자에게 알림 메일.
+    // 백업으로 이메일·유입 경로만 Supabase join_feeler_waitlist 함수에도 남긴다(방문자는 명단을 읽을 수 없음).
+    const SHEET_URL = 'APPS_SCRIPT_URL';
     const SUPABASE_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
+    const ERRORS = {
+      email: '이메일 주소를 확인해 주세요.',
+      phone: '전화번호를 확인해 주세요. (예: 010-1234-5678)',
+      profile: '성별과 연령을 선택해 주세요.',
+      consent: '개인정보 수집·이용에 동의해 주세요.',
+    };
 
     const form = document.getElementById('join-form');
     const msg = document.getElementById('msg');
@@ -384,31 +435,53 @@
     }
 
     try {
-      if (localStorage.getItem('feeler:joined')) { form.hidden = true; done.style.display = 'block'; }
+      if (localStorage.getItem('feeler:joined:v2')) { form.hidden = true; done.style.display = 'block'; }
     } catch { /* 저장소를 못 쓰면 무시 */ }
+
+    const fail = (text) => { msg.className = 'msg err'; msg.textContent = text; };
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = form.email.value.trim();
       msg.className = 'msg';
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.className = 'msg err'; msg.textContent = '이메일 주소를 확인해 주세요.'; return; }
-      if (!form.consent.checked) { msg.className = 'msg err'; msg.textContent = '개인정보 수집·이용에 동의해 주세요.'; return; }
+      msg.textContent = '';
+      const data = {
+        gender: form.gender.value,
+        age_group: form.age.value,
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        consent: form.consent.checked,
+        marketing: form.marketing.checked,
+        source: source.slice(0, 100),
+        website: form.website.value,
+      };
+      if (!data.gender || !data.age_group) return fail(ERRORS.profile);
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) return fail(ERRORS.email);
+      const digits = data.phone.replace(/\D/g, '');
+      if (digits && !/^01[016789]\d{7,8}$/.test(digits)) return fail(ERRORS.phone);
+      if (!data.consent) return fail(ERRORS.consent);
+
       const btn = form.querySelector('button');
       btn.disabled = true;
       msg.textContent = '신청하는 중…';
+      // 백업 기록은 실패해도 신청 결과에 영향을 주지 않는다.
+      fetch(`${SUPABASE_URL}/rest/v1/rpc/join_feeler_waitlist`, {
+        method: 'POST',
+        headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_email: data.email, p_job: null, p_source: data.source || null, p_consent: true }),
+      }).catch(() => {});
       try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/join_feeler_waitlist`, {
-          method: 'POST',
-          headers: { apikey: SUPABASE_KEY, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ p_email: email, p_job: form.job.value || null, p_source: source.slice(0, 100) || null, p_consent: true }),
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        try { localStorage.setItem('feeler:joined', '1'); } catch { /* 무시 */ }
+        // Content-Type을 지정하지 않아야(text/plain) Apps Script가 CORS 사전 요청 없이 받는다.
+        const res = await fetch(SHEET_URL, { method: 'POST', body: JSON.stringify(data) });
+        const out = await res.json();
+        if (!out.ok) {
+          btn.disabled = false;
+          return fail(ERRORS[out.error] || '신청하지 못했어요. 잠시 후 다시 시도해 주세요.');
+        }
+        try { localStorage.setItem('feeler:joined:v2', '1'); } catch { /* 무시 */ }
         form.hidden = true;
         done.style.display = 'block';
       } catch {
-        msg.className = 'msg err';
-        msg.textContent = '신청하지 못했어요. 잠시 후 다시 시도해 주세요.';
+        fail('신청하지 못했어요. 잠시 후 다시 시도해 주세요.');
         btn.disabled = false;
       }
     });
