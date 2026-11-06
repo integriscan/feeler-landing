@@ -435,6 +435,21 @@
     .hero .trust { margin-top: 16px; }
     .hero .phone { width: min(300px, 78vw); }
   }
+
+  /* ===== 보상 3개 강조 ===== */
+  .hero .lead { font-size: clamp(18px, 2vw, 24px); font-weight: 700; color: var(--text); margin: 0 0 16px; }
+  .rewards { list-style: none; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 0 0 32px; padding: 0; }
+  .rewards li { display: flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 16px; background: #141416; border: 1px solid #2A2A2F; font-size: clamp(18px, 1.8vw, 22px); font-weight: 800; color: var(--text); }
+  .rewards .ico { font-size: 24px; }
+  .rewards li b { color: var(--text); }
+  .hero .trust { margin: 20px 0 0; font-size: 14px; color: var(--mut); }
+  section.light .rewards li { background: #fff; border-color: #E4E4E9; color: #111114; }
+  .cta .rewards { margin: 8px 0 8px; }
+  @media (max-width: 900px) {
+    .rewards { flex-direction: column; align-items: stretch; gap: 8px; margin-bottom: 24px; }
+    .rewards li { justify-content: center; padding: 14px 16px; font-size: 18px; }
+    .hero .lead { font-size: 18px; margin-bottom: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -457,13 +472,14 @@
     <div class="wrap hero">
       <div class="copy">
         <h1 id="h1"><span class="line">내 말 한마디에,</span><br><span class="line"><em class="ac">세계</em>가 바뀐다</span></h1>
-        <p class="lead" data-ad-copy="default">팬이 먼저 DM을 보내고, 라이벌이 내 기사에 댓글을 달아요. 나만을 위한 인스타그램.</p>
-        <p class="lead" data-ad-copy="A" hidden>서진이 먼저 DM을 보내고, 기자는 “서진 씨와 어떤 사이냐”고 물어요. 주인공이든 팬이든, 내 말이 세계를 바꿔요.</p>
-        <p class="lead" data-ad-copy="B" hidden>“컴백해요” 한 줄에 팬은 울고, 기자는 기사 쓰고, 라이벌은 발끈해요.</p>
-        <p class="lead" data-ad-copy="C" hidden>직업 하나 고르면 팬·기자·라이벌이 생겨요. 원하던 삶을 오늘부터.</p>
-        <a class="btn big" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">내 세계 먼저 열기 · 설문 5분</a>
-        <p class="sub">연락처 남기면 크레딧 1만 원 + 파운더 배지 · 11/16까지</p>
-        <p class="trust">12월 15일 출시 예정 · 아래 댓글은 실제 테스트 화면 그대로</p>
+        <p class="lead">설문 5분이면 전부 받아요</p>
+        <ul class="rewards">
+          <li><span class="ico">💎</span><b>크레딧 1만 원</b></li>
+          <li><span class="ico">🏅</span><b>한정판 파운더 배지</b></li>
+          <li><span class="ico">🎭</span><b>한정판 세계 테마</b></li>
+        </ul>
+        <a class="btn big" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">설문 5분 하고 전부 받기</a>
+        <p class="trust">12월 15일 출시 · 출시 후엔 못 받아요</p>
       </div>
 
       <div class="stage3d">
@@ -552,10 +568,14 @@
 
   <section id="cta" class="light cta">
     <div class="wrap">
-      <h2 class="rv">내 말 한마디로 바뀌는 세계,<br>먼저 열어 볼래요?</h2>
-      <p class="rv">설문 5분이면 파운더 1기. 12월 15일 출시.</p>
-      <a class="btn big rv" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">내 세계 먼저 열기 · 설문 5분</a>
-      <p class="sub rv">연락처 남기면 크레딧 1만 원 + 파운더 배지 · 11/16까지</p>
+      <h2 class="rv">설문 5분이면<br>전부 받아요</h2>
+      <ul class="rewards rv">
+        <li><span class="ico">💎</span><b>크레딧 1만 원</b></li>
+        <li><span class="ico">🏅</span><b>한정판 파운더 배지</b></li>
+        <li><span class="ico">🎭</span><b>한정판 세계 테마</b></li>
+      </ul>
+      <a class="btn big rv" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">설문 5분 하고 전부 받기</a>
+      <p class="sub rv">12월 15일 출시 · 출시 후엔 못 받아요</p>
     </div>
   </section>
 
@@ -649,7 +669,7 @@
     });
     const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
     intro.from('#h1 .w', { y: 46, opacity: 0, rotateX: -40, duration: .9, stagger: .08, transformOrigin: '50% 100%' }, '-=.3')
-      .from('.hero .lead:not([hidden]), .hero .btn.big, .hero .sub, .hero .trust', { y: 24, opacity: 0, duration: .7, stagger: .1, clearProps: 'transform,opacity' }, '-=.5')
+      .from('.hero .lead, .hero .rewards li, .hero .btn.big, .hero .trust', { y: 24, opacity: 0, duration: .7, stagger: .1, clearProps: 'transform,opacity' }, '-=.5')
       .from('#heroPhone', { y: 120, opacity: 0, rotateX: mobile ? 0 : 30, duration: 1.1, ease: 'power3.out' }, '-=.9')
       // 광고 A안 장면: 알림 3개가 차례로 떨어진다
       .from('#notis .noti', { y: -40, opacity: 0, scale: .92, duration: .6, stagger: .5, ease: 'back.out(1.6)' }, '-=.4');
