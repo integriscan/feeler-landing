@@ -392,6 +392,27 @@
     .hero .trust { margin-top: 32px; }
     header nav a { display: inline; }
   }
+
+  /* ===== 30% 밝은 면: 인물 카드·마무리·질문 ===== */
+  section.light { background: #F5F5F6; color: #111114; --text: #111114; --sub: #5E5E68; --mut: #8A8A94; --line: #E4E4E9; }
+  section.light h2, section.light b { color: #111114; }
+  section.light .card, section.light .quote, section.light .faq details { background: #fff; border-color: #E4E4E9; color: #111114; box-shadow: 0 16px 40px -28px rgba(17,17,20,.25); }
+  section.light .card .aff i { background: #ECECF0; }
+  section.light .card .who .role { background: var(--ac); color: #fff; }
+  section.light .note, section.light .faq summary::after { color: #8A8A94; }
+  section.light .faq p { color: #5E5E68; }
+  section.light .card[style*="var(--grad)"] { background: #111114 !important; color: #fff !important; }
+  section.light .card[style*="var(--grad)"] .btn.ghost { background: var(--ac); color: #0B0B0C; border-color: transparent; }
+  section.light .btn { color: #0B0B0C; }
+  section.light + section.light { padding-top: 0; }
+  .btn.big { display: flex; width: max-content; max-width: 100%; margin: 0; }
+  .cta .wrap { text-align: center; display: grid; justify-items: center; gap: 16px; }
+  .cta h2 { font-size: clamp(30px, 4.4vw, 48px); }
+  .cta p { color: var(--sub); font-size: 18px; margin: 0; }
+  .cta .sub { font-size: 14px; color: var(--mut); }
+  .cta .btn.big { margin-top: 8px; }
+  .faq-sec { padding-top: 0; }
+  @media (max-width: 900px) { .btn.big { width: 100%; } .cta p { font-size: 16px; } }
 </style>
 </head>
 <body>
@@ -488,7 +509,7 @@
     </div>
   </section>
 
-  <section id="cast" class="alt">
+  <section id="cast" class="light">
     <div class="pin">
       <div class="wrap head">
         <div class="eyebrow grad-text">같은 말, 다른 반응</div>
@@ -507,7 +528,16 @@
     </div>
   </section>
 
-  <section>
+  <section id="cta" class="light cta">
+    <div class="wrap">
+      <h2 class="rv">내 말 한마디로 바뀌는 세계,<br>먼저 열어 볼래요?</h2>
+      <p class="rv">설문 5분이면 파운더 1기. 12월 15일 출시.</p>
+      <a class="btn big rv" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">내 세계 먼저 열기 · 설문 5분</a>
+      <p class="sub rv">연락처 남기면 크레딧 1만 원 + 파운더 배지 · 11/16까지</p>
+    </div>
+  </section>
+
+  <section class="light faq-sec">
     <div class="wrap">
       <h2 class="rv" style="text-align:center">궁금한 것</h2>
       <div class="faq">
