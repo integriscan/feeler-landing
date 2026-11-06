@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Noto+Serif+KR:wght@600;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root {
@@ -301,7 +301,7 @@
   :root { --bg: #0B0B0C; --bg2: #101012; --text: #F5F5F6; --sub: #B9B9C2; --mut: #7C7C86; --line: #232327; --card: #141416;
           --ac: #FF4FA3; --ac-ink: #0B0B0C; --grad: var(--ac); --pink: var(--ac); }
   body { background: var(--bg); color: var(--text); }
-  h1, h2 { font-family: "Noto Serif KR", "Pretendard Variable", serif; font-weight: 900; letter-spacing: -0.015em; }
+  h1, h2 { font-weight: 900; letter-spacing: -0.03em; }
   h1 .ac, h2 .ac { color: var(--ac); font-style: normal; }
   .grad-text { background: none; color: var(--ac); -webkit-text-fill-color: var(--ac); }
   .btn { background: var(--ac); color: var(--ac-ink); box-shadow: 0 14px 34px -14px rgba(255,79,163,.7); }
@@ -313,22 +313,20 @@
   section.alt { background: var(--bg2); }
 
   /* 히어로: 글로우 하나 + 미세 점 패턴 */
-  #hero { background: radial-gradient(60% 50% at 70% 30%, rgba(255,79,163,.22), transparent 70%), radial-gradient(40% 40% at 20% 80%, rgba(255,79,163,.10), transparent 70%); }
-  #hero::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; mask-image: linear-gradient(180deg, rgba(0,0,0,.9), transparent 85%); -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.9), transparent 85%); pointer-events: none; }
+  #hero { background: var(--bg); }
   .blob { display: none; }
   .hero .pill { background: #141416; border-color: #2A2A2F; color: var(--sub); }
   .hero .pill i { background: var(--ac); box-shadow: 0 0 0 4px rgba(255,79,163,.2); }
   .hero .lead { color: var(--sub); }
   .hero .lead b { color: var(--text); }
   .offer { background: #141416; border: 1px solid #2A2A2F; box-shadow: 0 30px 60px -30px rgba(255,79,163,.45); color: var(--text); }
-  .offer b { font-family: "Noto Serif KR", serif; }
   .offer span { color: var(--sub); }
   .offer em { color: var(--ac); font-weight: 700; }
   .stats { display: flex; gap: 28px; margin-top: 26px; }
-  .stats b { display: block; font-family: "Instrument Serif", "Noto Serif KR", serif; font-size: 34px; line-height: 1; color: var(--text); }
+  .stats b { display: block; font-size: 34px; line-height: 1; color: var(--text); }
   .stats small { display: block; color: var(--mut); font-size: 12px; margin-top: 6px; letter-spacing: .02em; }
   .hero .jobs { color: var(--mut); }
-  .phone { box-shadow: 0 50px 100px -40px rgba(255,79,163,.35), 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08) inset; }
+  .phone { box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08) inset; }
 
   /* 파급력 */
   .step { background: #141416; border-color: #232327; color: var(--mut); }
@@ -371,10 +369,28 @@
   .media .t { position: absolute; left: 0; bottom: 0; padding: 0 14px 14px; }
   .hero-photo { position: absolute; inset: 0; background: url("img/hero.webp") center 35% / cover no-repeat; opacity: .55; pointer-events: none; }
   .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #0B0B0C 0%, rgba(11,11,12,.85) 38%, rgba(11,11,12,.25) 70%, rgba(11,11,12,.6) 100%), linear-gradient(180deg, rgba(11,11,12,.2), rgba(11,11,12,.3) 60%, #0B0B0C 100%); }
-  #hero::before { opacity: .5; }
   @media (max-width: 900px) {
     .hero-photo { background-position: 60% 20%; opacity: .45; }
     .hero-photo::after { background: linear-gradient(180deg, rgba(11,11,12,.55), rgba(11,11,12,.75) 50%, #0B0B0C 100%); }
+  }
+
+  /* ===== 축소판: 첫 화면 5개, 8px 간격 ===== */
+  .hero h1 { margin: 0 0 24px; font-size: clamp(40px, 6vw, 68px); line-height: 1.12; }
+  .hero .lead { margin: 0 0 32px; font-size: clamp(17px, 1.6vw, 20px); max-width: 520px; color: var(--sub); }
+  .btn.big { font-size: 18px; padding: 18px 32px; }
+  .hero .sub { margin: 16px 0 0; font-size: 14px; color: var(--sub); }
+  .hero .trust { margin: 48px 0 0; font-size: 13px; color: var(--mut); }
+  header nav a { font-size: 15px; font-weight: 600; color: var(--sub); }
+  .hero { gap: 64px; }
+  #hero { padding-top: 64px; }
+  .hero-photo { opacity: .5; }
+  @media (max-width: 900px) {
+    .hero { gap: 40px; }
+    .hero h1 { font-size: clamp(36px, 10vw, 44px); margin-bottom: 16px; }
+    .hero .lead { margin-bottom: 24px; font-size: 16px; }
+    .btn.big { width: 100%; font-size: 17px; padding: 16px 24px; }
+    .hero .trust { margin-top: 32px; }
+    header nav a { display: inline; }
   }
 </style>
 </head>
@@ -384,9 +400,7 @@
   <div class="wrap">
     <a class="logo grad-text" href="#top">Feeler</a>
     <nav>
-      <a href="#impact">한마디의 힘</a>
-      <a href="#cast">사람들</a>
-      <a class="btn" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener"><span class="full">설문 5분 · 파운더</span><span class="short">설문 5분</span></a>
+      <a data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">설문 5분</a>
     </nav>
   </div>
 </header>
@@ -399,19 +413,14 @@
     <div class="blob c" data-speed="0.6"></div>
     <div class="wrap hero">
       <div class="copy">
-        <span class="pill"><i></i> 12월 15일 출시 예정 · 출시 전 설문 진행 중</span>
         <h1 id="h1"><span class="line">내 말 한마디에,</span><br><span class="line"><em class="ac">세계</em>가 바뀐다</span></h1>
-        <p class="lead" data-ad-copy="default"><b>팬이 먼저 DM을 보내고, 라이벌이 내 기사에 댓글을 달아요.</b><br>나만을 위한 인스타그램, 만드는 중.</p>
-        <p class="lead" data-ad-copy="A" hidden><b>서진이 먼저 DM을 보내고, 기자는 “서진 씨와 어떤 사이냐”고 물어요.</b><br>주인공이든 팬이든, 내 말 한마디가 세계를 바꾸는 인스타그램. 만드는 중.</p>
-        <p class="lead" data-ad-copy="B" hidden><b>“컴백해요” 한 줄에 팬은 울고, 기자는 기사 쓰고, 라이벌은 발끈해요.</b><br>나만을 위한 인스타그램, 만드는 중.</p>
-        <p class="lead" data-ad-copy="C" hidden><b>직업 하나 고르면 팬·기자·라이벌이 생겨요.</b><br>원하던 삶을 오늘부터 살아 보는 나만의 인스타그램, 만드는 중.</p>
-        <a class="offer" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">
-          <b>사전 이용 설문 5분</b>
-          <span>크레딧 1만원 지급 · 파운더 배지 · 한정 세계 테마</span>
-          <em>11/16까지 · 설문 하러 가기 →</em>
-        </a>
-        <div class="stats"><div><b>8명</b><small>나를 둘러싼 등장인물</small></div><div><b>5분</b><small>내가 안 봐도 흐르는 세계</small></div><div><b>12/15</b><small>출시 예정</small></div></div>
-        <div class="jobs"><span>🎤 아이돌</span><span>🎬 배우</span><span>📸 인플루언서</span><span>🎮 스트리머</span><span>⚽ 운동선수</span></div>
+        <p class="lead" data-ad-copy="default">팬이 먼저 DM을 보내고, 라이벌이 내 기사에 댓글을 달아요. 나만을 위한 인스타그램.</p>
+        <p class="lead" data-ad-copy="A" hidden>서진이 먼저 DM을 보내고, 기자는 “서진 씨와 어떤 사이냐”고 물어요. 주인공이든 팬이든, 내 말이 세계를 바꿔요.</p>
+        <p class="lead" data-ad-copy="B" hidden>“컴백해요” 한 줄에 팬은 울고, 기자는 기사 쓰고, 라이벌은 발끈해요.</p>
+        <p class="lead" data-ad-copy="C" hidden>직업 하나 고르면 팬·기자·라이벌이 생겨요. 원하던 삶을 오늘부터.</p>
+        <a class="btn big" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">내 세계 먼저 열기 · 설문 5분</a>
+        <p class="sub">연락처 남기면 크레딧 1만 원 + 파운더 배지 · 11/16까지</p>
+        <p class="trust">12월 15일 출시 예정 · 아래 댓글은 실제 테스트 화면 그대로</p>
       </div>
 
       <div class="stage3d">
@@ -420,9 +429,9 @@
             <div class="notch"></div>
             <div class="clock"><div class="d">11월 5일 수요일</div><div class="t">9:41</div></div>
             <div class="notis" id="notis">
-              <div class="noti"><div class="av"><img src="img/harin.webp" alt=""></div><div><b>하린 <span class="role">팬</span> <small>DM · 방금</small></b><span>오늘 무대 끝나고 바로 잤어요? 😢</span></div></div>
-              <div class="noti"><div class="av"><img src="img/jungwoo.webp" alt=""></div><div><b>정우 <span class="role">기자</span> <small>DM · 3분 전</small></b><span>단독 인터뷰 가능하실까요?</span></div></div>
-              <div class="noti"><div class="av"><img src="img/seojin.webp" alt=""></div><div><b>서진 <span class="role">라이벌</span> <small>내 기사에 댓글 · 12분 전</small></b><span>기사 봤어. 다음엔 내가 1위야.</span></div></div>
+              <div class="noti"><div class="av"><img src="img/harin.jpg" alt=""></div><div><b>하린 <span class="role">팬</span> <small>DM · 방금</small></b><span>오늘 무대 끝나고 바로 잤어요? 😢</span></div></div>
+              <div class="noti"><div class="av"><img src="img/jungwoo.jpg" alt=""></div><div><b>정우 <span class="role">기자</span> <small>DM · 3분 전</small></b><span>단독 인터뷰 가능하실까요?</span></div></div>
+              <div class="noti"><div class="av"><img src="img/seojin.jpg" alt=""></div><div><b>서진 <span class="role">라이벌</span> <small>내 기사에 댓글 · 12분 전</small></b><span>기사 봤어. 다음엔 내가 1위야.</span></div></div>
             </div>
             <div class="lockfoot">위로 밀어서 내 세계 열기</div>
           </div>
@@ -453,8 +462,8 @@
               <div class="notch"></div>
               <div class="top"><span class="logo">Feeler</span><span class="ic">✉️<span class="badge" id="dmBadge" style="opacity:0">1</span></span></div>
               <div class="post" style="border-top:0">
-                <div class="ph"><div class="av"><img src="img/yuna.webp" alt=""></div>yuna.stage <small>· 방금</small></div>
-                <div class="media"><img src="img/post.webp" alt=""><div class="t">컴백 D-7</div></div>
+                <div class="ph"><div class="av"><img src="img/yuna.jpg" alt=""></div>yuna.stage <small>· 방금</small></div>
+                <div class="media"><img src="img/post.jpg" alt=""><div class="t">컴백 D-7</div></div>
                 <div class="act">🤍 💬 ✈️</div>
                 <div class="likes">좋아요 <span id="likeN">0</span>개</div>
                 <div class="cap"><b>yuna.stage</b><span id="typed" class="typing"></span></div>
@@ -470,7 +479,7 @@
             <h4>유나, 다음 주 컴백 공식화… “이번엔 자신 있다” 발언에 팬덤 들썩</h4>
           </div>
           <div class="dm" id="dmPop">
-            <div class="av"><img src="img/sky.webp" alt=""></div>
+            <div class="av"><img src="img/sky.jpg" alt=""></div>
             <div><b>sky.with.u</b><span class="t">자신 있다며. 그날처럼 괜찮을 거야. 끝나고 봐.</span></div>
           </div>
           <div class="followers" id="followers">+312 팔로워</div>
@@ -484,14 +493,14 @@
       <div class="wrap head">
         <div class="eyebrow grad-text">같은 말, 다른 반응</div>
         <h2>같은 말, 다 다르게 반응해요</h2>
-        <div class="quote"><div class="av"><img src="img/yuna.webp" alt=""></div>“드디어 다음 주 컴백해요. 이번엔 진짜 자신 있어요 🔥”</div>
+        <div class="quote"><div class="av"><img src="img/yuna.jpg" alt=""></div>“드디어 다음 주 컴백해요. 이번엔 진짜 자신 있어요 🔥”</div>
       </div>
       <div class="track" id="track">
-        <div class="card"><div class="who"><div class="av"><img src="img/harin.webp" alt=""></div><div><b>harin.fan</b><span class="role">열성 팬</span></div></div><p>드디어 컴백이라니!! D-7 카운트 시작🔥🔥 언니 자신 있다는 말 진짜 믿고 달려요🥹💿</p><div class="aff">호감도 <i><b style="--w:92%"></b></i> 92</div></div>
-        <div class="card"><div class="who"><div class="av"><img src="img/seojin.webp" alt=""></div><div><b>seojin.beat</b><span class="role">라이벌</span></div></div><p>자신 있다는 건 무대 보고 판단하자. 대기실서 또 마주칠 텐데 이번엔 누가 더 셀지 보자고.</p><div class="aff">호감도 <i><b style="--w:38%"></b></i> 38</div></div>
-        <div class="card"><div class="who"><div class="av"><img src="img/sky.webp" alt=""></div><div><b>sky.with.u</b><span class="role">썸 상대</span></div></div><p>자신 있다는 표정, 낯설지 않아서 좋네. 다음 주에도 그날처럼 괜찮을 거야.</p><div class="aff">호감도 <i><b style="--w:74%"></b></i> 74</div></div>
+        <div class="card"><div class="who"><div class="av"><img src="img/harin.jpg" alt=""></div><div><b>harin.fan</b><span class="role">열성 팬</span></div></div><p>드디어 컴백이라니!! D-7 카운트 시작🔥🔥 언니 자신 있다는 말 진짜 믿고 달려요🥹💿</p><div class="aff">호감도 <i><b style="--w:92%"></b></i> 92</div></div>
+        <div class="card"><div class="who"><div class="av"><img src="img/seojin.jpg" alt=""></div><div><b>seojin.beat</b><span class="role">라이벌</span></div></div><p>자신 있다는 건 무대 보고 판단하자. 대기실서 또 마주칠 텐데 이번엔 누가 더 셀지 보자고.</p><div class="aff">호감도 <i><b style="--w:38%"></b></i> 38</div></div>
+        <div class="card"><div class="who"><div class="av"><img src="img/sky.jpg" alt=""></div><div><b>sky.with.u</b><span class="role">썸 상대</span></div></div><p>자신 있다는 표정, 낯설지 않아서 좋네. 다음 주에도 그날처럼 괜찮을 거야.</p><div class="aff">호감도 <i><b style="--w:74%"></b></i> 74</div></div>
         <div class="card"><div class="who"><div class="av" style="background:#eeeef2">🕶️</div><div><b>murmur.dark</b><span class="role">안티</span></div></div><p>자기 확신형 멘트도 마케팅의 일부. 화제성 유지가 진짜 변수일 듯.</p><div class="aff">호감도 <i><b style="--w:14%"></b></i> 14</div></div>
-        <div class="card"><div class="who"><div class="av"><img src="img/jungwoo.webp" alt=""></div><div><b>jungwoo.reports</b><span class="role">기자</span></div></div><p>타이틀곡 재진입 흐름 이어지는 시점에 컴백 공지까지. 반응은 다음 기사로 챙겨보겠습니다.</p><div class="aff">호감도 <i><b style="--w:55%"></b></i> 55</div></div>
+        <div class="card"><div class="who"><div class="av"><img src="img/jungwoo.jpg" alt=""></div><div><b>jungwoo.reports</b><span class="role">기자</span></div></div><p>타이틀곡 재진입 흐름 이어지는 시점에 컴백 공지까지. 반응은 다음 기사로 챙겨보겠습니다.</p><div class="aff">호감도 <i><b style="--w:55%"></b></i> 55</div></div>
         <div class="card" style="display:grid;align-content:center;text-align:center;background:var(--grad);color:#fff;border:0"><p style="font-size:20px;font-weight:900;margin:0">동료·매니저까지<br>8명이 내 말을<br>기다려요</p><a class="btn ghost" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener" style="margin:18px auto 0">설문 5분 하기</a></div>
       </div>
       <div class="wrap"><p class="note">* 댓글 5개는 실제 테스트 화면 그대로예요.</p></div>
@@ -582,13 +591,13 @@
     const h1 = document.getElementById('h1');
     h1.querySelectorAll('.line').forEach((line) => {
       const keepGrad = line.classList.contains('grad-text');
-      const words = line.textContent.split(' ');
+      // 강조 태그(<em>)가 든 줄은 통째로 한 덩어리로 (태그가 깨지지 않게)
+      const words = line.children.length ? [line.innerHTML] : line.textContent.split(' ');
       line.innerHTML = words.map((w) => `<span class="w${keepGrad ? ' grad-text' : ''}">${w}</span>`).join(' ');
     });
     const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    intro.from('.hero .pill', { y: 16, opacity: 0, duration: .6 })
-      .from('#h1 .w', { y: 46, opacity: 0, rotateX: -40, duration: .9, stagger: .08, transformOrigin: '50% 100%' }, '-=.3')
-      .from('.hero .lead:not([hidden]), .hero .offer, .hero .jobs', { y: 24, opacity: 0, duration: .7, stagger: .1 }, '-=.5')
+    intro.from('#h1 .w', { y: 46, opacity: 0, rotateX: -40, duration: .9, stagger: .08, transformOrigin: '50% 100%' }, '-=.3')
+      .from('.hero .lead:not([hidden]), .hero .btn.big, .hero .sub, .hero .trust', { y: 24, opacity: 0, duration: .7, stagger: .1 }, '-=.5')
       .from('#heroPhone', { y: 80, opacity: 0, rotateY: mobile ? 0 : -32, rotateX: mobile ? 0 : 14, duration: 1.1, ease: 'power3.out' }, '-=.9')
       // 광고 A안 장면: 알림 3개가 차례로 떨어진다
       .from('#notis .noti', { y: -40, opacity: 0, scale: .92, duration: .6, stagger: .5, ease: 'back.out(1.6)' }, '-=.4');
