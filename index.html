@@ -377,8 +377,8 @@
   /* ===== 축소판: 첫 화면 5개, 8px 간격 ===== */
   .hero h1 { margin: 0 0 24px; font-size: clamp(40px, 6vw, 68px); line-height: 1.12; }
   .hero .lead { margin: 0 0 32px; font-size: clamp(17px, 1.6vw, 20px); max-width: 520px; color: var(--sub); }
-  .btn.big { font-size: 18px; padding: 18px 32px; }
-  .hero .sub { margin: 16px 0 0; font-size: 14px; color: var(--sub); }
+  .btn.big { font-size: 22px; padding: 24px 40px; min-height: 72px; width: 100%; max-width: 520px; border-radius: 20px; justify-content: center; }
+  .hero .sub { margin: 16px 0 0; font-size: 16px; color: var(--sub); }
   .hero .trust { margin: 48px 0 0; font-size: 13px; color: var(--mut); }
   header nav a { font-size: 15px; font-weight: 600; color: var(--sub); }
   .hero { gap: 64px; }
@@ -388,7 +388,7 @@
     .hero { gap: 40px; }
     .hero h1 { font-size: clamp(36px, 10vw, 44px); margin-bottom: 16px; }
     .hero .lead { margin-bottom: 24px; font-size: 16px; }
-    .btn.big { width: 100%; font-size: 17px; padding: 16px 24px; }
+    .btn.big { width: 100%; font-size: 20px; padding: 22px 24px; min-height: 68px; }
     .hero .trust { margin-top: 32px; }
     header nav a { display: inline; }
   }
@@ -405,7 +405,7 @@
   section.light .card[style*="var(--grad)"] .btn.ghost { background: var(--ac); color: #0B0B0C; border-color: transparent; }
   section.light .btn { color: #0B0B0C; }
   section.light + section.light { padding-top: 0; }
-  .btn.big { display: flex; width: max-content; max-width: 100%; margin: 0; transition: box-shadow .2s; }
+  .btn.big { display: flex; margin: 0; transition: box-shadow .2s; }
   .btn.big:hover { transform: none; }
   .cta .wrap { text-align: center; display: grid; justify-items: center; gap: 16px; }
   .cta h2 { font-size: clamp(30px, 4.4vw, 48px); }
