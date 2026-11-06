@@ -414,6 +414,27 @@
   .cta .btn.big { margin-top: 8px; }
   .faq-sec { padding-top: 0; }
   @media (max-width: 900px) { .btn.big { width: 100%; } .cta p { font-size: 16px; } }
+
+  /* ===== 첫 화면: 가운데 정렬 한 줄 흐름 (supahero 소비자 앱 패턴) ===== */
+  #hero { height: 100svh; min-height: 640px; max-height: 1100px; padding: 112px 0 0; overflow: hidden; display: block; background: var(--bg); }
+  .hero-photo { display: none; }
+  .hero { display: grid; grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 48px; }
+  .hero .copy { max-width: 760px; display: grid; justify-items: center; }
+  .hero h1 { margin: 0 0 20px; font-size: clamp(40px, 6.4vw, 76px); line-height: 1.08; }
+  .hero .lead { margin: 0 0 32px; max-width: 560px; }
+  .btn.big { margin: 0 auto; }
+  .hero .sub { margin: 16px 0 0; }
+  .hero .trust { margin: 24px 0 0; }
+  .hero .stage3d { width: 100%; perspective: 1600px; }
+  .hero .phone { width: min(360px, 80vw); }
+  @media (max-width: 900px) {
+    #hero { padding-top: 88px; min-height: 600px; }
+    .hero { gap: 32px; }
+    .hero h1 { font-size: clamp(36px, 10.5vw, 46px); }
+    .hero .lead { margin-bottom: 24px; }
+    .hero .trust { margin-top: 16px; }
+    .hero .phone { width: min(300px, 78vw); }
+  }
 </style>
 </head>
 <body>
@@ -629,13 +650,13 @@
     const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
     intro.from('#h1 .w', { y: 46, opacity: 0, rotateX: -40, duration: .9, stagger: .08, transformOrigin: '50% 100%' }, '-=.3')
       .from('.hero .lead:not([hidden]), .hero .btn.big, .hero .sub, .hero .trust', { y: 24, opacity: 0, duration: .7, stagger: .1, clearProps: 'transform,opacity' }, '-=.5')
-      .from('#heroPhone', { y: 80, opacity: 0, rotateY: mobile ? 0 : -32, rotateX: mobile ? 0 : 14, duration: 1.1, ease: 'power3.out' }, '-=.9')
+      .from('#heroPhone', { y: 120, opacity: 0, rotateX: mobile ? 0 : 30, duration: 1.1, ease: 'power3.out' }, '-=.9')
       // 광고 A안 장면: 알림 3개가 차례로 떨어진다
       .from('#notis .noti', { y: -40, opacity: 0, scale: .92, duration: .6, stagger: .5, ease: 'back.out(1.6)' }, '-=.4');
 
     if (!mobile) {
-      gsap.set('#heroPhone', { rotateY: -18, rotateX: 8, transformPerspective: 1400 });
-      gsap.to('#heroPhone', { rotateY: 0, rotateX: 0, y: -40, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 } });
+      gsap.set('#heroPhone', { rotateX: 16, transformPerspective: 1600 });
+      gsap.to('#heroPhone', { rotateX: 0, y: -80, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 } });
       gsap.to('.hero .copy', { y: -60, opacity: .2, ease: 'none', scrollTrigger: { trigger: '#hero', start: '40% top', end: 'bottom top', scrub: true } });
       document.querySelectorAll('.blob').forEach((b) => {
         gsap.to(b, { y: () => -220 * parseFloat(b.dataset.speed), ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
