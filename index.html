@@ -688,10 +688,10 @@
     const hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
     const mobile = matchMedia('(max-width: 900px), (pointer: coarse)').matches;
 
-    // 광고 추적: ?ad=A|B|C|D (D = 11/8 B 대체 '아이돌 키우기') → 첫 화면 문구 3종 + 신청 데이터에 ad 저장 + 완료 화면 설문 링크 Q0 미리 채우기
+    // 광고 추적: ?ad=A|B|C|D|E (D = 11/8 B 대체 '아이돌 키우기', E = 11/9 '진짜 인스타 데뷔' 가설 H3) → 첫 화면 문구 + 신청 데이터에 ad 저장 + 완료 화면 설문 링크 Q0 미리 채우기
     const params = new URLSearchParams(location.search);
     const ad = (params.get('ad') || '').toUpperCase();
-    const AD_OK = /^[ABCD]$/.test(ad);
+    const AD_OK = /^[ABCDE]$/.test(ad);
     // 완료 화면 설문 링크: Q0 '스레드·인스타그램' (광고는 인스타그램만 집행, 광고·무료 게시물은 구분하지 않기로 함 11/6)
     const Q0_INSTA = '%EC%8A%A4%EB%A0%88%EB%93%9C%C2%B7%EC%9D%B8%EC%8A%A4%ED%83%80%EA%B7%B8%EB%9E%A8';
     const HERO = {
@@ -699,6 +699,7 @@
       B: { h1: ['어제까지 친했는데,', '오늘은 “<em class="ac">누구세요</em>?”'], lead: '나를 기억하는 AI 캐릭터를 만들고 있어요' },
       C: { h1: ['원하던 삶,', '오늘부터 <em class="ac">살아 보기</em>'], lead: '아이돌도, 팬도, 배우도. 내가 고른 삶을 사는 SNS를 만들고 있어요' },
       D: { h1: ['내가 만드는', '<em class="ac">AI 아이돌</em> 키우기'], lead: '연습생부터 데뷔까지, 내가 키운 AI 아이돌이 사는 SNS를 만들고 있어요' },
+      E: { h1: ['내가 키운 AI 아이돌,', '<em class="ac">진짜 인스타</em>에 데뷔'], lead: '내가 만들고 키운 AI 아이돌이 실제 인스타그램 계정에 데뷔하는 SNS를 만들고 있어요' },
     };
     if (AD_OK) {
       document.querySelectorAll('a[data-survey]').forEach((a) => { a.href = a.href.split('?')[0] + '?usp=pp_url&entry.1681613679=' + Q0_INSTA; });
