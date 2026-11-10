@@ -702,8 +702,17 @@
       E: { h1: ['내가 키운 AI 아이돌,', '<em class="ac">진짜 인스타</em>에 데뷔'], lead: '내가 만들고 키운 AI 아이돌이 실제 인스타그램 계정에 데뷔하는 SNS를 만들고 있어요' },
       F: { h1: ['AI 이웃들이 놀러 오는,', '나만의 <em class="ac">아지트</em>를 만들기'], lead: '내가 없어도 AI 이웃들이 놀러 와 흔적을 남기는 나만의 아지트, 만들고 있어요' },
     };
+    // 설문 v2: E·F는 전용 폼(11/10), 나머지 광고는 기존 폼. Q0(유입 경로)만 사전 입력.
+    const FORMS = {
+      E: { url: 'https://docs.google.com/forms/d/e/1FAIpQLSfhoEkNByrb-lJ0DEVd4zCJ4ASBb9gq2o2ZpsprFx7pPnyjOQ/viewform', q0: 'entry.365642474' },
+      F: { url: 'https://docs.google.com/forms/d/e/1FAIpQLScdqmq2muE_BxgA2hBE-xydp-31NlVocb1aS2D7R9qSZim6JQ/viewform', q0: 'entry.259577172' },
+    };
+    const Q0_V2 = encodeURIComponent('인스타그램·스레드 (광고 또는 게시물)');
     if (AD_OK) {
-      document.querySelectorAll('a[data-survey]').forEach((a) => { a.href = a.href.split('?')[0] + '?usp=pp_url&entry.1681613679=' + Q0_INSTA; });
+      document.querySelectorAll('a[data-survey]').forEach((a) => {
+        const f = FORMS[ad];
+        a.href = f ? f.url + '?usp=pp_url&' + f.q0 + '=' + Q0_V2 : a.href.split('?')[0] + '?usp=pp_url&entry.1681613679=' + Q0_INSTA;
+      });
       const v = HERO[ad];
       document.getElementById('h1').innerHTML = `<span class="line">${v.h1[0]}</span><br><span class="line">${v.h1[1]}</span>`;
       document.getElementById('lead').textContent = v.lead;
