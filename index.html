@@ -3,913 +3,459 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Feeler — 내 말 한마디에 세계가 바뀐다</title>
-<meta name="description" content="팬이 먼저 DM을 보내고, 라이벌이 내 기사에 댓글을 다는 나만의 인스타그램. 12월 출시 예정. 사전 이용 설문 5분: 크레딧 1만원, 파운더 배지, 한정 세계 테마.">
-<meta property="og:image" content="https://feeler.kr/img/hero.webp">
-<link rel="apple-touch-icon" href="/feeler-icon.png">
+<title>Feeler - 읽기만 하던 소설, 이번엔 내가 주인공</title>
+<meta name="description" content="입학식 날, 하늘의 성좌 셋이 동시에 나를 골랐다. 성좌는 내가 한 말을 다 기억한다. 헌터 아카데미 판타지 AI 롤플레잉, 출시 전 사전 신청 중.">
 <meta property="og:type" content="website">
+<meta property="og:title" content="읽기만 하던 소설, 이번엔 내가 주인공 - Feeler">
+<meta property="og:description" content="입학식 날, 성좌 셋이 동시에 나를 골랐다. 개교 이래 처음 있는 일이다.">
 <meta property="og:url" content="https://feeler.kr/">
-<meta property="og:title" content="Feeler — 내 말 한마디에 세계가 바뀐다">
-<meta property="og:description" content="한 줄 올리면 팬·라이벌·기자·썸 상대가 저마다 반응해요. 내가 던진 말이 사람들을 움직이는 나만의 인스타그램.">
-<meta name="theme-color" content="#0B0B0C">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23f09433'/%3E%3Cstop offset='.5' stop-color='%23dc2743'/%3E%3Cstop offset='1' stop-color='%23bc1888'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white' font-family='Georgia,serif' font-style='italic' font-weight='700'%3EF%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://unpkg.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<meta property="og:image" content="https://feeler.kr/v6/img/key.jpg">
+<meta name="theme-color" content="#080A16">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
   :root {
-    --bg: #ffffff; --bg2: #fafafa; --text: #111114; --sub: #5e5e68; --mut: #9a9aa4; --line: #e9e9ee; --card: #ffffff;
-    --grad: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-    --pink: #dc2743; --violet: #bc1888; --orange: #f09433;
-    --radius: 22px;
+    --bg: #080A16; --bg2: #0E1124; --surface: #151933; --surface2: #1D2244; --line: rgba(255,255,255,.09);
+    --text: #FFFFFF; --sub: #B4B9D6; --mut: #7C82A6;
+    --ac: #FF5C8A; --gold: #FFD27A; --red: #FF5A5A; --blue: #8FC4FF; --orange: #FFA24C; --silver: #D7DCEB;
+    --r: 20px;
   }
   * { box-sizing: border-box; margin: 0; }
-  html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
-  html.lenis, html.lenis body { height: auto; }
-  .lenis.lenis-smooth { scroll-behavior: auto !important; }
-  body {
-    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", sans-serif;
-    color: var(--text); background: var(--bg); line-height: 1.55; overflow-x: hidden; word-break: keep-all;
-  }
-  a { color: inherit; }
-  img { max-width: 100%; display: block; }
-  .wrap { width: min(1120px, 100% - 32px); margin: 0 auto; }
-  .logo { font-family: "Grand Hotel", cursive; font-size: 34px; line-height: 1; text-decoration: none; }
-  .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 999px;
-    border: 0; font: inherit; font-weight: 700; font-size: 16px; cursor: pointer; text-decoration: none; transition: transform .2s, box-shadow .2s;
-    background: var(--grad); color: #fff; box-shadow: 0 12px 28px -12px rgba(220, 39, 67, .6);
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 18px 32px -12px rgba(220, 39, 67, .7); }
-  .btn.ghost { background: #fff; color: var(--text); border: 1.5px solid var(--line); box-shadow: none; }
-  .eyebrow { font-weight: 800; font-size: 14px; letter-spacing: .02em; }
-  h1, h2, h3 { line-height: 1.18; letter-spacing: -0.02em; }
-  h1 { font-size: clamp(38px, 6.2vw, 72px); font-weight: 900; }
-  h2 { font-size: clamp(28px, 4vw, 46px); font-weight: 900; }
-  .sec-lead { color: var(--sub); font-size: clamp(16px, 1.6vw, 19px); max-width: 620px; }
-  section { padding: clamp(72px, 10vw, 128px) 0; position: relative; }
-  section.alt { background: var(--bg2); }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
+  body { font-family: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; word-break: keep-all; overflow-x: clip; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(1080px, 100% - 32px); margin: 0 auto; }
+  .serif { font-family: "Gowun Batang", serif; }
+  h1, h2 { letter-spacing: -.03em; line-height: 1.2; font-weight: 800; }
+  h2 { font-size: clamp(28px, 4.4vw, 46px); }
+  .kicker { font-size: 13px; font-weight: 800; color: var(--gold); letter-spacing: .08em; }
+  .lead { color: var(--sub); font-size: clamp(15.5px, 1.5vw, 18px); margin-top: 14px; max-width: 34em; }
+  section { position: relative; }
+  .pad { padding: clamp(76px, 10vw, 128px) 0; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; font: inherit; font-weight: 800; border-radius: 14px; transition: transform .15s, background .2s, opacity .2s; }
+  .btn.pri { min-height: 56px; padding: 0 26px; font-size: 17px; background: var(--ac); color: #fff; box-shadow: 0 12px 30px -12px rgba(255,92,138,.8); }
+  .btn.pri:hover { transform: translateY(-1px); }
+  .btn.ghost { min-height: 56px; padding: 0 22px; font-size: 16px; background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 
-  /* 진행 바 + 내비 */
-  .progress { position: fixed; left: 0; top: 0; height: 3px; width: 100%; transform-origin: 0 0; transform: scaleX(0); background: var(--grad); z-index: 60; }
-  header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; transition: background .3s, box-shadow .3s; }
-  header.on { background: rgba(255,255,255,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  header nav { display: flex; gap: 22px; align-items: center; font-weight: 600; font-size: 15px; }
-  header nav a { text-decoration: none; color: var(--sub); }
-  header nav a.btn { color: #fff; padding: 10px 18px; font-size: 14px; }
-  header nav a.btn .short { display: none; }
-  @media (max-width: 720px) {
-    header nav a:not(.btn) { display: none; }
-    header .wrap { gap: 12px; }
-    header .logo { font-size: 28px; flex: none; }
-    header nav { min-width: 0; }
-    header nav a.btn { padding: 9px 14px; font-size: 13px; white-space: nowrap; }
-  }
-  @media (max-width: 420px) {
-    header nav a.btn .full { display: none; }
-    header nav a.btn .short { display: inline; }
-  }
+  /* nav */
+  .nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s; }
+  .nav.scrolled { background: rgba(8,10,22,.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-weight: 900; font-size: 21px; letter-spacing: -.04em; }
+  .logo i { font-style: normal; color: var(--ac); }
+  .nav .btn { min-height: 38px; padding: 0 16px; font-size: 14px; border-radius: 999px; background: #fff; color: var(--bg); }
 
-  /* 히어로 */
-  #hero { min-height: 100svh; display: grid; align-items: center; padding-top: 96px; overflow: hidden; }
-  .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .45; pointer-events: none; will-change: transform; }
-  .blob.a { width: 520px; height: 520px; background: #ffb199; left: -160px; top: -80px; }
-  .blob.b { width: 460px; height: 460px; background: #ff8ac0; right: -140px; top: 20%; }
-  .blob.c { width: 380px; height: 380px; background: #c88cff; left: 35%; bottom: -160px; }
-  .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px; align-items: center; position: relative; }
-  .hero .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 13px; font-weight: 700; color: var(--sub); }
-  .hero .pill i { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,.18); }
-  .hero h1 { margin: 18px 0 20px; }
-  .hero h1 .w { display: inline-block; will-change: transform, opacity; }
-  .hero .lead { color: var(--sub); font-size: clamp(16px, 1.7vw, 20px); max-width: 540px; }
-  .hero .lead b { color: var(--text); font-weight: 700; }
-  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-  .offer { display: grid; gap: 6px; margin-top: 26px; padding: 22px 24px; border-radius: 22px; background: var(--grad); color: #fff; text-decoration: none; box-shadow: 0 24px 50px -24px rgba(220,39,67,.7); transition: transform .2s, box-shadow .2s; }
-  .offer:hover { transform: translateY(-2px); box-shadow: 0 30px 56px -24px rgba(220,39,67,.8); }
-  .offer b { font-size: clamp(26px, 3.2vw, 36px); font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; }
-  .offer span { font-size: clamp(16px, 1.7vw, 20px); font-weight: 700; opacity: .95; }
-  .offer em { font-style: normal; font-size: 14px; opacity: .9; margin-top: 4px; }
-  .hero .jobs { margin-top: 22px; color: var(--mut); font-size: 14px; display: flex; gap: 14px; flex-wrap: wrap; }
+  /* hero */
+  .hero { min-height: 100svh; display: flex; align-items: flex-end; padding: 100px 0 56px; overflow: hidden; }
+  .hero .bg { position: absolute; inset: 0; }
+  .hero .bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .hero .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,10,22,.35) 0%, rgba(8,10,22,.15) 35%, rgba(8,10,22,.85) 70%, var(--bg) 100%); }
+  .hero .wrap { position: relative; z-index: 1; }
+  .badge { display: inline-flex; gap: 8px; align-items: center; font-size: 12.5px; font-weight: 800; padding: 6px 12px; border-radius: 999px; background: rgba(255,92,138,.18); border: 1px solid rgba(255,92,138,.5); color: #FFC2D3; }
+  .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ac); box-shadow: 0 0 10px var(--ac); }
+  .hero h1 { font-size: clamp(40px, 7vw, 84px); margin-top: 18px; text-shadow: 0 4px 30px rgba(0,0,0,.6); }
+  .hero .lead { color: #D9DCEE; text-shadow: 0 2px 14px rgba(0,0,0,.7); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .tags span { font-size: 13px; font-weight: 700; color: var(--silver); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); padding: 4px 10px; border-radius: 8px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .note { margin-top: 14px; font-size: 12.5px; color: var(--mut); }
+  @media (max-width: 560px) { .cta .btn { flex: 1 1 100%; } }
+  .brand { margin-top: 18px; font-family: "Gowun Batang", serif; font-size: clamp(18px, 2.2vw, 26px); color: #E9E2FF; text-shadow: 0 2px 14px rgba(0,0,0,.7); }
+  .hero .brand + h1 { margin-top: 4px; }
+  h1 em.ac { font-style: normal; color: var(--ac); text-shadow: 0 0 40px rgba(255,92,138,.55); }
+  .ep { display: grid; gap: 4px; margin-top: 22px; max-width: 460px; padding: 14px 16px; border-radius: 16px; background: rgba(8,10,22,.62); border: 1px solid rgba(255,210,122,.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: border-color .2s, transform .2s; }
+  .ep:hover { border-color: var(--gold); transform: translateY(-1px); }
+  .ep-k { font-size: 11.5px; font-weight: 800; color: var(--gold); letter-spacing: .06em; }
+  .ep b { font-family: "Gowun Batang", serif; font-size: 19px; }
+  .ep-s { font-size: 13.5px; color: var(--sub); }
+  .ep .tags { margin-top: 6px; } .ep .tags span { font-size: 12px; padding: 2px 8px; }
 
-  /* 잠금화면 알림 (광고 A안 장면과 이어짐) */
-  .screen.lock { background: linear-gradient(170deg, #2a1033 0%, #6b1d4f 45%, #c03a5e 100%); color: #fff; }
-  .clock { text-align: center; padding-top: 58px; }
-  .clock .d { font-size: 13px; opacity: .85; font-weight: 600; }
-  .clock .t { font-size: 64px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
-  .notis { display: grid; gap: 8px; padding: 26px 10px 0; }
-  .noti { display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,.92); color: var(--text); border-radius: 18px; padding: 10px 12px; box-shadow: 0 12px 30px -16px rgba(0,0,0,.5); will-change: transform, opacity; }
-  .noti .av { width: 38px; height: 38px; font-size: 18px; border: 0; flex: none; }
-  .noti b { display: flex; align-items: center; gap: 6px; font-size: 12.5px; }
-  .noti b small { font-weight: 500; color: var(--mut); font-size: 10.5px; margin-left: auto; }
-  .noti > div { flex: 1; min-width: 0; }
-  .noti span:last-child { display: block; font-size: 12px; color: var(--sub); margin-top: 1px; }
-  .noti .role { font-size: 10px; padding: 1px 6px; border-radius: 999px; background: #f1f1f4; color: var(--sub); font-weight: 700; }
-  .lockfoot { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 11.5px; opacity: .8; }
-  .lockfoot::after { content: ""; display: block; width: 100px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.8); margin: 10px auto 0; }
+  /* motion illustration: our difference - scenes breathe instead of sitting still */
+  .live { position: relative; overflow: hidden; border-radius: 14px; background: #000; isolation: isolate; --c: 255,210,122; }
+  .live img { width: 100%; height: 100%; object-fit: cover; animation: kb 18s ease-in-out infinite alternate; transform-origin: var(--o, 50% 35%); will-change: transform; }
+  .live .dust, .hero .dust { position: absolute; inset: -50% 0 0; pointer-events: none; mix-blend-mode: screen;
+    background-image: radial-gradient(1.6px 1.6px at 12% 82%, #fff, transparent), radial-gradient(1.2px 1.2px at 34% 64%, #fff, transparent), radial-gradient(2px 2px at 58% 90%, rgba(var(--c),1), transparent), radial-gradient(1.3px 1.3px at 76% 70%, #fff, transparent), radial-gradient(1.8px 1.8px at 90% 86%, rgba(var(--c),1), transparent), radial-gradient(1.2px 1.2px at 22% 40%, #fff, transparent), radial-gradient(1.6px 1.6px at 66% 30%, rgba(var(--c),1), transparent), radial-gradient(1.2px 1.2px at 46% 12%, #fff, transparent);
+    background-size: 100% 50%; animation: rise 9s linear infinite, tw 2.4s ease-in-out infinite alternate; }
+  .live::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.16) 50%, transparent 65%); background-size: 260% 100%; animation: sweep 7s ease-in-out infinite; mix-blend-mode: overlay; }
+  .live::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 40px rgba(var(--c),.35); animation: glow 3.2s ease-in-out infinite alternate; }
+  .live .lt { position: absolute; left: 8px; top: 8px; z-index: 2; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 999px; background: rgba(8,10,22,.7); color: #fff; display: inline-flex; gap: 5px; align-items: center; }
+  .live .lt::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: rgb(var(--c)); box-shadow: 0 0 8px rgb(var(--c)); animation: tw 1.2s ease-in-out infinite alternate; }
+  .live .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 26px 12px 10px; font-family: "Gowun Batang", serif; font-size: 13.5px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
+  .live.red { --c: 255,90,90; } .live.blue { --c: 143,196,255; } .live.orange { --c: 255,162,76; } .live.silver { --c: 215,220,235; }
+  .scene { aspect-ratio: 3 / 2; } .scene.tall { aspect-ratio: 4 / 5; max-width: 260px; }
+  @keyframes kb { from { transform: scale(1.04) translate(0, 0); } to { transform: scale(1.16) translate(-2.5%, -2%); } }
+  @keyframes rise { from { transform: translateY(0); } to { transform: translateY(50%); } }
+  @keyframes tw { from { opacity: .35; } to { opacity: 1; } }
+  @keyframes sweep { 0%, 30% { background-position: 130% 0; } 70%, 100% { background-position: -30% 0; } }
+  @keyframes glow { from { box-shadow: inset 0 0 24px rgba(var(--c),.15); } to { box-shadow: inset 0 0 56px rgba(var(--c),.45); } }
+  .hero .bg img { animation: kb 24s ease-in-out infinite alternate; transform-origin: 50% 30%; }
+  .hero .dust { inset: -100% 0 0; z-index: 1; --c: 255,210,122; animation-duration: 16s, 3s; }
+  @media (prefers-reduced-motion: reduce) { .live img, .hero .bg img, .live .dust, .hero .dust, .live::after, .live::before, .live .lt::before { animation: none; } }
 
-  /* 폰 목업 */
-  .stage3d { perspective: 1400px; display: grid; justify-items: center; }
-  .phone {
-    width: min(340px, 86vw, calc((100svh - 160px) * 9 / 19)); aspect-ratio: 9 / 19; border-radius: 44px; background: #0b0b0c; padding: 12px;
-    box-shadow: 0 40px 80px -30px rgba(17,17,20,.45), 0 0 0 1px rgba(0,0,0,.25) inset; transform-style: preserve-3d; will-change: transform;
-  }
-  .screen { width: 100%; height: 100%; border-radius: 34px; background: #fff; overflow: hidden; display: flex; flex-direction: column; font-size: 12.5px; position: relative; }
-  .notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 96px; height: 26px; border-radius: 20px; background: #0b0b0c; z-index: 3; }
-  .top { display: flex; align-items: center; justify-content: space-between; padding: 44px 14px 8px; }
-  .top .logo { font-size: 24px; }
-  .top .ic { display: flex; gap: 10px; font-size: 16px; position: relative; }
-  .top .ic .badge { position: absolute; right: -8px; top: -8px; min-width: 16px; height: 16px; border-radius: 8px; background: var(--pink); color: #fff; font-size: 10px; font-weight: 800; display: grid; place-items: center; padding: 0 4px; }
-  .stories { display: flex; gap: 12px; padding: 4px 14px 10px; overflow: hidden; }
-  .story { display: grid; justify-items: center; gap: 4px; font-size: 10px; color: var(--sub); }
-  .ring { padding: 2px; border-radius: 50%; background: var(--grad); }
-  .av { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; border: 2px solid #fff; }
-  .post { border-top: 1px solid var(--line); }
-  .post .ph { display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-weight: 700; }
-  .post .ph .av { width: 30px; height: 30px; font-size: 15px; border: 0; }
-  .post .ph small { color: var(--mut); font-weight: 500; }
-  .media { aspect-ratio: 1; display: grid; place-items: center; align-content: center; gap: 8px; background: linear-gradient(135deg, #ff9a8b, #ff6a88); color: #fff; }
-  .media .em { font-size: 44px; }
-  .media .t { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; }
-  .act { display: flex; gap: 12px; padding: 8px 12px 4px; font-size: 17px; }
-  .likes { padding: 0 12px; font-weight: 700; }
-  .cap { padding: 2px 12px 8px; }
-  .cap b { margin-right: 6px; }
-  .cm { padding: 0 12px 6px; display: flex; gap: 6px; align-items: baseline; }
-  .cm b { white-space: nowrap; }
-  .cm .role { font-size: 10px; padding: 1px 6px; border-radius: 999px; background: #f1f1f4; color: var(--sub); font-weight: 700; white-space: nowrap; }
+  /* prologue (chat) */
+  .pro .grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+  .chat { background: var(--bg2); border: 1px solid var(--line); border-radius: 26px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(0,0,0,.9); }
+  .chat .hd { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .chat .hd img { width: 34px; height: 34px; border-radius: 10px; object-fit: cover; }
+  .chat .hd b { font-size: 14.5px; display: block; line-height: 1.3; }
+  .chat .hd small { font-size: 12px; color: var(--mut); }
+  .chat .body { padding: 18px 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .status { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--gold); background: rgba(255,210,122,.08); border: 1px solid rgba(255,210,122,.25); padding: 8px 10px; border-radius: 10px; letter-spacing: -.01em; }
+  .narr { font-family: "Gowun Batang", serif; font-size: 15.5px; line-height: 1.85; color: #E4E6F3; }
+  .narr p + p { margin-top: 10px; }
+  .narr em { font-style: normal; color: var(--gold); }
+  .sys { font-size: 13.5px; font-weight: 700; text-align: center; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.04); border: 1px dashed rgba(255,255,255,.18); }
+  .sys.red { color: var(--red); } .sys.blue { color: var(--blue); } .sys.orange { color: var(--orange); } .sys.gray { color: var(--sub); }
+  .msg { display: flex; gap: 10px; align-items: flex-start; }
+  .msg img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; object-position: 50% 16%; flex: none; }
+  .msg .nm { font-size: 12px; font-weight: 800; }
+  .msg .bb { margin-top: 3px; background: var(--surface2); padding: 9px 13px; border-radius: 4px 16px 16px 16px; font-size: 14.5px; line-height: 1.5; }
+  .msg.me { flex-direction: row-reverse; }
+  .msg.me .bb { background: var(--ac); border-radius: 16px 4px 16px 16px; }
+  .nm.red { color: var(--red); } .nm.blue { color: var(--blue); } .nm.orange { color: var(--orange); } .nm.silver { color: var(--silver); }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .choices button { min-height: 50px; padding: 8px 10px; border-radius: 12px; border: 1.5px solid rgba(255,92,138,.55); background: rgba(255,92,138,.06); color: #fff; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; transition: background .2s; }
+  .choices button:hover { background: rgba(255,92,138,.16); }
+  .choices .lb { grid-column: 1 / -1; font-size: 12px; color: var(--mut); font-weight: 700; }
+  .rec { background: rgba(143,196,255,.1); border: 1px solid rgba(143,196,255,.4); color: #D6E8FF; border-radius: 12px; padding: 10px 12px; font-size: 13.5px; font-weight: 700; }
+  .rec small { display: block; color: var(--blue); font-size: 11.5px; font-weight: 800; }
+  .fine { font-size: 12px; color: var(--mut); text-align: center; }
+  .pop { animation: pop .45s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes pop { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .pro .side { position: sticky; top: 100px; }
+  .pro .side ul { list-style: none; padding: 0; margin-top: 26px; display: grid; gap: 14px; }
+  .pro .side li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; font-size: 15px; color: var(--sub); }
+  .pro .side li b { display: block; color: #fff; font-size: 16.5px; margin-bottom: 2px; }
+  .pro .side li i { font-style: normal; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,210,122,.12); color: var(--gold); font-weight: 900; }
+  @media (max-width: 880px) { .pro .grid { grid-template-columns: 1fr; gap: 30px; } .pro .side { position: static; } }
 
-  /* 한마디의 파급력 (핀) */
-  #impact { padding: 0; background: var(--bg2); }
-  #impact .pin { height: 100svh; display: grid; align-items: center; padding: 72px 0 24px; }
-  #impact .phone { width: min(320px, 80vw, calc((100svh - 130px) * 9 / 19)); }
-  .impact { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-  .impact .copy h2 { margin: 12px 0 14px; }
-  .steps { margin-top: 28px; display: grid; gap: 10px; }
-  .step { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 16px; border: 1px solid var(--line); background: #fff; color: var(--mut); font-weight: 700; transition: all .35s; }
-  .step .n { width: 30px; height: 30px; border-radius: 10px; background: #f1f1f4; color: var(--mut); display: grid; place-items: center; font-size: 13px; transition: all .35s; flex: none; }
-  .step.on { color: var(--text); border-color: transparent; box-shadow: 0 14px 30px -18px rgba(220,39,67,.45); transform: translateX(6px); }
-  .step.on .n { background: var(--grad); color: #fff; }
-  .step small { font-weight: 500; color: var(--mut); display: block; font-size: 12px; }
-  .impact .stage3d { position: relative; }
-  .typing::after { content: "|"; color: var(--pink); animation: blink 1s steps(1) infinite; margin-left: 1px; }
-  @keyframes blink { 50% { opacity: 0; } }
-  .react { opacity: 0; transform: translateY(14px); }
-  .news { position: absolute; right: -6%; top: 22%; width: 240px; background: #fff; border-radius: 16px; padding: 12px 14px; box-shadow: 0 24px 50px -24px rgba(17,17,20,.4); border: 1px solid var(--line); font-size: 12.5px; opacity: 0; transform: translate(40px, 0) rotate(4deg); }
-  .news .src { font-size: 11px; color: var(--mut); font-weight: 700; display: flex; gap: 6px; align-items: center; }
-  .news h4 { font-size: 13.5px; line-height: 1.35; margin-top: 6px; }
-  .dm { position: absolute; left: -4%; top: 9%; width: 250px; background: rgba(255,255,255,.96); border-radius: 18px; padding: 10px 12px; box-shadow: 0 24px 50px -24px rgba(17,17,20,.45); border: 1px solid var(--line); display: flex; gap: 10px; align-items: center; font-size: 12.5px; opacity: 0; transform: translateY(-30px); }
-  .dm .av { width: 36px; height: 36px; font-size: 18px; border: 0; }
-  .dm b { display: block; font-size: 12px; }
-  .dm .t { color: var(--sub); }
-  .followers { position: absolute; left: 4%; bottom: 10%; padding: 8px 12px; border-radius: 999px; background: #111114; color: #fff; font-weight: 800; font-size: 13px; box-shadow: 0 14px 30px -12px rgba(0,0,0,.5); opacity: 0; transform: scale(.8); }
+  /* cast */
+  .cast { background: var(--bg2); }
+  .cast-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 40px; }
+  .card { border-radius: var(--r); overflow: hidden; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .card .ph { aspect-ratio: 4/5; overflow: hidden; position: relative; }
+  .card .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; transition: transform .6s; }
+  .card .role { z-index: 2; position: absolute; left: 10px; top: 10px; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 999px; background: rgba(8,10,22,.75); backdrop-filter: blur(6px); }
+  .card .bd { padding: 14px 14px 16px; display: grid; gap: 8px; flex: 1; align-content: start; }
+  .card h3 { font-size: 16.5px; font-weight: 800; line-height: 1.35; }
+  .card .say { font-size: 13.5px; color: #E4E6F3; background: var(--surface2); padding: 9px 12px; border-radius: 4px 14px 14px 14px; }
+  .card .who { font-size: 12.5px; color: var(--mut); }
+  .ai-note { margin-top: 20px; font-size: 12.5px; color: var(--mut); }
+  @media (max-width: 900px) { .cast-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: -16px; padding-right: 16px; padding-bottom: 6px; } .card { flex: 0 0 240px; scroll-snap-align: start; } .cast-row::-webkit-scrollbar { display: none; } }
 
-  /* 같은 말, 다른 반응 (가로 스크롤) */
-  #cast { padding: 0; overflow: hidden; }
-  #cast .pin { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; gap: 28px; padding: 96px 0 48px; }
-  #cast .head { display: grid; gap: 10px; }
-  .quote { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-weight: 700; width: fit-content; box-shadow: 0 10px 24px -16px rgba(0,0,0,.3); }
-  .quote .av { width: 28px; height: 28px; font-size: 14px; border: 0; }
-  .track { display: flex; gap: 20px; padding: 10px calc((100vw - min(1120px, 100vw - 32px)) / 2); will-change: transform; width: max-content; }
-  .card { width: 320px; flex: none; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: 0 30px 60px -36px rgba(17,17,20,.35); transform-style: preserve-3d; }
-  .card .who { display: flex; align-items: center; gap: 12px; }
-  .card .who .av { width: 46px; height: 46px; font-size: 22px; border: 0; }
-  .card .who b { display: block; }
-  .card .who .role { font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 999px; color: #fff; background: var(--grad); display: inline-block; margin-top: 2px; }
-  .card p { margin-top: 16px; font-size: 16.5px; line-height: 1.55; }
-  .card .aff { margin-top: 18px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--mut); font-weight: 700; }
-  .card .aff i { flex: 1; height: 6px; border-radius: 3px; background: #f1f1f4; overflow: hidden; display: block; }
-  .card .aff i b { display: block; height: 100%; background: var(--grad); width: var(--w, 50%); }
-  .note { color: var(--mut); font-size: 13px; }
+  /* memory */
+  .mem .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .ledger { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 18px; display: grid; gap: 10px; }
+  .ledger .hd { display: flex; gap: 12px; align-items: center; }
+  .ledger .hd img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--blue); }
+  .ledger .hd b { display: block; font-size: 16px; }
+  .ledger .hd small { font-size: 12.5px; color: var(--sub); }
+  .ledger .t { font-size: 11.5px; font-weight: 800; color: var(--blue); letter-spacing: .06em; }
+  .row { display: grid; grid-template-columns: 64px 1fr; gap: 10px; background: var(--surface2); border-radius: 12px; padding: 10px 12px; font-size: 14.5px; }
+  .row span:first-child { font-size: 12px; color: var(--mut); font-weight: 700; padding-top: 2px; }
+  .confirm { border: 1px solid rgba(255,92,138,.5); background: rgba(255,92,138,.07); border-radius: 14px; padding: 12px; display: grid; gap: 4px; }
+  .confirm small { color: #FF9DB9; font-weight: 800; font-size: 12px; }
+  .confirm b { font-size: 15px; }
+  .confirm .yn { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+  .confirm .yn span { text-align: center; padding: 8px; border-radius: 10px; font-weight: 800; font-size: 14px; }
+  .confirm .yn .y { background: var(--ac); } .confirm .yn .n { border: 1px solid rgba(255,255,255,.25); color: var(--sub); }
+  @media (max-width: 880px) { .mem .grid { grid-template-columns: 1fr; gap: 30px; } }
 
-  /* 말이 쌓여 세계가 돼요 */
-  .feats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 40px; }
-  .feat { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; transform-style: preserve-3d; }
-  .feat .ico { font-size: 30px; }
-  .feat h3 { font-size: 20px; margin: 12px 0 8px; }
-  .feat p { color: var(--sub); }
-  .feat .bubble { margin-top: 14px; padding: 10px 14px; border-radius: 16px; background: #f6f6f8; font-size: 14px; font-style: italic; color: var(--text); }
+  /* safe + faq */
+  .safe { background: var(--bg2); }
+  .safe-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px; }
+  .safe-row div { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+  .safe-row b { display: block; font-size: 17px; margin-bottom: 6px; }
+  .safe-row p { font-size: 14.5px; color: var(--sub); }
+  @media (max-width: 760px) { .safe-row { grid-template-columns: 1fr; } }
+  .faq-list { margin-top: 32px; border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 20px 0; font-size: 16.5px; font-weight: 700; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 24px; line-height: 1; color: var(--ac); transition: transform .25s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--sub); padding: 0 0 20px; max-width: 46em; }
 
-  /* 어떻게 돌아가나요 */
-  .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 40px; }
-  .how .s { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
-  .how .n { width: 34px; height: 34px; border-radius: 11px; background: var(--grad); color: #fff; font-weight: 900; display: grid; place-items: center; }
-  .how h3 { font-size: 20px; margin: 14px 0 8px; }
-  .how p { color: var(--sub); }
-  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
-  .tags span { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #f1f1f4; color: var(--sub); }
-
-  /* 안전 */
-  .safe { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
-  .safe div { padding: 22px; border-radius: var(--radius); background: #fff; border: 1px solid var(--line); }
-  .safe h3 { font-size: 17px; margin-bottom: 6px; }
-  .safe p { color: var(--sub); font-size: 15px; }
-
-  /* 설문 섹션 */
-  .survey { background: var(--grad); color: #fff; border-radius: 28px; padding: clamp(28px, 5vw, 48px); display: grid; gap: 14px; justify-items: start; box-shadow: 0 40px 80px -40px rgba(220,39,67,.6); }
-  .survey h2 { color: #fff; }
-  .survey p { max-width: 620px; opacity: .95; font-size: clamp(15px, 1.5vw, 18px); }
-  .survey ul { list-style: none; display: grid; gap: 6px; font-weight: 600; }
-  .survey .btn.ghost { border-color: transparent; }
-  .survey small { opacity: .85; font-size: 12.5px; }
-
-  /* 사전 구매(파운더 패스) */
-  .perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
-  .perk { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 16px 16px 14px; display: grid; gap: 2px; }
-  .perk span { font-size: 26px; margin-bottom: 4px; }
-  .perk b { font-size: 16px; }
-  .perk small { color: var(--sub); font-size: 13px; }
-  .join { max-width: 560px; margin: 28px auto 0; text-align: center; position: relative; }
-  .pricebox { display: grid; gap: 4px; text-align: left; padding: 14px 16px; border-radius: 14px; background: linear-gradient(135deg, #fff5ef, #ffe9f1); border: 1px solid #ffd6e2; }
-  .pricebox b { font-size: 16px; }
-  .pricebox .price { font-weight: 800; font-size: 14px; color: var(--pink); }
-  .pricebox small { color: var(--sub); font-size: 12.5px; }
-  .join h2 { margin: 12px 0 14px; }
-  #join-form { margin-top: 28px; display: grid; gap: 12px; text-align: left; background: #fff; padding: 22px; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: 0 30px 60px -36px rgba(17,17,20,.35); }
-  .f { display: grid; gap: 6px; font-weight: 700; font-size: 14px; }
-  .f input, .f select { font: inherit; padding: 13px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: #fff; width: 100%; }
-  .f input:focus, .f select:focus { outline: 2px solid rgba(220,39,67,.35); border-color: var(--pink); }
-  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--sub); }
-  .consent input { margin-top: 3px; }
-  .terms { font-size: 13px; color: var(--sub); }
-  .terms summary { cursor: pointer; font-weight: 700; }
-  .terms ul { margin: 8px 0 0 18px; display: grid; gap: 4px; }
-  .msg { font-size: 14px; color: var(--sub); min-height: 1.2em; }
-  .msg.err { color: var(--pink); }
-  .done { display: none; margin-top: 28px; padding: 32px 22px; background: #fff; border-radius: var(--radius); border: 1px solid var(--line); }
-  .done .big { font-size: 44px; }
-  .done h3 { margin: 8px 0 6px; }
-  .done p { color: var(--sub); }
-
-  /* FAQ, 푸터 */
-  .faq { display: grid; gap: 10px; max-width: 760px; margin: 28px auto 0; }
-  .faq details { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; }
-  .faq summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-  .faq summary::after { content: "+"; color: var(--mut); font-size: 20px; }
-  .faq details[open] summary::after { content: "–"; }
-  .faq p { margin-top: 10px; color: var(--sub); }
-  footer { padding: 36px 0 48px; border-top: 1px solid var(--line); color: var(--sub); font-size: 14px; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
-  footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
-  footer a { text-decoration: none; }
-
-  .rv { opacity: 0; transform: translateY(28px); }
-
-  @media (max-width: 900px) {
-    /* 휴대폰: 블러 비용 줄이기 */
-    .blob { filter: blur(40px); opacity: .35; }
-    .blob.c { display: none; }
-    .hero { grid-template-columns: 1fr; gap: 36px; }
-    #hero { padding-top: 88px; }
-    .hero h1 { font-size: clamp(34px, 10vw, 48px); }
-    .phone { width: min(280px, 78vw); }
-    .impact { grid-template-columns: 1fr; gap: 16px; align-content: center; }
-    .impact .stage3d { order: 2; }
-    .impact h2 { font-size: clamp(22px, 6vw, 28px); margin: 4px 0 6px; }
-    .impact .sec-lead { display: none; }
-    .steps { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-    .step { padding: 5px 9px; border-radius: 999px; font-size: 11.5px; gap: 5px; }
-    .step .n { width: 18px; height: 18px; border-radius: 6px; font-size: 10px; }
-    .step.on { transform: none; }
-    .step small { display: none; }
-    #impact .phone { width: min(250px, 70vw, calc((100svh - 330px) * 9 / 19)); }
-    #impact .pin { padding-top: 72px; padding-bottom: 12px; }
-    .news { width: 190px; font-size: 11.5px; padding: 10px 12px; top: 14%; right: -4%; }
-    .news h4 { font-size: 12.5px; }
-    .dm { width: 200px; font-size: 11.5px; left: -4%; top: 4%; }
-    .followers { bottom: 6%; left: 0; }
-    .news { right: -2%; width: 200px; top: 16%; }
-    .dm { left: -2%; width: 210px; }
-    .perks { grid-template-columns: 1fr 1fr; }
-    .perk span { font-size: 22px; }
-    .perk b { font-size: 14.5px; }
-    .perk small { font-size: 12px; }
-    .card { width: 280px; }
-    #impact .pin, #cast .pin { padding-top: 84px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .rv, .react, .news, .dm, .followers { opacity: 1 !important; transform: none !important; }
-    .hero h1 .w { opacity: 1 !important; transform: none !important; }
-  }
-
-  /* ===== v3: 60/30/10 — 바탕 60% 미드나이트, 보조 30% 화이트, 강조 10% 핑크 하나 ===== */
-  :root { --bg: #0B0B0C; --bg2: #101012; --text: #F5F5F6; --sub: #B9B9C2; --mut: #7C7C86; --line: #232327; --card: #141416;
-          --ac: #FF4FA3; --ac-ink: #0B0B0C; --grad: var(--ac); --pink: var(--ac); }
-  body { background: var(--bg); color: var(--text); }
-  h1, h2 { font-weight: 900; letter-spacing: -0.03em; }
-  h1 .ac, h2 .ac { color: var(--ac); font-style: normal; }
-  .grad-text { background: none; color: var(--ac); -webkit-text-fill-color: var(--ac); }
-  .btn { background: var(--ac); color: var(--ac-ink); box-shadow: 0 14px 34px -14px rgba(255,79,163,.7); }
-  .btn.ghost { background: transparent; color: var(--text); border: 1.5px solid #2E2E34; }
-  header.on { background: rgba(11,11,12,.78); box-shadow: 0 1px 0 var(--line); }
-  header nav a { color: var(--sub); }
-  header nav a.btn { color: var(--ac-ink); }
-  .progress { background: var(--ac); }
-  section.alt { background: var(--bg2); }
-
-  /* 히어로: 글로우 하나 + 미세 점 패턴 */
-  #hero { background: var(--bg); }
-  .blob { display: none; }
-  .hero .pill { background: #141416; border-color: #2A2A2F; color: var(--sub); }
-  .hero .pill i { background: var(--ac); box-shadow: 0 0 0 4px rgba(255,79,163,.2); }
-  .hero .lead { color: var(--sub); }
-  .hero .lead b { color: var(--text); }
-  .offer { background: #141416; border: 1px solid #2A2A2F; box-shadow: 0 30px 60px -30px rgba(255,79,163,.45); color: var(--text); }
-  .offer span { color: var(--sub); }
-  .offer em { color: var(--ac); font-weight: 700; }
-  .stats { display: flex; gap: 28px; margin-top: 26px; }
-  .stats b { display: block; font-size: 34px; line-height: 1; color: var(--text); }
-  .stats small { display: block; color: var(--mut); font-size: 12px; margin-top: 6px; letter-spacing: .02em; }
-  .hero .jobs { color: var(--mut); }
-  .phone { box-shadow: 0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08) inset; }
-
-  /* 파급력 */
-  .step { background: #141416; border-color: #232327; color: var(--mut); }
-  .step .n { background: #1E1E22; color: var(--mut); }
-  .step.on { color: var(--text); border-color: rgba(255,79,163,.4); box-shadow: 0 14px 30px -18px rgba(255,79,163,.5); }
-  .step.on .n { background: var(--ac); color: var(--ac-ink); }
-  .news, .dm { background: #141416; border-color: #2A2A2F; color: var(--text); box-shadow: 0 24px 50px -24px rgba(0,0,0,.8); }
-  .news .src, .dm .t { color: var(--sub); }
-  .followers { background: var(--ac); color: var(--ac-ink); }
-  .typing::after { color: var(--ac); }
-
-  /* 인물 카드 */
-  .quote { background: #141416; border-color: #2A2A2F; color: var(--text); }
-  .card { background: #141416; border-color: #232327; box-shadow: 0 30px 60px -36px rgba(0,0,0,.9); }
-  .card .who .role { background: var(--ac); color: var(--ac-ink); }
-  .card .aff i { background: #1E1E22; }
-  .card .aff i b { background: var(--ac); }
-  .card[style*="var(--grad)"] { background: var(--ac) !important; color: var(--ac-ink) !important; }
-  .card[style*="var(--grad)"] .btn.ghost { background: var(--ac-ink); color: var(--text); border-color: transparent; }
-  .note { color: var(--mut); }
-
-  /* FAQ·푸터 */
-  .faq details { background: #141416; border-color: #232327; }
-  .faq summary::after { color: var(--mut); }
-  .faq p { color: var(--sub); }
-  footer { border-color: var(--line); color: var(--mut); }
-  footer .logo { color: var(--text) !important; }
-  .perk, .survey { background: #141416; border-color: #232327; }
-
-  /* 폰 화면 안(앱 UI)은 30% 화이트 그대로 둔다 */
-  @media (max-width: 900px) { .stats { gap: 18px; } .stats b { font-size: 28px; } }
-
-  /* 사진 */
-  .av { overflow: hidden; }
-  .av img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .media { position: relative; }
-  .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
-  .media .t { position: relative; z-index: 1; text-shadow: 0 2px 12px rgba(0,0,0,.6); margin-top: auto; align-self: start; padding: 0 0 14px 14px; }
-  .media { display: block; }
-  .media .t { position: absolute; left: 0; bottom: 0; padding: 0 14px 14px; }
-  .hero-photo { position: absolute; inset: 0; background: url("img/hero.webp") center 35% / cover no-repeat; opacity: .55; pointer-events: none; }
-  .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #0B0B0C 0%, rgba(11,11,12,.85) 38%, rgba(11,11,12,.25) 70%, rgba(11,11,12,.6) 100%), linear-gradient(180deg, rgba(11,11,12,.2), rgba(11,11,12,.3) 60%, #0B0B0C 100%); }
-  @media (max-width: 900px) {
-    .hero-photo { background-position: 60% 20%; opacity: .45; }
-    .hero-photo::after { background: linear-gradient(180deg, rgba(11,11,12,.55), rgba(11,11,12,.75) 50%, #0B0B0C 100%); }
-  }
-
-  /* ===== 축소판: 첫 화면 5개, 8px 간격 ===== */
-  .hero h1 { margin: 0 0 24px; font-size: clamp(40px, 6vw, 68px); line-height: 1.12; }
-  .hero .lead { margin: 0 0 32px; font-size: clamp(17px, 1.6vw, 20px); max-width: 520px; color: var(--sub); }
-  .btn.big { font-size: 22px; padding: 24px 40px; min-height: 72px; width: 100%; max-width: 520px; border-radius: 20px; justify-content: center; }
-  .hero .sub { margin: 16px 0 0; font-size: 16px; color: var(--sub); }
-  .hero .trust { margin: 48px 0 0; font-size: 13px; color: var(--mut); }
-  header nav a { font-size: 15px; font-weight: 600; color: var(--sub); }
-  .hero { gap: 64px; }
-  #hero { padding-top: 64px; }
-  .hero-photo { opacity: .5; }
-  @media (max-width: 900px) {
-    .hero { gap: 40px; }
-    .hero h1 { font-size: clamp(36px, 10vw, 44px); margin-bottom: 16px; }
-    .hero .lead { margin-bottom: 24px; font-size: 16px; }
-    .btn.big { width: 100%; font-size: 20px; padding: 22px 24px; min-height: 68px; }
-    .hero .trust { margin-top: 32px; }
-    header nav a { display: inline; }
-  }
-
-  /* ===== 30% 밝은 면: 인물 카드·마무리·질문 ===== */
-  section.light { background: #F5F5F6; color: #111114; --text: #111114; --sub: #5E5E68; --mut: #8A8A94; --line: #E4E4E9; }
-  section.light h2, section.light b { color: #111114; }
-  section.light .card, section.light .quote, section.light .faq details { background: #fff; border-color: #E4E4E9; color: #111114; box-shadow: 0 16px 40px -28px rgba(17,17,20,.25); }
-  section.light .card .aff i { background: #ECECF0; }
-  section.light .card .who .role { background: var(--ac); color: #fff; }
-  section.light .note, section.light .faq summary::after { color: #8A8A94; }
-  section.light .faq p { color: #5E5E68; }
-  section.light .card[style*="var(--grad)"] { background: #111114 !important; color: #fff !important; }
-  section.light .card[style*="var(--grad)"] .btn.ghost { background: var(--ac); color: #0B0B0C; border-color: transparent; }
-  section.light .btn { color: #0B0B0C; }
-  section.light + section.light { padding-top: 0; }
-  .btn.big { display: flex; margin: 0; transition: box-shadow .2s; }
-  .btn.big:hover { transform: none; }
-  .cta .wrap { text-align: center; display: grid; justify-items: center; gap: 16px; }
-  .cta h2 { font-size: clamp(30px, 4.4vw, 48px); }
-  .cta p { color: var(--sub); font-size: 18px; margin: 0; }
-  .cta .sub { font-size: 14px; color: var(--mut); }
-  .cta .btn.big { margin-top: 8px; }
-  .faq-sec { padding-top: 0; }
-  @media (max-width: 900px) { .btn.big { width: 100%; } .cta p { font-size: 16px; } }
-
-  /* ===== 첫 화면: 가운데 정렬 한 줄 흐름 (supahero 소비자 앱 패턴) ===== */
-  #hero { height: 100svh; min-height: 640px; max-height: 1100px; padding: 112px 0 0; overflow: hidden; display: block; background: var(--bg); }
-  .hero-photo { display: none; }
-  .hero { display: grid; grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 48px; }
-  .hero .copy { max-width: 760px; display: grid; justify-items: center; }
-  .hero h1 { margin: 0 0 20px; font-size: clamp(40px, 6.4vw, 76px); line-height: 1.08; }
-  .hero .lead { margin: 0 0 32px; max-width: 560px; }
-  .btn.big { margin: 0 auto; }
-  .hero .sub { margin: 16px 0 0; }
-  .hero .trust { margin: 24px 0 0; }
-  .hero .stage3d { width: 100%; perspective: 1600px; }
-  .hero .phone { width: min(360px, 80vw); }
-  @media (max-width: 900px) {
-    #hero { padding-top: 88px; min-height: 600px; }
-    .hero { gap: 32px; }
-    .hero h1 { font-size: clamp(36px, 10.5vw, 46px); }
-    .hero .lead { margin-bottom: 24px; }
-    .hero .trust { margin-top: 16px; }
-    .hero .phone { width: min(300px, 78vw); }
-  }
-
-  /* ===== 보상 3개 강조 ===== */
-  .hero .lead { font-size: clamp(18px, 2vw, 24px); font-weight: 700; color: var(--text); margin: 0 0 16px; }
-  .rewards { list-style: none; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 0 0 32px; padding: 0; }
-  .rewards li { display: flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 16px; background: #141416; border: 1px solid #2A2A2F; font-size: clamp(18px, 1.8vw, 22px); font-weight: 800; color: var(--text); }
-  .rewards .ico { font-size: 24px; }
-  .rewards li b { color: var(--text); }
-  .hero .trust { margin: 20px 0 0; font-size: 14px; color: var(--mut); }
-  section.light .rewards li { background: #fff; border-color: #E4E4E9; color: #111114; }
-  .cta .rewards { margin: 8px 0 8px; }
-  @media (max-width: 900px) {
-    .rewards { flex-direction: column; align-items: stretch; gap: 8px; margin-bottom: 24px; }
-    .rewards li { justify-content: center; padding: 14px 16px; font-size: 18px; }
-    .hero .lead { font-size: 18px; margin-bottom: 12px; }
-  }
-
-  /* ===== 사전 신청 폼 (2026-11-07) ===== */
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .pre-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #141416; border: 1px solid #2A2A2F; color: var(--sub); font-size: 13px; font-weight: 700; margin: 0 0 20px; }
-  .pre-pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--ac); box-shadow: 0 0 0 4px rgba(255,79,163,.18); }
-  .prereg { width: 100%; max-width: 560px; margin: 0 auto; display: grid; gap: 12px; text-align: left; }
-  .prereg .row { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
-  .prereg input[type="text"] { width: 100%; min-height: 72px; padding: 0 22px; border-radius: 20px; border: 1.5px solid #2E2E34; background: #141416; color: var(--text); font: inherit; font-size: 18px; outline: none; transition: border-color .2s; }
+  /* final + form */
+  .final { text-align: center; overflow: hidden; }
+  .final::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(255,92,138,.18), transparent 55%); pointer-events: none; }
+  .final .faces { display: flex; justify-content: center; margin-bottom: 22px; position: relative; }
+  .final .faces img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; border: 3px solid var(--bg); margin-left: -12px; }
+  .final .faces img:first-child { margin-left: 0; }
+  .final .lead { margin-left: auto; margin-right: auto; }
+  .prereg { margin: 28px auto 0; display: grid; gap: 10px; max-width: 480px; text-align: left; position: relative; }
+  .prereg .rowf { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+  .prereg input[type="text"] { min-height: 56px; padding: 0 18px; border-radius: 14px; border: 1.5px solid #2E3460; background: rgba(21,25,51,.9); color: #fff; font: inherit; font-size: 16px; outline: none; }
   .prereg input[type="text"]:focus { border-color: var(--ac); }
   .prereg input[type="text"].bad { border-color: #FF6B6B; }
-  .prereg .btn.big { width: auto; max-width: none; margin: 0; padding: 0 32px; white-space: nowrap; }
-  .prereg .consent { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.5; color: var(--mut); cursor: pointer; }
-  .prereg .consent input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--ac); }
-  .prereg .consent a { color: var(--sub); text-decoration: underline; }
-  .prereg .msg { margin: 0; min-height: 1.2em; font-size: 14px; font-weight: 700; color: #FF6B6B; }
-  .prereg.busy .btn.big { opacity: .6; pointer-events: none; }
-  .done { width: 100%; max-width: 560px; margin: 0 auto; display: grid; gap: 12px; justify-items: center; padding: 28px 24px; border-radius: 24px; background: #141416; border: 1px solid #2A2A2F; text-align: center; }
-  .done .done-t { margin: 0; font-size: 28px; font-weight: 900; }
-  .done .done-s { margin: 0; font-size: 16px; color: var(--sub); }
-  .done .done-s b { color: var(--text); }
-  .done .rewards { margin: 8px 0; }
-  .done .btn.big { margin-top: 4px; }
-  .done .trust { margin: 0; font-size: 13px; color: var(--mut); }
+  .prereg .consent { display: flex; gap: 9px; align-items: flex-start; font-size: 12.5px; color: var(--mut); line-height: 1.5; cursor: pointer; }
+  .prereg .consent input { width: 17px; height: 17px; margin-top: 1px; accent-color: var(--ac); flex: none; }
+  .prereg .consent a { text-decoration: underline; color: var(--sub); }
+  .prereg .err { min-height: 1.2em; font-size: 13.5px; font-weight: 700; color: #FF6B6B; }
+  .prereg.busy .btn { opacity: .6; pointer-events: none; }
+  .done { margin: 28px auto 0; max-width: 480px; padding: 20px 22px; border-radius: 18px; background: var(--surface); border: 1px solid rgba(255,92,138,.45); text-align: left; position: relative; }
+  .done b { font-size: 18px; } .done p { color: var(--sub); margin-top: 4px; font-size: 14.5px; }
   .done[hidden], .prereg[hidden] { display: none; }
-  .hero .lead.gift { margin: -4px 0 28px; max-width: 640px; }
-  .nb { white-space: nowrap; }
-  @media (max-width: 900px) { .hero .lead.gift { margin: -8px 0 20px; } }
-  .hero .trust { margin-top: 20px; }
-  .cta .wrap > p:not(.sub) { max-width: 560px; }
-  section.light .pre-pill { background: #fff; border-color: #E4E4E9; }
-  section.light .prereg input[type="text"] { background: #fff; border-color: #E4E4E9; color: #111114; }
-  section.light .prereg .consent { color: #6B6B74; }
-  section.light .prereg .consent a { color: #3A3A42; }
-  section.light .done { background: #fff; border-color: #E4E4E9; }
-  section.light .done .done-s { color: #3A3A42; }
-  section.light .done .done-s b { color: #111114; }
-  @media (max-width: 900px) {
-    .prereg .row { grid-template-columns: 1fr; }
-    .prereg .btn.big { width: 100%; }
-    .prereg input[type="text"] { min-height: 64px; font-size: 17px; text-align: center; }
-    .done { padding: 24px 16px; }
-    .done .done-t { font-size: 24px; }
-    .hero .trust { margin-top: 12px; font-size: 12px; }
-  }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 560px) { .prereg .rowf { grid-template-columns: 1fr; } }
+
+  /* sticky mobile bar */
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(8,10,22,.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .3s; display: none; }
+  .bar.on { transform: none; }
+  .bar .btn { width: 100%; min-height: 52px; }
+  @media (max-width: 760px) { .bar { display: block; } }
+
+  footer { border-top: 1px solid var(--line); padding: 36px 0 110px; font-size: 13px; color: var(--mut); }
+  footer .wrap { display: grid; gap: 8px; }
+  footer p a { text-decoration: underline; }
+
+  .rv { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .pop { animation: none; } html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
-<header id="hdr">
+
+<header class="nav" id="nav">
   <div class="wrap">
-    <a class="logo grad-text" href="#top">Feeler</a>
-    <nav>
-      <a href="#prereg1">사전 신청</a>
-    </nav>
+    <a class="logo" href="#top">Feeler<i>.</i></a>
+    <a class="btn" href="#join">사전 신청</a>
   </div>
 </header>
 
 <main id="top">
-  <section id="hero">
-    <div class="hero-photo" aria-hidden="true"></div>
-    <div class="blob a" data-speed="0.4"></div>
-    <div class="blob b" data-speed="-0.3"></div>
-    <div class="blob c" data-speed="0.6"></div>
-    <div class="wrap hero">
-      <div class="copy">
-        <p class="pre-pill"><i></i>출시 전 사전 신청 · 12월 출시 예정</p>
-        <h1 id="h1"><span class="line">내 말 한마디에,</span><br><span class="line"><em class="ac">세계</em>가 바뀐다</span></h1>
-        <p class="lead" id="lead">AI 등장인물들이 사는 나만의 SNS, 만들고 있어요</p>
-        <p class="lead gift">참여자 전원 <span class="nb">💎 크레딧 1만 원</span> · <span class="nb">🏅 파운더 배지</span> · <span class="nb">🎭 세계 테마</span> <span class="nb">(출시 시 지급)</span></p>
-        <form class="prereg" id="prereg1" novalidate autocomplete="on">
-          <label class="sr" for="contact1">연락처</label>
-          <div class="row">
-            <input id="contact1" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="이메일 또는 휴대폰 번호" maxlength="120" required>
-            <button class="btn big" type="submit">사전 신청하기</button>
-          </div>
-          <label class="consent"><input type="checkbox" name="consent" required> <span>[필수] 연락처는 출시 알림·설문 안내·파운더 혜택 지급에만 쓰고, 출시 6개월 뒤 지워요. <a href="/privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a></span></label>
-          <p class="msg" role="alert"></p>
-        </form>
-        <div class="done" id="done1" hidden>
-          <p class="done-t">신청 완료 🎉</p>
-          <p class="done-s">참여자 <b>전원</b>에게 드려요 (출시 시 지급)</p>
-          <ul class="rewards">
-            <li><span class="ico">💎</span><b>크레딧 1만 원</b></li>
-            <li><span class="ico">🏅</span><b>한정판 파운더 배지</b></li>
-            <li><span class="ico">🎭</span><b>한정판 세계 테마</b></li>
-          </ul>
-          <a class="btn big" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">설문도 해 주세요 (5분)</a>
-          <p class="trust">5분 설문이 Feeler를 만드는 데 큰 도움이 돼요 · 혜택은 출시 후엔 받을 수 없어요</p>
-        </div>
-      </div>
-
-      <div class="stage3d">
-        <div class="phone" id="heroPhone">
-          <div class="screen lock">
-            <div class="notch"></div>
-            <div class="clock"><div class="d">11월 5일 수요일</div><div class="t">9:41</div></div>
-            <div class="notis" id="notis">
-              <div class="noti"><div class="av"><img src="img/harin.jpg" alt=""></div><div><b>하린 <span class="role">팬</span> <small>DM · 방금</small></b><span>오늘 무대 끝나고 바로 잤어요? 😢</span></div></div>
-              <div class="noti"><div class="av"><img src="img/jungwoo.jpg" alt=""></div><div><b>정우 <span class="role">기자</span> <small>DM · 3분 전</small></b><span>단독 인터뷰 가능하실까요?</span></div></div>
-              <div class="noti"><div class="av"><img src="img/seojin.jpg" alt=""></div><div><b>서진 <span class="role">라이벌</span> <small>내 기사에 댓글 · 12분 전</small></b><span>기사 봤어. 다음엔 내가 1위야.</span></div></div>
-            </div>
-            <div class="lockfoot">위로 밀어서 내 세계 열기</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="impact">
-    <div class="pin">
-      <div class="wrap impact">
-        <div class="copy">
-          <div class="eyebrow grad-text">한마디의 파급력</div>
-          <h2>한 줄 올리면,<br>세계가 움직여요</h2>
-          <p class="sec-lead">말 걸어야 대답하는 챗봇 말고. 내 한마디가 댓글·기사·DM이 돼서 돌아와요.</p>
-          <div class="steps" id="steps">
-            <div class="step"><span class="n">1</span><span>한마디 올리면<small>“드디어 다음 주 컴백해요”</small></span></div>
-            <div class="step"><span class="n">2</span><span>좋아요 폭발<small>팔로워 +312</small></span></div>
-            <div class="step"><span class="n">3</span><span>댓글이 달리고<small>팬·라이벌·썸·안티</small></span></div>
-            <div class="step"><span class="n">4</span><span>기사가 나고<small>세계가 내 얘기 중</small></span></div>
-            <div class="step"><span class="n">5</span><span>DM이 먼저 와요<small>내가 말 걸기 전에</small></span></div>
-          </div>
-        </div>
-
-        <div class="stage3d">
-          <div class="phone" id="impactPhone">
-            <div class="screen">
-              <div class="notch"></div>
-              <div class="top"><span class="logo">Feeler</span><span class="ic">✉️<span class="badge" id="dmBadge" style="opacity:0">1</span></span></div>
-              <div class="post" style="border-top:0">
-                <div class="ph"><div class="av"><img src="img/yuna.jpg" alt=""></div>yuna.stage <small>· 방금</small></div>
-                <div class="media"><img src="img/post.jpg" alt=""><div class="t">컴백 D-7</div></div>
-                <div class="act">🤍 💬 ✈️</div>
-                <div class="likes">좋아요 <span id="likeN">0</span>개</div>
-                <div class="cap"><b>yuna.stage</b><span id="typed" class="typing"></span></div>
-                <div class="cm react"><b>harin.fan</b><span class="role">팬</span>드디어 컴백이라니!! 언니 믿고 달려요🥹💿</div>
-                <div class="cm react"><b>seojin.beat</b><span class="role">라이벌</span>자신 있다는 건 무대 보고 판단하자.</div>
-                <div class="cm react"><b>sky.with.u</b><span class="role">썸</span>자신 있다는 표정, 낯설지 않아서 좋네.</div>
-                <div class="cm react"><b>murmur.dark</b><span class="role">안티</span>자기 확신형 멘트도 마케팅의 일부.</div>
-              </div>
-            </div>
-          </div>
-          <div class="news" id="news">
-            <div class="src">📰 jungwoo.reports · 속보</div>
-            <h4>유나, 다음 주 컴백 공식화… “이번엔 자신 있다” 발언에 팬덤 들썩</h4>
-          </div>
-          <div class="dm" id="dmPop">
-            <div class="av"><img src="img/sky.jpg" alt=""></div>
-            <div><b>sky.with.u</b><span class="t">자신 있다며. 그날처럼 괜찮을 거야. 끝나고 봐.</span></div>
-          </div>
-          <div class="followers" id="followers">+312 팔로워</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="cast" class="light">
-    <div class="pin">
-      <div class="wrap head">
-        <div class="eyebrow grad-text">같은 말, 다른 반응</div>
-        <h2>같은 말, 다 다르게 반응해요</h2>
-        <div class="quote"><div class="av"><img src="img/yuna.jpg" alt=""></div>“드디어 다음 주 컴백해요. 이번엔 진짜 자신 있어요 🔥”</div>
-      </div>
-      <div class="track" id="track">
-        <div class="card"><div class="who"><div class="av"><img src="img/harin.jpg" alt=""></div><div><b>harin.fan</b><span class="role">열성 팬</span></div></div><p>드디어 컴백이라니!! D-7 카운트 시작🔥🔥 언니 자신 있다는 말 진짜 믿고 달려요🥹💿</p><div class="aff">호감도 <i><b style="--w:92%"></b></i> 92</div></div>
-        <div class="card"><div class="who"><div class="av"><img src="img/seojin.jpg" alt=""></div><div><b>seojin.beat</b><span class="role">라이벌</span></div></div><p>자신 있다는 건 무대 보고 판단하자. 대기실서 또 마주칠 텐데 이번엔 누가 더 셀지 보자고.</p><div class="aff">호감도 <i><b style="--w:38%"></b></i> 38</div></div>
-        <div class="card"><div class="who"><div class="av"><img src="img/sky.jpg" alt=""></div><div><b>sky.with.u</b><span class="role">썸 상대</span></div></div><p>자신 있다는 표정, 낯설지 않아서 좋네. 다음 주에도 그날처럼 괜찮을 거야.</p><div class="aff">호감도 <i><b style="--w:74%"></b></i> 74</div></div>
-        <div class="card"><div class="who"><div class="av" style="background:#eeeef2">🕶️</div><div><b>murmur.dark</b><span class="role">안티</span></div></div><p>자기 확신형 멘트도 마케팅의 일부. 화제성 유지가 진짜 변수일 듯.</p><div class="aff">호감도 <i><b style="--w:14%"></b></i> 14</div></div>
-        <div class="card"><div class="who"><div class="av"><img src="img/jungwoo.jpg" alt=""></div><div><b>jungwoo.reports</b><span class="role">기자</span></div></div><p>타이틀곡 재진입 흐름 이어지는 시점에 컴백 공지까지. 반응은 다음 기사로 챙겨보겠습니다.</p><div class="aff">호감도 <i><b style="--w:55%"></b></i> 55</div></div>
-        <div class="card" style="display:grid;align-content:center;text-align:center;background:var(--grad);color:#fff;border:0"><p style="font-size:20px;font-weight:900;margin:0">동료·매니저까지<br>8명이 내 말을<br>기다려요</p><a class="btn ghost" href="#prereg2" style="margin:18px auto 0">사전 신청하기</a></div>
-      </div>
-      <div class="wrap"><p class="note">* 댓글 5개는 실제 테스트 화면 그대로예요.</p></div>
-    </div>
-  </section>
-
-  <section id="cta" class="light cta">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bg" aria-hidden="true"><img src="/v6/img/key.jpg" alt=""><div class="dust"></div></div>
     <div class="wrap">
-      <p class="pre-pill rv"><i></i>출시 전 사전 신청</p>
-      <h2 class="rv">연락처 하나면<br>돼요</h2>
-      <p class="rv">참여자 전원 증정: 💎 크레딧 1만 원 · 🏅 파운더 배지 · 🎭 세계 테마 (출시 시 지급)</p>
-      <div class="rv" style="width:100%;display:grid;justify-items:center">
-        <form class="prereg" id="prereg2" novalidate autocomplete="on">
-          <label class="sr" for="contact2">연락처</label>
-          <div class="row">
-            <input id="contact2" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="이메일 또는 휴대폰 번호" maxlength="120" required>
-            <button class="btn big" type="submit">사전 신청하기</button>
-          </div>
-          <label class="consent"><input type="checkbox" name="consent" required> <span>[필수] 연락처는 출시 알림·설문 안내·파운더 혜택 지급에만 쓰고, 출시 6개월 뒤 지워요. <a href="/privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a></span></label>
-          <p class="msg" role="alert"></p>
-        </form>
-        <div class="done" id="done2" hidden>
-          <p class="done-t">신청 완료 🎉</p>
-          <p class="done-s">참여자 <b>전원</b>에게 드려요 (출시 시 지급)</p>
-          <ul class="rewards">
-            <li><span class="ico">💎</span><b>크레딧 1만 원</b></li>
-            <li><span class="ico">🏅</span><b>한정판 파운더 배지</b></li>
-            <li><span class="ico">🎭</span><b>한정판 세계 테마</b></li>
-          </ul>
-          <a class="btn big" data-survey href="https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform" target="_blank" rel="noopener">설문도 해 주세요 (5분)</a>
-          <p class="trust">5분 설문이 Feeler를 만드는 데 큰 도움이 돼요 · 혜택은 출시 후엔 받을 수 없어요</p>
-        </div>
+      <span class="badge">출시 전 · 사전 신청 중</span>
+      <p class="brand">읽기만 하던 소설,</p>
+      <h1>이번엔 내가<br><em class="ac">주인공</em>이에요</h1>
+      <p class="lead">AI 인물들이 나를 기억하고, 내가 고른 대로 다음 화가 써져요. 장면마다 삽화가 움직여요.</p>
+      <a class="ep" href="#prologue">
+        <span class="ep-k">첫 번째 소설 · EP.1</span>
+        <b>성좌님들, 저 아직 신입인데요</b>
+        <span class="ep-s">입학식 날, 하늘의 성좌 셋이 동시에 나를 골랐다.</span>
+        <span class="tags"><span>#성좌</span><span>#헌터</span><span>#아카데미</span><span>#판타지</span><span>#역하렘</span></span>
+      </a>
+      <div class="cta">
+        <a class="btn pri" href="#prologue">1화 미리 읽기</a>
+        <a class="btn ghost" href="#join">출시 알림 받기</a>
       </div>
-      <p class="sub rv">12월 출시 예정 · 혜택은 출시 시 지급</p>
+      <p class="note">등장인물과 이미지는 모두 AI로 만든 가상 창작물이에요.</p>
     </div>
   </section>
 
-  <section class="light faq-sec">
-    <div class="wrap">
-      <h2 class="rv" style="text-align:center">궁금한 것</h2>
-      <div class="faq">
-        <details class="rv"><summary>언제 나와요?</summary><p>12월 출시 예정. 사전 신청하면 베타부터 먼저 들어와요. 지금은 앱이 없고 신청만 받아요.</p></details>
-        <details class="rv"><summary>등장인물은 진짜 사람이에요?</summary><p>아니요, 전부 AI예요. 실존 인물과 관계없어요. 등장인물은 모두 성인이고, 그만하라고 하면 안티도 바로 물러나요.</p></details>
-        <details class="rv"><summary>남들이 내 피드를 봐요?</summary><p>아니요. 공개 SNS가 아니라 나만 보는 세계예요.</p></details>
+  <!-- PROLOGUE -->
+  <section class="pro pad" id="prologue">
+    <div class="wrap grid">
+      <div class="side rv">
+        <p class="kicker">EP.1 미리 읽기</p>
+        <h2>소설처럼 읽다가,<br>내 차례가 와요</h2>
+        <p class="lead">성좌 셋이 동시에 손을 내밀었어요. 누구를 고르든, 고르지 않든, 다음 화는 그 선택대로 써지고 성좌들은 그 순간을 기억해요.</p>
+        <ul>
+          <li><i>✦</i><div><b>장면마다 움직이는 삽화</b>대화 중에 삽화가 끼어들고, 별빛과 불꽃이 살아 움직여요. 그림이 멈춰 있지 않아요.</div></li>
+          <li><i>✎</i><div><b>내가 고른 대로 다음 화</b>소설 속 주인공처럼 고르고 말하면, 이야기가 그쪽으로 이어져요.</div></li>
+          <li><i>∞</i><div><b>성좌는 다 기억한다</b>약속, 호칭, 내가 말한 작은 것까지 성좌 기록에 남아요.</div></li>
+        </ul>
       </div>
+      <div class="chat rv" aria-label="프롤로그 예시 대화">
+        <div class="hd"><img src="/v6/img/key.jpg" alt=""><div><b>EP.1 별맞이 · 성좌님들, 저 아직 신입인데요</b><small>예시 대화 · 실제 앱에서는 AI가 이어서 답해요</small></div></div>
+        <div class="body" id="chatBody">
+          <div class="status">#0 | 3월 2일 월 | 21:00 | 별맞이 광장 | 후원 성좌 0</div>
+          <div class="narr">
+            <p>성하 아카데미의 입학식은 해가 진 뒤에 열린다. 별이 떠야 성좌가 내려다볼 수 있기 때문이다.</p>
+            <p>광장 바닥의 은빛 마법진 앞으로 신입생이 한 명씩 불려 나갔다. 마법진이 한 번 빛나면, 성좌 하나가 그 사람을 골랐다는 뜻이었다.</p>
+            <p><em>"다음, 신입생."</em></p>
+            <p>마법진 한가운데 섰을 때, 빛은 한 번이 아니라 세 번 터졌다. 붉게, 푸르게, 주황으로.</p>
+          </div>
+          <figure class="live scene" style="--o: 50% 20%"><img src="/v6/img/key.jpg" alt="별맞이 광장 위로 성좌들이 내려다보는 장면"><div class="dust"></div><span class="lt">움직이는 삽화</span><figcaption class="cap">하늘의 별자리들이 일제히 나를 내려다봤다.</figcaption></figure>
+          <div class="narr"><p>광장이 조용해졌다. 맨 앞줄의 수석 입학생 차도윤이 처음으로 고개를 들었다.</p></div>
+          <div class="sys red">[성좌 '붉은 별을 문 사냥개'가 후원을 신청했습니다]</div>
+          <div class="sys blue">[성좌 '밤의 서고를 지키는 자'가 후원을 신청했습니다]</div>
+          <div class="sys orange">[성좌 '여우불을 부르는 장난꾼'이 후원을 신청했습니다]</div>
+          <div class="msg"><img src="/v6/img/hound.jpg" alt=""><div><span class="nm red">사냥개</span><div class="bb">야, 신입. 나 말고 딴 놈 고르면 재미없을 줄 알아.</div></div></div>
+          <div class="msg"><img src="/v6/img/book.jpg" alt=""><div><span class="nm blue">서고지기</span><div class="bb">처음 뵙겠습니다. 방금 망설인 3초, 기록해 두었습니다.</div></div></div>
+          <div class="msg"><img src="/v6/img/fox.jpg" alt=""><div><span class="nm orange">여우불</span><div class="bb">ㅋㅋ 둘 다 무시해. 나 고르면 내일 시험 문제 알려 줄게~</div></div></div>
+          <div class="choices" id="choices">
+            <span class="lb">누구의 손을 잡을까요?</span>
+            <button type="button" data-c="hound">사냥개를 고른다</button>
+            <button type="button" data-c="book">서고지기를 고른다</button>
+            <button type="button" data-c="fox">여우불을 고른다</button>
+            <button type="button" data-c="none">셋 다 거절한다</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAST -->
+  <section class="cast pad" id="cast">
+    <div class="wrap">
+      <p class="kicker rv">CHARACTERS</p>
+      <h2 class="rv">나를 고른 성좌들,<br>그리고 나를 노려보는 수석</h2>
+      <div class="cast-row">
+        <article class="card rv"><div class="ph live red" style="border-radius:0"><img src="/v6/img/hound.jpg" alt="붉은 별을 문 사냥개" loading="lazy"><div class="dust"></div><span class="role">성좌</span></div><div class="bd"><h3>붉은 별을 문 사냥개</h3><p class="who">거만한 반말. 내가 다치면 제일 먼저 화낸다.</p><p class="say">누가 너 건드렸어? 이름만 대.</p></div></article>
+        <article class="card rv"><div class="ph live blue" style="border-radius:0"><img src="/v6/img/book.jpg" alt="밤의 서고를 지키는 자" loading="lazy"><div class="dust"></div><span class="role">성좌</span></div><div class="bd"><h3>밤의 서고를 지키는 자</h3><p class="who">차분한 존댓말. 내가 한 말을 전부 적어 둔다.</p><p class="say">지난주에 매운 건 못 드신다고 하셨지요.</p></div></article>
+        <article class="card rv"><div class="ph live orange" style="border-radius:0"><img src="/v6/img/fox.jpg" alt="여우불을 부르는 장난꾼" loading="lazy"><div class="dust"></div><span class="role">성좌</span></div><div class="bd"><h3>여우불을 부르는 장난꾼</h3><p class="who">장난스러운 반말. 몰래 정보를 흘려 준다.</p><p class="say">비밀인데~ 내일 교관 기분 안 좋아. 지각하지 마.</p></div></article>
+        <article class="card rv"><div class="ph live silver" style="border-radius:0"><img src="/v6/img/rival.jpg" alt="차도윤" loading="lazy"><div class="dust"></div><span class="role">수석 입학생 · 22</span></div><div class="bd"><h3>차도윤</h3><p class="who">차갑고 승부욕이 강하다. 같은 조 라이벌.</p><p class="say">성좌 셋? 운이 좋았네. 실력도 그런지 보자.</p></div></article>
+      </div>
+      <p class="ai-note rv">모든 인물은 AI로 만든 가상 인물이에요. 실존 인물이나 다른 작품의 인물을 바탕으로 하지 않았어요.</p>
+    </div>
+  </section>
+
+  <!-- MEMORY -->
+  <section class="mem pad" id="memory">
+    <div class="wrap grid">
+      <div class="rv">
+        <p class="kicker">STAR RECORD</p>
+        <h2>성좌는<br>잊지 않아요</h2>
+        <p class="lead">대화가 길어져도 처음 본 사람처럼 굴지 않아요. 약속, 호칭, 내가 말한 작은 것까지 성좌마다 "성좌 기록"에 남아요. 새로 기록할 게 생기면 카드가 한 장 뜨고, 나는 맞다, 아니다만 누르면 돼요.</p>
+      </div>
+      <div class="ledger rv">
+        <span class="t">성좌 기록</span>
+        <div class="hd"><img src="/v6/img/book.jpg" alt=""><div><b>밤의 서고를 지키는 자</b><small>후원 3일째 · 신뢰 2/5</small></div></div>
+        <div class="row"><span>호칭</span><span>"신입" → "나의 화신"</span></div>
+        <div class="row"><span>약속</span><span>중간고사 전날, 같이 복습하기</span></div>
+        <div class="row"><span>아는 것</span><span>높은 곳을 무서워함</span></div>
+        <div class="confirm"><small>서고지기가 새로 기록했어요</small><b>매운 음식을 잘 못 먹음</b><div class="yn"><span class="y">맞다</span><span class="n">아니다</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFE -->
+  <section class="safe pad" id="safe">
+    <div class="wrap">
+      <p class="kicker rv">SAFE</p>
+      <h2 class="rv">설레는 건 좋지만,<br>선은 지켜요</h2>
+      <div class="safe-row">
+        <div class="rv"><b>AI 표시</b><p>모든 인물과 이미지에 AI 창작물이라고 표시해요.</p></div>
+        <div class="rv"><b>성인 전용 대화 없음</b><p>로맨스는 설렘, 질투, 고백까지. 그 이상의 장면은 나오지 않아요.</p></div>
+        <div class="rv"><b>틀린 기억은 바로 지움</b><p>성좌 기록이 틀렸으면 "아니다" 한 번으로 지워요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad" id="faq">
+    <div class="wrap">
+      <p class="kicker rv">FAQ</p>
+      <h2 class="rv">자주 묻는 질문</h2>
+      <div class="faq-list rv">
+        <details><summary>어떤 서비스예요?</summary><p>AI 인물들과 대화로 이야기를 이어 가는 롤플레잉이에요. 첫 시나리오는 헌터 아카데미에 입학한 신입생이 성좌 셋의 후원을 동시에 받는 이야기예요.</p></details>
+        <details><summary>다른 캐릭터챗과 뭐가 달라요?</summary><p>성좌들이 내가 한 말을 기억해요. 약속과 호칭이 성좌 기록에 남고, 다음 날에도 그걸 꺼내 말을 걸어요. 틀리게 기억하면 내가 바로 고칠 수 있어요.</p></details>
+        <details><summary>시나리오는 하나뿐이에요?</summary><p>처음에는 이 한 편에 집중해요. 인물을 적게 두고 성격이 흔들리지 않게 다듬은 뒤에 넓혀 갈 예정이에요.</p></details>
+        <details><summary>언제 나와요? 돈이 드나요?</summary><p>출시일과 요금은 아직 정하는 중이에요. 사전 신청하면 정해지는 대로 가장 먼저 알려 드려요.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final pad" id="join">
+    <div class="wrap">
+      <div class="faces rv" aria-hidden="true"><img src="/v6/img/hound.jpg" alt=""><img src="/v6/img/book.jpg" alt=""><img src="/v6/img/fox.jpg" alt=""><img src="/v6/img/rival.jpg" alt=""></div>
+      <h2 class="rv">입학식은<br>곧 시작돼요</h2>
+      <p class="lead rv">사전 신청하면 문이 열리는 날 가장 먼저 알려 드려요.</p>
+      <form class="prereg rv" id="prereg" novalidate autocomplete="on">
+        <label class="sr" for="contact">연락처</label>
+        <div class="rowf">
+          <input id="contact" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="이메일 또는 휴대폰 번호" maxlength="120" required>
+          <button class="btn pri" type="submit">사전 신청하기</button>
+        </div>
+        <label class="consent"><input type="checkbox" name="consent" required><span>[필수] 연락처는 출시 알림과 설문 안내에만 쓰고, 출시 6개월 뒤 지워요. <a href="/privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a></span></label>
+        <p class="err" role="alert"></p>
+      </form>
+      <div class="done" hidden><b>신청 완료!</b><p>입학식이 열리면 가장 먼저 알려 드릴게요. 성좌 셋이 벌써 기다리고 있어요.</p></div>
     </div>
   </section>
 </main>
 
+<div class="bar" id="bar"><a class="btn pri" href="#join">출시 알림 받기</a></div>
+
 <footer>
   <div class="wrap">
-    <div><span class="logo" style="font-size:26px;color:var(--text)">Feeler</span> &nbsp;© 2026</div>
-    <nav>
-      <a id="contact-foot" href="mailto:seocpryrhk@gmail.com">문의</a>
-      <a href="/privacy.html">개인정보처리방침</a>
-    </nav>
+    <a class="logo" href="#top">Feeler<i>.</i></a>
+    <p>읽기만 하던 소설, 이번엔 내가 주인공. 나를 기억하는 AI 인물들과 이어 가는 이야기</p>
+    <p>모든 인물·이미지·대화는 AI로 만든 가상 창작물이에요. 실존 인물을 바탕으로 하지 않아요.</p>
+    <p><a href="/privacy.html">개인정보 처리방침</a></p>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
-  (() => {
-    'use strict';
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
-    const mobile = matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+(() => {
+  const nav = document.getElementById('nav');
+  const bar = document.getElementById('bar');
+  const join = document.getElementById('join');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', scrollY > 20);
+    const jr = join.getBoundingClientRect();
+    bar.classList.toggle('on', scrollY > innerHeight * 0.8 && jr.top > innerHeight);
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-    // 광고 추적: ?ad=A|B|C|D|E|F (D = 11/8 B 대체 '아이돌 키우기', E = 11/9 '진짜 인스타 데뷔', F = 11/10 '나만의 아지트' — E vs F 비교) → 첫 화면 문구 + 신청 데이터에 ad 저장 + 완료 화면 설문 링크 Q0 미리 채우기
-    const params = new URLSearchParams(location.search);
-    const ad = (params.get('ad') || '').toUpperCase();
-    const AD_OK = /^[ABCDEF]$/.test(ad);
-    // 완료 화면 설문 링크: Q0 '스레드·인스타그램' (광고는 인스타그램만 집행, 광고·무료 게시물은 구분하지 않기로 함 11/6)
-    const Q0_INSTA = '%EC%8A%A4%EB%A0%88%EB%93%9C%C2%B7%EC%9D%B8%EC%8A%A4%ED%83%80%EA%B7%B8%EB%9E%A8';
-    const HERO = {
-      A: { h1: ['아이돌이 나한테', '먼저 <em class="ac">DM</em>을?'], lead: 'AI 등장인물들이 먼저 말 거는 나만의 SNS, 만들고 있어요' },
-      B: { h1: ['어제까지 친했는데,', '오늘은 “<em class="ac">누구세요</em>?”'], lead: '나를 기억하는 AI 캐릭터를 만들고 있어요' },
-      C: { h1: ['원하던 삶,', '오늘부터 <em class="ac">살아 보기</em>'], lead: '아이돌도, 팬도, 배우도. 내가 고른 삶을 사는 SNS를 만들고 있어요' },
-      D: { h1: ['내가 만드는', '<em class="ac">AI 아이돌</em> 키우기'], lead: '연습생부터 데뷔까지, 내가 키운 AI 아이돌이 사는 SNS를 만들고 있어요' },
-      E: { h1: ['내가 키운 AI 아이돌,', '<em class="ac">진짜 인스타</em>에 데뷔'], lead: '내가 만들고 키운 AI 아이돌이 실제 인스타그램 계정에 데뷔하는 SNS를 만들고 있어요' },
-      F: { h1: ['AI 이웃들이 놀러 오는,', '나만의 <em class="ac">아지트</em>를 만들기'], lead: '내가 없어도 AI 이웃들이 놀러 와 흔적을 남기는 나만의 아지트, 만들고 있어요' },
-    };
-    // 설문 v2: E·F는 전용 폼(11/10), 나머지 광고는 기존 폼. Q0(유입 경로)만 사전 입력.
-    const FORMS = {
-      E: { url: 'https://docs.google.com/forms/d/e/1FAIpQLSfhoEkNByrb-lJ0DEVd4zCJ4ASBb9gq2o2ZpsprFx7pPnyjOQ/viewform', q0: 'entry.365642474' },
-      F: { url: 'https://docs.google.com/forms/d/e/1FAIpQLScdqmq2muE_BxgA2hBE-xydp-31NlVocb1aS2D7R9qSZim6JQ/viewform', q0: 'entry.259577172' },
-    };
-    const Q0_V2 = encodeURIComponent('인스타그램·스레드 (광고 또는 게시물)');
-    if (AD_OK) {
-      document.querySelectorAll('a[data-survey]').forEach((a) => {
-        const f = FORMS[ad];
-        a.href = f ? f.url + '?usp=pp_url&' + f.q0 + '=' + Q0_V2 : a.href.split('?')[0] + '?usp=pp_url&entry.1681613679=' + Q0_INSTA;
-      });
-      const v = HERO[ad];
-      document.getElementById('h1').innerHTML = `<span class="line">${v.h1[0]}</span><br><span class="line">${v.h1[1]}</span>`;
-      document.getElementById('lead').textContent = v.lead;
-      document.title = `Feeler — ${v.h1.join(' ').replace(/<[^>]+>/g, '')}`;
-    }
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (el.closest('.cast-row, .safe-row') ? (i % 4) * 80 : 0) + 'ms'; io.observe(el); });
 
-    // 사전 신청: 연락처 1칸 + 동의 → Supabase (anon은 insert만 가능, 읽기 불가)
-    const SB_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
-    const SB_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
-    const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    const PHONE = /^01[016789]\d{7,8}$/;
-    const normalize = (raw) => {
-      const t = raw.trim();
-      if (EMAIL.test(t)) return t.toLowerCase();
-      const d = t.replace(/\D/g, '');
-      if (PHONE.test(d)) return d.replace(/^(\d{3})(\d{3,4})(\d{4})$/, '$1-$2-$3');
-      return null;
-    };
-    const showDone = () => {
-      document.querySelectorAll('.prereg').forEach((f) => { f.hidden = true; });
-      document.querySelectorAll('.done').forEach((d) => { d.hidden = false; });
-      try { localStorage.setItem('feeler_prereg', '1'); } catch (_) {}
-    };
-    try { if (localStorage.getItem('feeler_prereg') === '1') showDone(); } catch (_) {}
-    document.querySelectorAll('form.prereg').forEach((form) => {
-      const input = form.querySelector('input[name="contact"]');
-      const consent = form.querySelector('input[name="consent"]');
-      const msg = form.querySelector('.msg');
-      input.addEventListener('input', () => { input.classList.remove('bad'); msg.textContent = ''; });
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const contact = normalize(input.value);
-        if (!contact) { input.classList.add('bad'); msg.textContent = '이메일 또는 휴대폰 번호(010-0000-0000)를 적어 주세요'; input.focus(); return; }
-        if (!consent.checked) { msg.textContent = '개인정보 수집·이용에 동의해 주세요'; consent.focus(); return; }
-        form.classList.add('busy'); msg.textContent = '';
-        try {
-          const r = await fetch(SB_URL + '/rest/v1/feeler_prereg', {
-            method: 'POST',
-            headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-            body: JSON.stringify({ contact, ad: AD_OK ? ad : null, source: 'feeler.kr' + (location.pathname === '/' ? '' : location.pathname), ua: navigator.userAgent.slice(0, 200) }),
-          });
-          if (r.status === 201 || r.status === 409) { showDone(); document.querySelectorAll('.done').forEach((d) => { if (!d.hidden && d.closest('section') === form.closest('section')) d.scrollIntoView({ block: 'center' }); }); }
-          else { msg.textContent = '잠시 후 다시 시도해 주세요 (' + r.status + ')'; }
-        } catch (_) { msg.textContent = '네트워크 오류예요. 잠시 후 다시 시도해 주세요'; }
-        form.classList.remove('busy');
-      });
-    });
+  // prologue choice (scripted example, nothing is stored)
+  const body = document.getElementById('chatBody');
+  const choices = document.getElementById('choices');
+  const W = { hound: ['red', '사냥개', '/v6/img/hound.jpg'], book: ['blue', '서고지기', '/v6/img/book.jpg'], fox: ['orange', '여우불', '/v6/img/fox.jpg'], rival: ['silver', '차도윤', '/v6/img/rival.jpg'] };
+  const S = {
+    hound: { me: '사냥개를 고른다', lines: [['hound', '...흥. 당연한 선택이지. 이제 넌 내 거다.'], ['fox', '와 진짜? 나 삐짐. 시험 문제 안 알려 줘.']], sys: ['red', "[성좌 '붉은 별을 문 사냥개'의 화신이 되었습니다]"], rec: '입학식 날, 사냥개의 손을 먼저 잡았음' },
+    book: { me: '서고지기를 고른다', lines: [['book', '현명하십니다. 이 선택도 적어 두겠습니다.'], ['hound', '책벌레가 뭐가 좋다고.']], sys: ['blue', "[성좌 '밤의 서고를 지키는 자'의 화신이 되었습니다]"], rec: '입학식 날, 서고지기의 손을 먼저 잡았음' },
+    fox: { me: '여우불을 고른다', lines: [['fox', '역시 보는 눈 있네! 시험 문제는... 내일 알려 줄게ㅋ'], ['book', '그 약속, 제가 기록해 두었습니다. 지키는지 보죠.']], sys: ['orange', "[성좌 '여우불을 부르는 장난꾼'의 화신이 되었습니다]"], rec: '여우불이 내일 시험 문제를 알려 주기로 약속함' },
+    none: { me: '셋 다 거절한다', lines: [['hound', '하. 재밌네.'], ['fox', '오~ 튕기는 거야?'], ['rival', '...성좌를 셋 다 거절한 신입은 처음 보네.']], sys: ['gray', '[후원 성좌 0. 세 성좌가 당신을 계속 지켜봅니다]'], rec: '입학식 날, 성좌 셋을 모두 거절했음' },
+  };
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const msg = (who, text) => { const [c, n, src] = W[who]; const m = el('div', 'msg pop'); const im = el('img'); im.src = src; im.alt = ''; const d = el('div'); d.append(el('span', 'nm ' + c, n), el('div', 'bb', text)); m.append(im, d); return m; };
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  choices.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const s = S[b.dataset.c]; choices.remove();
+    const me = el('div', 'msg me pop'); const d = el('div'); d.appendChild(el('div', 'bb', s.me)); me.appendChild(d); body.appendChild(me);
+    const steps = [];
+    const lead = b.dataset.c === 'none' ? 'rival' : b.dataset.c;
+    const cap = { hound: '붉은 별빛이 사냥개의 모습으로 내려앉았다.', book: '푸른 책장이 넘어가며 서고지기가 나타났다.', fox: '여우불 세 개가 내 주위를 맴돌았다.', rival: '차도윤이 처음으로 나를 똑바로 봤다.' }[lead];
+    steps.push(() => { const f = el('figure', 'live scene tall pop ' + W[lead][0]); f.style.setProperty('--o', '50% 22%'); const im = el('img'); im.src = W[lead][2]; im.alt = ''; f.append(im, el('div', 'dust'), el('span', 'lt', '움직이는 삽화'), el('figcaption', 'cap', cap)); body.appendChild(f); });
+    s.lines.forEach(([w, t]) => steps.push(() => body.appendChild(msg(w, t))));
+    steps.push(() => body.appendChild(el('div', 'sys pop ' + s.sys[0], s.sys[1])));
+    steps.push(() => { const r = el('div', 'rec pop'); r.append(el('small', null, '성좌 기록에 남았어요'), document.createTextNode(s.rec)); body.appendChild(r); });
+    steps.push(() => { const f = el('p', 'fine pop', '여기까지가 예시예요. 다음 장면은 출시 후에 이어져요.'); const a = el('a', 'btn pri pop', '이어서 보고 싶다면, 출시 알림 받기'); a.href = '#join'; body.append(f, a); });
+    steps.forEach((fn, i) => setTimeout(fn, RM ? 0 : 500 + i * 700));
+  });
 
-    // 내비 배경
-    const hdr = document.getElementById('hdr');
-    const onScroll = () => hdr.classList.toggle('on', (window.scrollY || 0) > 24);
-    addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-    if (!hasGsap || reduce) {
-      // 라이브러리를 못 받았거나 움직임 줄이기 설정이면 정적으로 보여준다
-      document.querySelectorAll('.rv, .react, .news, .dm, .followers').forEach((el) => { el.style.opacity = 1; el.style.transform = 'none'; });
-      const t = document.getElementById('typed'); t.textContent = '드디어 다음 주 컴백해요. 이번엔 진짜 자신 있어요 🔥'; t.classList.remove('typing');
-      document.getElementById('likeN').textContent = '1.2만';
-      document.getElementById('dmBadge').style.opacity = 1;
-      document.querySelectorAll('.step').forEach((s) => s.classList.add('on'));
-      return;
-    }
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    // 부드러운 스크롤 (Lenis) — ScrollTrigger와 동기화
-    let lenis = null;
-    if (typeof Lenis !== 'undefined') {
-      lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((t) => lenis.raf(t * 1000));
-      gsap.ticker.lagSmoothing(0);
-      document.querySelectorAll('a[href^="#"]').forEach((a) => {
-        a.addEventListener('click', (e) => {
-          const id = a.getAttribute('href');
-          if (id.length < 2) return;
-          const el = document.querySelector(id);
-          if (!el) return;
-          e.preventDefault();
-          lenis.scrollTo(el, { offset: -64, duration: 1.2 });
-        });
-      });
-    }
-
-    // 진행 바
-    gsap.to('#progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
-
-    // 히어로: 글자 등장 + 폰 3D 기울기 풀림 + 블롭 패럴랙스
-    const h1 = document.getElementById('h1');
-    h1.querySelectorAll('.line').forEach((line) => {
-      const keepGrad = line.classList.contains('grad-text');
-      // 강조 태그(<em>)가 든 줄은 통째로 한 덩어리로 (태그가 깨지지 않게)
-      const words = line.children.length ? [line.innerHTML] : line.textContent.split(' ');
-      line.innerHTML = words.map((w) => `<span class="w${keepGrad ? ' grad-text' : ''}">${w}</span>`).join(' ');
-    });
-    const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    intro.from('#h1 .w', { y: 46, opacity: 0, rotateX: -40, duration: .9, stagger: .08, transformOrigin: '50% 100%' }, '-=.3')
-      .from('.hero .pre-pill, .hero .lead, .hero .prereg, .hero .done, .hero .trust', { y: 24, opacity: 0, duration: .7, stagger: .1, clearProps: 'transform,opacity' }, '-=.5')
-      .from('#heroPhone', { y: 120, opacity: 0, rotateX: mobile ? 0 : 30, duration: 1.1, ease: 'power3.out' }, '-=.9')
-      // 광고 A안 장면: 알림 3개가 차례로 떨어진다
-      .from('#notis .noti', { y: -40, opacity: 0, scale: .92, duration: .6, stagger: .5, ease: 'back.out(1.6)' }, '-=.4');
-
-    if (!mobile) {
-      gsap.set('#heroPhone', { rotateX: 16, transformPerspective: 1600 });
-      gsap.to('#heroPhone', { rotateX: 0, y: -80, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 } });
-      gsap.to('.hero .copy', { y: -60, opacity: .2, ease: 'none', scrollTrigger: { trigger: '#hero', start: '40% top', end: 'bottom top', scrub: true } });
-      document.querySelectorAll('.blob').forEach((b) => {
-        gsap.to(b, { y: () => -220 * parseFloat(b.dataset.speed), ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
-      });
-    }
-    // 히어로 폰: 마우스 따라 살짝 기울기 (데스크톱)
-    if (matchMedia('(hover: hover)').matches) {
-      const ph = document.getElementById('heroPhone');
-      const qx = gsap.quickTo(ph, 'rotateY', { duration: .6, ease: 'power3' });
-      const qy = gsap.quickTo(ph, 'rotateX', { duration: .6, ease: 'power3' });
-      document.getElementById('hero').addEventListener('mousemove', (e) => {
-        if (ScrollTrigger.positionInViewport(ph, 'center') > 1) return;
-        const r = ph.getBoundingClientRect();
-        const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-        const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-        qx(dx * 16); qy(-dy * 10);
-      });
-    }
-
-    // 한마디의 파급력: 핀 + 스크럽 타임라인
-    const full = '드디어 다음 주 컴백해요. 이번엔 진짜 자신 있어요 🔥';
-    const typed = document.getElementById('typed');
-    const likeN = document.getElementById('likeN');
-    const steps = [...document.querySelectorAll('#steps .step')];
-    const setStep = (i) => steps.forEach((s, k) => s.classList.toggle('on', k <= i));
-    const typeObj = { n: 0 }, likeObj = { n: 0 };
-    const fmt = (n) => n >= 10000 ? (n / 10000).toFixed(1).replace(/\.0$/, '') + '만' : Math.round(n).toLocaleString('ko-KR');
-
-    const impact = gsap.timeline({
-      scrollTrigger: { trigger: '#impact', start: 'top top', end: '+=2600', pin: '#impact .pin', scrub: 0.5, anticipatePin: 1,
-        onUpdate: (st) => { if (st.progress === 0) setStep(-1); } },
-    });
-    impact.set('#impactPhone', { rotateY: mobile ? 0 : 14, rotateX: mobile ? 0 : 6, transformPerspective: 1400 })
-      .call(() => setStep(0))
-      .to(typeObj, { n: [...full].length, duration: 2.2, ease: 'none', onUpdate: () => { typed.textContent = [...full].slice(0, Math.round(typeObj.n)).join(''); } })
-      .call(() => typed.classList.remove('typing'))
-      .to('#impactPhone', { rotateY: 0, rotateX: 0, duration: 2 }, 0)
-      .call(() => setStep(1), null, '+=.2')
-      .to(likeObj, { n: 12400, duration: 1.6, ease: 'power2.out', onUpdate: () => { likeN.textContent = fmt(likeObj.n); } })
-      .to('#followers', { opacity: 1, scale: 1, duration: .5, ease: 'back.out(1.8)' }, '<+.6')
-      .call(() => setStep(2))
-      .to('.react', { opacity: 1, y: 0, duration: .6, stagger: .55, ease: 'power2.out' })
-      .call(() => setStep(3), null, '+=.2')
-      .to('#news', { opacity: 1, x: 0, rotate: -3, duration: .8, ease: 'back.out(1.4)' })
-      .to('#impactPhone', { rotateY: mobile ? 0 : -8, x: mobile ? 0 : -20, duration: 1 }, '<')
-      .call(() => setStep(4), null, '+=.3')
-      .to('#dmPop', { opacity: 1, y: 0, duration: .7, ease: 'back.out(1.6)' })
-      .to('#dmBadge', { opacity: 1, duration: .3 }, '<')
-      .to({}, { duration: .8 });
-
-    // 같은 말, 다른 반응: 가로 스크롤
-    const track = document.getElementById('track');
-    const cards = track.querySelectorAll('.card');
-    if (!mobile) gsap.set(cards, { rotateY: 18, opacity: .35, transformPerspective: 1200 });
-    const getDist = () => track.scrollWidth - document.documentElement.clientWidth;
-    gsap.to(track, {
-      x: () => -getDist(), ease: 'none',
-      scrollTrigger: {
-        trigger: '#cast', start: 'top top', end: () => '+=' + (getDist() + 400), pin: '#cast .pin', scrub: 0.6, anticipatePin: 1, invalidateOnRefresh: true,
-        // 휴대폰에서는 카드별 3D 계산을 건너뛰어 가볍게 (가로 이동만)
-        onUpdate: mobile ? undefined : () => {
-          const cx = document.documentElement.clientWidth / 2;
-          cards.forEach((c) => {
-            const r = c.getBoundingClientRect();
-            const d = Math.min(1, Math.abs((r.left + r.width / 2) - cx) / (cx + r.width));
-            gsap.set(c, { rotateY: 18 * d, opacity: 1 - d * .65, scale: 1 - d * .06 });
-          });
-        },
-      },
-    });
-
-    // 등장(reveal) 공통
-    ScrollTrigger.batch('.rv', {
-      start: 'top 88%',
-      onEnter: (els) => gsap.to(els, { opacity: 1, y: 0, duration: .8, stagger: .1, ease: 'power3.out', overwrite: true }),
-    });
-    // 기능 카드 3D 틸트
-    if (matchMedia('(hover: hover)').matches) {
-      document.querySelectorAll('.perk').forEach((card) => {
-        card.addEventListener('mousemove', (e) => {
-          const r = card.getBoundingClientRect();
-          const dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
-          gsap.to(card, { rotateY: dx * 10, rotateX: -dy * 10, transformPerspective: 900, duration: .4, ease: 'power2.out' });
-        });
-        card.addEventListener('mouseleave', () => gsap.to(card, { rotateY: 0, rotateX: 0, duration: .6, ease: 'power3.out' }));
-      });
-    }
-    // 사전신청 배경 빛: 스크롤 깊이에 따라 이동
-
-    addEventListener('load', () => ScrollTrigger.refresh());
-  })();
+  // pre-registration -> Supabase (anon: insert only)
+  const SB_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
+  const SB_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
+  const adRaw = (new URLSearchParams(location.search).get('ad') || '').toUpperCase();
+  const ad = /^[A-F]$/.test(adRaw) ? adRaw : '';
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE = /^01[016789]\d{7,8}$/;
+  const normalize = (raw) => { const t = raw.trim(); if (EMAIL.test(t)) return t.toLowerCase(); const d = t.replace(/\D/g, ''); return PHONE.test(d) ? d.replace(/^(\d{3})(\d{3,4})(\d{4})$/, '$1-$2-$3') : null; };
+  const form = document.getElementById('prereg');
+  const done = document.querySelector('.done');
+  const showDone = () => { form.hidden = true; done.hidden = false; try { localStorage.setItem('feeler_prereg_v6', '1'); } catch (_) {} };
+  try { if (localStorage.getItem('feeler_prereg_v6') === '1') showDone(); } catch (_) {}
+  const input = form.querySelector('input[name="contact"]');
+  const consent = form.querySelector('input[name="consent"]');
+  const err = form.querySelector('.err');
+  input.addEventListener('input', () => { input.classList.remove('bad'); err.textContent = ''; });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const contact = normalize(input.value);
+    if (!contact) { input.classList.add('bad'); err.textContent = '이메일 또는 휴대폰 번호(010-0000-0000)를 적어 주세요'; input.focus(); return; }
+    if (!consent.checked) { err.textContent = '개인정보 수집·이용에 동의해 주세요'; consent.focus(); return; }
+    form.classList.add('busy'); err.textContent = '';
+    try {
+      const r = await fetch(SB_URL + '/rest/v1/feeler_prereg', { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ contact, ad: ad || null, source: 'feeler.kr/root-v6', ua: navigator.userAgent.slice(0, 200) }) });
+      if (r.status === 201 || r.status === 409) showDone(); else err.textContent = '잠시 후 다시 시도해 주세요 (' + r.status + ')';
+    } catch (_) { err.textContent = '네트워크 오류예요. 잠시 후 다시 시도해 주세요'; }
+    form.classList.remove('busy');
+  });
+})();
 </script>
-
 </body>
 </html>
