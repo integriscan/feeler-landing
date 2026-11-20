@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feeler - 읽기만 하던 소설, 이번엔 내가 주인공</title>
+<meta name="description" content="입학식 날, 하늘의 성좌 셋이 동시에 나를 골랐다. 성좌는 내가 한 말을 다 기억한다. 헌터 아카데미 판타지 AI 롤플레잉, 출시 전 사전 신청 중.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="읽기만 하던 소설, 이번엔 내가 주인공 - Feeler">
+<meta property="og:description" content="입학식 날, 성좌 셋이 동시에 나를 골랐다. 개교 이래 처음 있는 일이다.">
+<meta property="og:url" content="https://feeler.kr/v6/">
+<meta property="og:image" content="https://feeler.kr/v6/img/key.jpg">
+<meta name="theme-color" content="#080A16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #080A16; --bg2: #0E1124; --surface: #151933; --surface2: #1D2244; --line: rgba(255,255,255,.09);
+    --text: #FFFFFF; --sub: #B4B9D6; --mut: #7C82A6;
+    --ac: #FF5C8A; --gold: #FFD27A; --red: #FF5A5A; --blue: #8FC4FF; --orange: #FFA24C; --silver: #D7DCEB;
+    --r: 20px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-x: clip; }
+  body { font-family: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; word-break: keep-all; overflow-x: clip; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(1080px, 100% - 32px); margin: 0 auto; }
+  .serif { font-family: "Gowun Batang", serif; }
+  h1, h2 { letter-spacing: -.03em; line-height: 1.2; font-weight: 800; }
+  h2 { font-size: clamp(28px, 4.4vw, 46px); }
+  .kicker { font-size: 13px; font-weight: 800; color: var(--gold); letter-spacing: .08em; }
+  .lead { color: var(--sub); font-size: clamp(15.5px, 1.5vw, 18px); margin-top: 14px; max-width: 34em; }
+  section { position: relative; }
+  .pad { padding: clamp(76px, 10vw, 128px) 0; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; font: inherit; font-weight: 800; border-radius: 14px; transition: transform .15s, background .2s, opacity .2s; }
+  .btn.pri { min-height: 56px; padding: 0 26px; font-size: 17px; background: var(--ac); color: #fff; box-shadow: 0 12px 30px -12px rgba(255,92,138,.8); }
+  .btn.pri:hover { transform: translateY(-1px); }
+  .btn.ghost { min-height: 56px; padding: 0 22px; font-size: 16px; background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+  /* nav */
+  .nav { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .3s; }
+  .nav.scrolled { background: rgba(8,10,22,.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-weight: 900; font-size: 21px; letter-spacing: -.04em; }
+  .logo i { font-style: normal; color: var(--ac); }
+  .nav .btn { min-height: 38px; padding: 0 16px; font-size: 14px; border-radius: 999px; background: #fff; color: var(--bg); }
+
+  /* hero */
+  .hero { min-height: 100svh; display: flex; align-items: flex-end; padding: 100px 0 56px; overflow: hidden; }
+  .hero .bg { position: absolute; inset: 0; }
+  .hero .bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .hero .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,10,22,.35) 0%, rgba(8,10,22,.15) 35%, rgba(8,10,22,.85) 70%, var(--bg) 100%); }
+  .hero .wrap { position: relative; z-index: 1; }
+  .badge { display: inline-flex; gap: 8px; align-items: center; font-size: 12.5px; font-weight: 800; padding: 6px 12px; border-radius: 999px; background: rgba(255,92,138,.18); border: 1px solid rgba(255,92,138,.5); color: #FFC2D3; }
+  .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ac); box-shadow: 0 0 10px var(--ac); }
+  .hero h1 { font-size: clamp(40px, 7vw, 84px); margin-top: 18px; text-shadow: 0 4px 30px rgba(0,0,0,.6); }
+  .hero .lead { color: #D9DCEE; text-shadow: 0 2px 14px rgba(0,0,0,.7); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .tags span { font-size: 13px; font-weight: 700; color: var(--silver); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); padding: 4px 10px; border-radius: 8px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .note { margin-top: 14px; font-size: 12.5px; color: var(--mut); }
+  @media (max-width: 560px) { .cta .btn { flex: 1 1 100%; } }
+  .brand { margin-top: 18px; font-family: "Gowun Batang", serif; font-size: clamp(18px, 2.2vw, 26px); color: #E9E2FF; text-shadow: 0 2px 14px rgba(0,0,0,.7); }
+  .hero .brand + h1 { margin-top: 4px; }
+  h1 em.ac { font-style: normal; color: var(--ac); text-shadow: 0 0 40px rgba(255,92,138,.55); }
+  .ep { display: grid; gap: 4px; margin-top: 22px; max-width: 460px; padding: 14px 16px; border-radius: 16px; background: rgba(8,10,22,.62); border: 1px solid rgba(255,210,122,.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: border-color .2s, transform .2s; }
+  .ep:hover { border-color: var(--gold); transform: translateY(-1px); }
+  .ep-k { font-size: 11.5px; font-weight: 800; color: var(--gold); letter-spacing: .06em; }
+  .ep b { font-family: "Gowun Batang", serif; font-size: 19px; }
+  .ep-s { font-size: 13.5px; color: var(--sub); }
+  .ep .tags { margin-top: 6px; } .ep .tags span { font-size: 12px; padding: 2px 8px; }
+
+  /* motion illustration: our difference - scenes breathe instead of sitting still */
+  .live { position: relative; overflow: hidden; border-radius: 14px; background: #000; isolation: isolate; --c: 255,210,122; }
+  .live img { width: 100%; height: 100%; object-fit: cover; animation: kb 18s ease-in-out infinite alternate; transform-origin: var(--o, 50% 35%); will-change: transform; }
+  .live .dust, .hero .dust { position: absolute; inset: -50% 0 0; pointer-events: none; mix-blend-mode: screen;
+    background-image: radial-gradient(1.6px 1.6px at 12% 82%, #fff, transparent), radial-gradient(1.2px 1.2px at 34% 64%, #fff, transparent), radial-gradient(2px 2px at 58% 90%, rgba(var(--c),1), transparent), radial-gradient(1.3px 1.3px at 76% 70%, #fff, transparent), radial-gradient(1.8px 1.8px at 90% 86%, rgba(var(--c),1), transparent), radial-gradient(1.2px 1.2px at 22% 40%, #fff, transparent), radial-gradient(1.6px 1.6px at 66% 30%, rgba(var(--c),1), transparent), radial-gradient(1.2px 1.2px at 46% 12%, #fff, transparent);
+    background-size: 100% 50%; animation: rise 9s linear infinite, tw 2.4s ease-in-out infinite alternate; }
+  .live::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.16) 50%, transparent 65%); background-size: 260% 100%; animation: sweep 7s ease-in-out infinite; mix-blend-mode: overlay; }
+  .live::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 40px rgba(var(--c),.35); animation: glow 3.2s ease-in-out infinite alternate; }
+  .live .lt { position: absolute; left: 8px; top: 8px; z-index: 2; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 999px; background: rgba(8,10,22,.7); color: #fff; display: inline-flex; gap: 5px; align-items: center; }
+  .live .lt::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: rgb(var(--c)); box-shadow: 0 0 8px rgb(var(--c)); animation: tw 1.2s ease-in-out infinite alternate; }
+  .live .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 26px 12px 10px; font-family: "Gowun Batang", serif; font-size: 13.5px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.75)); }
+  .live.red { --c: 255,90,90; } .live.blue { --c: 143,196,255; } .live.orange { --c: 255,162,76; } .live.silver { --c: 215,220,235; }
+  .scene { aspect-ratio: 3 / 2; } .scene.tall { aspect-ratio: 4 / 5; max-width: 260px; }
+  @keyframes kb { from { transform: scale(1.04) translate(0, 0); } to { transform: scale(1.16) translate(-2.5%, -2%); } }
+  @keyframes rise { from { transform: translateY(0); } to { transform: translateY(50%); } }
+  @keyframes tw { from { opacity: .35; } to { opacity: 1; } }
+  @keyframes sweep { 0%, 30% { background-position: 130% 0; } 70%, 100% { background-position: -30% 0; } }
+  @keyframes glow { from { box-shadow: inset 0 0 24px rgba(var(--c),.15); } to { box-shadow: inset 0 0 56px rgba(var(--c),.45); } }
+  .hero .bg img { animation: kb 24s ease-in-out infinite alternate; transform-origin: 50% 30%; }
+  .hero .dust { inset: -100% 0 0; z-index: 1; --c: 255,210,122; animation-duration: 16s, 3s; }
+  @media (prefers-reduced-motion: reduce) { .live img, .hero .bg img, .live .dust, .hero .dust, .live::after, .live::before, .live .lt::before { animation: none; } }
+
+  /* prologue (chat) */
+  .pro .grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+  .chat { background: var(--bg2); border: 1px solid var(--line); border-radius: 26px; overflow: hidden; box-shadow: 0 40px 80px -40px rgba(0,0,0,.9); }
+  .chat .hd { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  .chat .hd img { width: 34px; height: 34px; border-radius: 10px; object-fit: cover; }
+  .chat .hd b { font-size: 14.5px; display: block; line-height: 1.3; }
+  .chat .hd small { font-size: 12px; color: var(--mut); }
+  .chat .body { padding: 18px 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .status { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--gold); background: rgba(255,210,122,.08); border: 1px solid rgba(255,210,122,.25); padding: 8px 10px; border-radius: 10px; letter-spacing: -.01em; }
+  .narr { font-family: "Gowun Batang", serif; font-size: 15.5px; line-height: 1.85; color: #E4E6F3; }
+  .narr p + p { margin-top: 10px; }
+  .narr em { font-style: normal; color: var(--gold); }
+  .sys { font-size: 13.5px; font-weight: 700; text-align: center; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.04); border: 1px dashed rgba(255,255,255,.18); }
+  .sys.red { color: var(--red); } .sys.blue { color: var(--blue); } .sys.orange { color: var(--orange); } .sys.gray { color: var(--sub); }
+  .msg { display: flex; gap: 10px; align-items: flex-start; }
+  .msg img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; object-position: 50% 16%; flex: none; }
+  .msg .nm { font-size: 12px; font-weight: 800; }
+  .msg .bb { margin-top: 3px; background: var(--surface2); padding: 9px 13px; border-radius: 4px 16px 16px 16px; font-size: 14.5px; line-height: 1.5; }
+  .msg.me { flex-direction: row-reverse; }
+  .msg.me .bb { background: var(--ac); border-radius: 16px 4px 16px 16px; }
+  .nm.red { color: var(--red); } .nm.blue { color: var(--blue); } .nm.orange { color: var(--orange); } .nm.silver { color: var(--silver); }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .choices button { min-height: 50px; padding: 8px 10px; border-radius: 12px; border: 1.5px solid rgba(255,92,138,.55); background: rgba(255,92,138,.06); color: #fff; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; transition: background .2s; }
+  .choices button:hover { background: rgba(255,92,138,.16); }
+  .choices .lb { grid-column: 1 / -1; font-size: 12px; color: var(--mut); font-weight: 700; }
+  .rec { background: rgba(143,196,255,.1); border: 1px solid rgba(143,196,255,.4); color: #D6E8FF; border-radius: 12px; padding: 10px 12px; font-size: 13.5px; font-weight: 700; }
+  .rec small { display: block; color: var(--blue); font-size: 11.5px; font-weight: 800; }
+  .fine { font-size: 12px; color: var(--mut); text-align: center; }
+  .pop { animation: pop .45s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes pop { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .pro .side { position: sticky; top: 100px; }
+  .pro .side ul { list-style: none; padding: 0; margin-top: 26px; display: grid; gap: 14px; }
+  .pro .side li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; font-size: 15px; color: var(--sub); }
+  .pro .side li b { display: block; color: #fff; font-size: 16.5px; margin-bottom: 2px; }
+  .pro .side li i { font-style: normal; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(255,210,122,.12); color: var(--gold); font-weight: 900; }
+  @media (max-width: 880px) { .pro .grid { grid-template-columns: 1fr; gap: 30px; } .pro .side { position: static; } }
+
+  /* cast */
+  .cast { background: var(--bg2); }
+  .cast-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 40px; }
+  .card { border-radius: var(--r); overflow: hidden; background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; }
+  .card .ph { aspect-ratio: 4/5; overflow: hidden; position: relative; }
+  .card .ph img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; transition: transform .6s; }
+  .card .role { z-index: 2; position: absolute; left: 10px; top: 10px; font-size: 11px; font-weight: 800; padding: 4px 9px; border-radius: 999px; background: rgba(8,10,22,.75); backdrop-filter: blur(6px); }
+  .card .bd { padding: 14px 14px 16px; display: grid; gap: 8px; flex: 1; align-content: start; }
+  .card h3 { font-size: 16.5px; font-weight: 800; line-height: 1.35; }
+  .card .say { font-size: 13.5px; color: #E4E6F3; background: var(--surface2); padding: 9px 12px; border-radius: 4px 14px 14px 14px; }
+  .card .who { font-size: 12.5px; color: var(--mut); }
+  .ai-note { margin-top: 20px; font-size: 12.5px; color: var(--mut); }
+  @media (max-width: 900px) { .cast-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin-right: -16px; padding-right: 16px; padding-bottom: 6px; } .card { flex: 0 0 240px; scroll-snap-align: start; } .cast-row::-webkit-scrollbar { display: none; } }
+
+  /* memory */
+  .mem .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .ledger { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 18px; display: grid; gap: 10px; }
+  .ledger .hd { display: flex; gap: 12px; align-items: center; }
+  .ledger .hd img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--blue); }
+  .ledger .hd b { display: block; font-size: 16px; }
+  .ledger .hd small { font-size: 12.5px; color: var(--sub); }
+  .ledger .t { font-size: 11.5px; font-weight: 800; color: var(--blue); letter-spacing: .06em; }
+  .row { display: grid; grid-template-columns: 64px 1fr; gap: 10px; background: var(--surface2); border-radius: 12px; padding: 10px 12px; font-size: 14.5px; }
+  .row span:first-child { font-size: 12px; color: var(--mut); font-weight: 700; padding-top: 2px; }
+  .confirm { border: 1px solid rgba(255,92,138,.5); background: rgba(255,92,138,.07); border-radius: 14px; padding: 12px; display: grid; gap: 4px; }
+  .confirm small { color: #FF9DB9; font-weight: 800; font-size: 12px; }
+  .confirm b { font-size: 15px; }
+  .confirm .yn { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+  .confirm .yn span { text-align: center; padding: 8px; border-radius: 10px; font-weight: 800; font-size: 14px; }
+  .confirm .yn .y { background: var(--ac); } .confirm .yn .n { border: 1px solid rgba(255,255,255,.25); color: var(--sub); }
+  @media (max-width: 880px) { .mem .grid { grid-template-columns: 1fr; gap: 30px; } }
+
+  /* safe + faq */
+  .safe { background: var(--bg2); }
+  .safe-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 36px; }
+  .safe-row div { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+  .safe-row b { display: block; font-size: 17px; margin-bottom: 6px; }
+  .safe-row p { font-size: 14.5px; color: var(--sub); }
+  @media (max-width: 760px) { .safe-row { grid-template-columns: 1fr; } }
+  .faq-list { margin-top: 32px; border-top: 1px solid var(--line); }
+  details { border-bottom: 1px solid var(--line); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 20px 0; font-size: 16.5px; font-weight: 700; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 24px; line-height: 1; color: var(--ac); transition: transform .25s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--sub); padding: 0 0 20px; max-width: 46em; }
+
+  /* final + form */
+  .final { text-align: center; overflow: hidden; }
+  .final::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(255,92,138,.18), transparent 55%); pointer-events: none; }
+  .final .faces { display: flex; justify-content: center; margin-bottom: 22px; position: relative; }
+  .final .faces img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; border: 3px solid var(--bg); margin-left: -12px; }
+  .final .faces img:first-child { margin-left: 0; }
+  .final .lead { margin-left: auto; margin-right: auto; }
+  .prereg { margin: 28px auto 0; display: grid; gap: 10px; max-width: 480px; text-align: left; position: relative; }
+  .prereg .rowf { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+  .prereg input[type="text"] { min-height: 56px; padding: 0 18px; border-radius: 14px; border: 1.5px solid #2E3460; background: rgba(21,25,51,.9); color: #fff; font: inherit; font-size: 16px; outline: none; }
+  .prereg input[type="text"]:focus { border-color: var(--ac); }
+  .prereg input[type="text"].bad { border-color: #FF6B6B; }
+  .prereg .consent { display: flex; gap: 9px; align-items: flex-start; font-size: 12.5px; color: var(--mut); line-height: 1.5; cursor: pointer; }
+  .prereg .consent input { width: 17px; height: 17px; margin-top: 1px; accent-color: var(--ac); flex: none; }
+  .prereg .consent a { text-decoration: underline; color: var(--sub); }
+  .prereg .err { min-height: 1.2em; font-size: 13.5px; font-weight: 700; color: #FF6B6B; }
+  .prereg.busy .btn { opacity: .6; pointer-events: none; }
+  .done { margin: 28px auto 0; max-width: 480px; padding: 20px 22px; border-radius: 18px; background: var(--surface); border: 1px solid rgba(255,92,138,.45); text-align: left; position: relative; }
+  .done b { font-size: 18px; } .done p { color: var(--sub); margin-top: 4px; font-size: 14.5px; }
+  .done[hidden], .prereg[hidden] { display: none; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 560px) { .prereg .rowf { grid-template-columns: 1fr; } }
+
+  /* sticky mobile bar */
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(8,10,22,.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .3s; display: none; }
+  .bar.on { transform: none; }
+  .bar .btn { width: 100%; min-height: 52px; }
+  @media (max-width: 760px) { .bar { display: block; } }
+
+  footer { border-top: 1px solid var(--line); padding: 36px 0 110px; font-size: 13px; color: var(--mut); }
+  footer .wrap { display: grid; gap: 8px; }
+  footer p a { text-decoration: underline; }
+
+  .rv { opacity: 0; transform: translateY(20px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } .pop { animation: none; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">Feeler<i>.</i></a>
+    <a class="btn" href="#join">사전 신청</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bg" aria-hidden="true"><img src="img/key.jpg" alt=""><div class="dust"></div></div>
+    <div class="wrap">
+      <span class="badge">출시 전 · 사전 신청 중</span>
+      <p class="brand">읽기만 하던 소설,</p>
+      <h1>이번엔 내가<br><em class="ac">주인공</em>이에요</h1>
+      <p class="lead">AI 인물들이 나를 기억하고, 내가 고른 대로 다음 화가 써져요. 장면마다 삽화가 움직여요.</p>
+      <a class="ep" href="#prologue">
+        <span class="ep-k">첫 번째 소설 · EP.1</span>
+        <b>성좌님들, 저 아직 신입인데요</b>
+        <span class="ep-s">입학식 날, 하늘의 성좌 셋이 동시에 나를 골랐다.</span>
+        <span class="tags"><span>#성좌</span><span>#헌터</span><span>#아카데미</span><span>#판타지</span><span>#역하렘</span></span>
+      </a>
+      <div class="cta">
+        <a class="btn pri" href="#prologue">1화 미리 읽기</a>
+        <a class="btn ghost" href="#join">출시 알림 받기</a>
+      </div>
+      <p class="note">등장인물과 이미지는 모두 AI로 만든 가상 창작물이에요.</p>
+    </div>
+  </section>
+
+  <!-- PROLOGUE -->
+  <section class="pro pad" id="prologue">
+    <div class="wrap grid">
+      <div class="side rv">
+        <p class="kicker">EP.1 미리 읽기</p>
+        <h2>소설처럼 읽다가,<br>내 차례가 와요</h2>
+        <p class="lead">성좌 셋이 동시에 손을 내밀었어요. 누구를 고르든, 고르지 않든, 다음 화는 그 선택대로 써지고 성좌들은 그 순간을 기억해요.</p>
+        <ul>
+          <li><i>✦</i><div><b>장면마다 움직이는 삽화</b>대화 중에 삽화가 끼어들고, 별빛과 불꽃이 살아 움직여요. 그림이 멈춰 있지 않아요.</div></li>
+          <li><i>✎</i><div><b>내가 고른 대로 다음 화</b>소설 속 주인공처럼 고르고 말하면, 이야기가 그쪽으로 이어져요.</div></li>
+          <li><i>∞</i><div><b>성좌는 다 기억한다</b>약속, 호칭, 내가 말한 작은 것까지 성좌 기록에 남아요.</div></li>
+        </ul>
+      </div>
+      <div class="chat rv" aria-label="프롤로그 예시 대화">
+        <div class="hd"><img src="img/key.jpg" alt=""><div><b>EP.1 별맞이 · 성좌님들, 저 아직 신입인데요</b><small>예시 대화 · 실제 앱에서는 AI가 이어서 답해요</small></div></div>
+        <div class="body" id="chatBody">
+          <div class="status">#0 | 3월 2일 월 | 21:00 | 별맞이 광장 | 후원 성좌 0</div>
+          <div class="narr">
+            <p>성하 아카데미의 입학식은 해가 진 뒤에 열린다. 별이 떠야 성좌가 내려다볼 수 있기 때문이다.</p>
+            <p>광장 바닥의 은빛 마법진 앞으로 신입생이 한 명씩 불려 나갔다. 마법진이 한 번 빛나면, 성좌 하나가 그 사람을 골랐다는 뜻이었다.</p>
+            <p><em>"다음, 신입생."</em></p>
+            <p>마법진 한가운데 섰을 때, 빛은 한 번이 아니라 세 번 터졌다. 붉게, 푸르게, 주황으로.</p>
+          </div>
+          <figure class="live scene" style="--o: 50% 20%"><img src="img/key.jpg" alt="별맞이 광장 위로 성좌들이 내려다보는 장면"><div class="dust"></div><span class="lt">움직이는 삽화</span><figcaption class="cap">하늘의 별자리들이 일제히 나를 내려다봤다.</figcaption></figure>
+          <div class="narr"><p>광장이 조용해졌다. 맨 앞줄의 수석 입학생 차도윤이 처음으로 고개를 들었다.</p></div>
+          <div class="sys red">[성좌 '붉은 별을 문 사냥개'가 후원을 신청했습니다]</div>
+          <div class="sys blue">[성좌 '밤의 서고를 지키는 자'가 후원을 신청했습니다]</div>
+          <div class="sys orange">[성좌 '여우불을 부르는 장난꾼'이 후원을 신청했습니다]</div>
+          <div class="msg"><img src="img/hound.jpg" alt=""><div><span class="nm red">사냥개</span><div class="bb">야, 신입. 나 말고 딴 놈 고르면 재미없을 줄 알아.</div></div></div>
+          <div class="msg"><img src="img/book.jpg" alt=""><div><span class="nm blue">서고지기</span><div class="bb">처음 뵙겠습니다. 방금 망설인 3초, 기록해 두었습니다.</div></div></div>
+          <div class="msg"><img src="img/fox.jpg" alt=""><div><span class="nm orange">여우불</span><div class="bb">ㅋㅋ 둘 다 무시해. 나 고르면 내일 시험 문제 알려 줄게~</div></div></div>
+          <div class="choices" id="choices">
+            <span class="lb">누구의 손을 잡을까요?</span>
+            <button type="button" data-c="hound">사냥개를 고른다</button>
+            <button type="button" data-c="book">서고지기를 고른다</button>
+            <button type="button" data-c="fox">여우불을 고른다</button>
+            <button type="button" data-c="none">셋 다 거절한다</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAST -->
+  <section class="cast pad" id="cast">
+    <div class="wrap">
+      <p class="kicker rv">CHARACTERS</p>
+      <h2 class="rv">나를 고른 성좌들,<br>그리고 나를 노려보는 수석</h2>
+      <div class="cast-row">
+        <article class="card rv"><div class="ph live red" style="border-radius:0"><img src="img/hound.jpg" alt="붉은 별을 문 사냥개" loading="lazy"><div class="dust"></div><span class="role">성좌</span></div><div class="bd"><h3>붉은 별을 문 사냥개</h3><p class="who">거만한 반말. 내가 다치면 제일 먼저 화낸다.</p><p class="say">누가 너 건드렸어? 이름만 대.</p></div></article>
+        <article class="card rv"><div class="ph live blue" style="border-radius:0"><img src="img/book.jpg" alt="밤의 서고를 지키는 자" loading="lazy"><div class="dust"></div><span class="role">성좌</span></div><div class="bd"><h3>밤의 서고를 지키는 자</h3><p class="who">차분한 존댓말. 내가 한 말을 전부 적어 둔다.</p><p class="say">지난주에 매운 건 못 드신다고 하셨지요.</p></div></article>
+        <article class="card rv"><div class="ph live orange" style="border-radius:0"><img src="img/fox.jpg" alt="여우불을 부르는 장난꾼" loading="lazy"><div class="dust"></div><span class="role">성좌</span></div><div class="bd"><h3>여우불을 부르는 장난꾼</h3><p class="who">장난스러운 반말. 몰래 정보를 흘려 준다.</p><p class="say">비밀인데~ 내일 교관 기분 안 좋아. 지각하지 마.</p></div></article>
+        <article class="card rv"><div class="ph live silver" style="border-radius:0"><img src="img/rival.jpg" alt="차도윤" loading="lazy"><div class="dust"></div><span class="role">수석 입학생 · 22</span></div><div class="bd"><h3>차도윤</h3><p class="who">차갑고 승부욕이 강하다. 같은 조 라이벌.</p><p class="say">성좌 셋? 운이 좋았네. 실력도 그런지 보자.</p></div></article>
+      </div>
+      <p class="ai-note rv">모든 인물은 AI로 만든 가상 인물이에요. 실존 인물이나 다른 작품의 인물을 바탕으로 하지 않았어요.</p>
+    </div>
+  </section>
+
+  <!-- MEMORY -->
+  <section class="mem pad" id="memory">
+    <div class="wrap grid">
+      <div class="rv">
+        <p class="kicker">STAR RECORD</p>
+        <h2>성좌는<br>잊지 않아요</h2>
+        <p class="lead">대화가 길어져도 처음 본 사람처럼 굴지 않아요. 약속, 호칭, 내가 말한 작은 것까지 성좌마다 "성좌 기록"에 남아요. 새로 기록할 게 생기면 카드가 한 장 뜨고, 나는 맞다, 아니다만 누르면 돼요.</p>
+      </div>
+      <div class="ledger rv">
+        <span class="t">성좌 기록</span>
+        <div class="hd"><img src="img/book.jpg" alt=""><div><b>밤의 서고를 지키는 자</b><small>후원 3일째 · 신뢰 2/5</small></div></div>
+        <div class="row"><span>호칭</span><span>"신입" → "나의 화신"</span></div>
+        <div class="row"><span>약속</span><span>중간고사 전날, 같이 복습하기</span></div>
+        <div class="row"><span>아는 것</span><span>높은 곳을 무서워함</span></div>
+        <div class="confirm"><small>서고지기가 새로 기록했어요</small><b>매운 음식을 잘 못 먹음</b><div class="yn"><span class="y">맞다</span><span class="n">아니다</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAFE -->
+  <section class="safe pad" id="safe">
+    <div class="wrap">
+      <p class="kicker rv">SAFE</p>
+      <h2 class="rv">설레는 건 좋지만,<br>선은 지켜요</h2>
+      <div class="safe-row">
+        <div class="rv"><b>AI 표시</b><p>모든 인물과 이미지에 AI 창작물이라고 표시해요.</p></div>
+        <div class="rv"><b>성인 전용 대화 없음</b><p>로맨스는 설렘, 질투, 고백까지. 그 이상의 장면은 나오지 않아요.</p></div>
+        <div class="rv"><b>틀린 기억은 바로 지움</b><p>성좌 기록이 틀렸으면 "아니다" 한 번으로 지워요.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad" id="faq">
+    <div class="wrap">
+      <p class="kicker rv">FAQ</p>
+      <h2 class="rv">자주 묻는 질문</h2>
+      <div class="faq-list rv">
+        <details><summary>어떤 서비스예요?</summary><p>AI 인물들과 대화로 이야기를 이어 가는 롤플레잉이에요. 첫 시나리오는 헌터 아카데미에 입학한 신입생이 성좌 셋의 후원을 동시에 받는 이야기예요.</p></details>
+        <details><summary>다른 캐릭터챗과 뭐가 달라요?</summary><p>성좌들이 내가 한 말을 기억해요. 약속과 호칭이 성좌 기록에 남고, 다음 날에도 그걸 꺼내 말을 걸어요. 틀리게 기억하면 내가 바로 고칠 수 있어요.</p></details>
+        <details><summary>시나리오는 하나뿐이에요?</summary><p>처음에는 이 한 편에 집중해요. 인물을 적게 두고 성격이 흔들리지 않게 다듬은 뒤에 넓혀 갈 예정이에요.</p></details>
+        <details><summary>언제 나와요? 돈이 드나요?</summary><p>출시일과 요금은 아직 정하는 중이에요. 사전 신청하면 정해지는 대로 가장 먼저 알려 드려요.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final pad" id="join">
+    <div class="wrap">
+      <div class="faces rv" aria-hidden="true"><img src="img/hound.jpg" alt=""><img src="img/book.jpg" alt=""><img src="img/fox.jpg" alt=""><img src="img/rival.jpg" alt=""></div>
+      <h2 class="rv">입학식은<br>곧 시작돼요</h2>
+      <p class="lead rv">사전 신청하면 문이 열리는 날 가장 먼저 알려 드려요.</p>
+      <form class="prereg rv" id="prereg" novalidate autocomplete="on">
+        <label class="sr" for="contact">연락처</label>
+        <div class="rowf">
+          <input id="contact" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="이메일 또는 휴대폰 번호" maxlength="120" required>
+          <button class="btn pri" type="submit">사전 신청하기</button>
+        </div>
+        <label class="consent"><input type="checkbox" name="consent" required><span>[필수] 연락처는 출시 알림과 설문 안내에만 쓰고, 출시 6개월 뒤 지워요. <a href="/privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a></span></label>
+        <p class="err" role="alert"></p>
+      </form>
+      <div class="done" hidden><b>신청 완료!</b><p>입학식이 열리면 가장 먼저 알려 드릴게요. 성좌 셋이 벌써 기다리고 있어요.</p></div>
+    </div>
+  </section>
+</main>
+
+<div class="bar" id="bar"><a class="btn pri" href="#join">출시 알림 받기</a></div>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top">Feeler<i>.</i></a>
+    <p>읽기만 하던 소설, 이번엔 내가 주인공. 나를 기억하는 AI 인물들과 이어 가는 이야기</p>
+    <p>모든 인물·이미지·대화는 AI로 만든 가상 창작물이에요. 실존 인물을 바탕으로 하지 않아요.</p>
+    <p><a href="/privacy.html">개인정보 처리방침</a></p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const nav = document.getElementById('nav');
+  const bar = document.getElementById('bar');
+  const join = document.getElementById('join');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', scrollY > 20);
+    const jr = join.getBoundingClientRect();
+    bar.classList.toggle('on', scrollY > innerHeight * 0.8 && jr.top > innerHeight);
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (el.closest('.cast-row, .safe-row') ? (i % 4) * 80 : 0) + 'ms'; io.observe(el); });
+
+  // prologue choice (scripted example, nothing is stored)
+  const body = document.getElementById('chatBody');
+  const choices = document.getElementById('choices');
+  const W = { hound: ['red', '사냥개', 'img/hound.jpg'], book: ['blue', '서고지기', 'img/book.jpg'], fox: ['orange', '여우불', 'img/fox.jpg'], rival: ['silver', '차도윤', 'img/rival.jpg'] };
+  const S = {
+    hound: { me: '사냥개를 고른다', lines: [['hound', '...흥. 당연한 선택이지. 이제 넌 내 거다.'], ['fox', '와 진짜? 나 삐짐. 시험 문제 안 알려 줘.']], sys: ['red', "[성좌 '붉은 별을 문 사냥개'의 화신이 되었습니다]"], rec: '입학식 날, 사냥개의 손을 먼저 잡았음' },
+    book: { me: '서고지기를 고른다', lines: [['book', '현명하십니다. 이 선택도 적어 두겠습니다.'], ['hound', '책벌레가 뭐가 좋다고.']], sys: ['blue', "[성좌 '밤의 서고를 지키는 자'의 화신이 되었습니다]"], rec: '입학식 날, 서고지기의 손을 먼저 잡았음' },
+    fox: { me: '여우불을 고른다', lines: [['fox', '역시 보는 눈 있네! 시험 문제는... 내일 알려 줄게ㅋ'], ['book', '그 약속, 제가 기록해 두었습니다. 지키는지 보죠.']], sys: ['orange', "[성좌 '여우불을 부르는 장난꾼'의 화신이 되었습니다]"], rec: '여우불이 내일 시험 문제를 알려 주기로 약속함' },
+    none: { me: '셋 다 거절한다', lines: [['hound', '하. 재밌네.'], ['fox', '오~ 튕기는 거야?'], ['rival', '...성좌를 셋 다 거절한 신입은 처음 보네.']], sys: ['gray', '[후원 성좌 0. 세 성좌가 당신을 계속 지켜봅니다]'], rec: '입학식 날, 성좌 셋을 모두 거절했음' },
+  };
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const msg = (who, text) => { const [c, n, src] = W[who]; const m = el('div', 'msg pop'); const im = el('img'); im.src = src; im.alt = ''; const d = el('div'); d.append(el('span', 'nm ' + c, n), el('div', 'bb', text)); m.append(im, d); return m; };
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  choices.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const s = S[b.dataset.c]; choices.remove();
+    const me = el('div', 'msg me pop'); const d = el('div'); d.appendChild(el('div', 'bb', s.me)); me.appendChild(d); body.appendChild(me);
+    const steps = [];
+    const lead = b.dataset.c === 'none' ? 'rival' : b.dataset.c;
+    const cap = { hound: '붉은 별빛이 사냥개의 모습으로 내려앉았다.', book: '푸른 책장이 넘어가며 서고지기가 나타났다.', fox: '여우불 세 개가 내 주위를 맴돌았다.', rival: '차도윤이 처음으로 나를 똑바로 봤다.' }[lead];
+    steps.push(() => { const f = el('figure', 'live scene tall pop ' + W[lead][0]); f.style.setProperty('--o', '50% 22%'); const im = el('img'); im.src = W[lead][2]; im.alt = ''; f.append(im, el('div', 'dust'), el('span', 'lt', '움직이는 삽화'), el('figcaption', 'cap', cap)); body.appendChild(f); });
+    s.lines.forEach(([w, t]) => steps.push(() => body.appendChild(msg(w, t))));
+    steps.push(() => body.appendChild(el('div', 'sys pop ' + s.sys[0], s.sys[1])));
+    steps.push(() => { const r = el('div', 'rec pop'); r.append(el('small', null, '성좌 기록에 남았어요'), document.createTextNode(s.rec)); body.appendChild(r); });
+    steps.push(() => { const f = el('p', 'fine pop', '여기까지가 예시예요. 다음 장면은 출시 후에 이어져요.'); const a = el('a', 'btn pri pop', '이어서 보고 싶다면, 출시 알림 받기'); a.href = '#join'; body.append(f, a); });
+    steps.forEach((fn, i) => setTimeout(fn, RM ? 0 : 500 + i * 700));
+  });
+
+  // pre-registration -> Supabase (anon: insert only)
+  const SB_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
+  const SB_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
+  const adRaw = (new URLSearchParams(location.search).get('ad') || '').toUpperCase();
+  const ad = /^[A-F]$/.test(adRaw) ? adRaw : '';
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE = /^01[016789]\d{7,8}$/;
+  const normalize = (raw) => { const t = raw.trim(); if (EMAIL.test(t)) return t.toLowerCase(); const d = t.replace(/\D/g, ''); return PHONE.test(d) ? d.replace(/^(\d{3})(\d{3,4})(\d{4})$/, '$1-$2-$3') : null; };
+  const form = document.getElementById('prereg');
+  const done = document.querySelector('.done');
+  const showDone = () => { form.hidden = true; done.hidden = false; try { localStorage.setItem('feeler_prereg_v6', '1'); } catch (_) {} };
+  try { if (localStorage.getItem('feeler_prereg_v6') === '1') showDone(); } catch (_) {}
+  const input = form.querySelector('input[name="contact"]');
+  const consent = form.querySelector('input[name="consent"]');
+  const err = form.querySelector('.err');
+  input.addEventListener('input', () => { input.classList.remove('bad'); err.textContent = ''; });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const contact = normalize(input.value);
+    if (!contact) { input.classList.add('bad'); err.textContent = '이메일 또는 휴대폰 번호(010-0000-0000)를 적어 주세요'; input.focus(); return; }
+    if (!consent.checked) { err.textContent = '개인정보 수집·이용에 동의해 주세요'; consent.focus(); return; }
+    form.classList.add('busy'); err.textContent = '';
+    try {
+      const r = await fetch(SB_URL + '/rest/v1/feeler_prereg', { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ contact, ad: ad || null, source: 'feeler.kr/v6-academy', ua: navigator.userAgent.slice(0, 200) }) });
+      if (r.status === 201 || r.status === 409) showDone(); else err.textContent = '잠시 후 다시 시도해 주세요 (' + r.status + ')';
+    } catch (_) { err.textContent = '네트워크 오류예요. 잠시 후 다시 시도해 주세요'; }
+    form.classList.remove('busy');
+  });
+})();
+</script>
+</body>
+</html>
