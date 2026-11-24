@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feeler - ハリンと2人だけの物語</title>
+<meta name="description" content="何週間たってもあなたを覚えている1:1キャラクターチャットFeeler。近日公開。メールアドレス登録で特典あり。">
+<meta property="og:title" content="Feeler - 何週間たっても、あなたを覚えているハリン">
+<meta property="og:description" content="1:1キャラクターチャットFeeler、近日公開。メールアドレス登録でFeelerクレジット＋ファウンダー特典。">
+<meta property="og:image" content="https://feeler.kr/harin/og.jpg">
+<meta property="og:url" content="https://feeler.kr/harin/ja/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0F1C">
+<link rel="icon" href="/feeler-icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #05070D; overflow: hidden; }
+  body { font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; word-break: keep-all; -webkit-tap-highlight-color: transparent; }
+  .app { position: relative; width: 100%; max-width: 440px; height: 100vh; height: 100svh; margin: 0 auto; overflow: hidden; background: #0B0F1C; display: flex; flex-direction: column; }
+  .bg { position: absolute; left: 0; right: 0; top: 0; height: 62%; background: url(../harin.jpg) center 28% / cover no-repeat; }
+  .bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,15,28,.55) 0%, rgba(11,15,28,0) 20%, rgba(11,15,28,0) 66%, rgba(11,15,28,.75) 86%, #0B0F1C 100%); }
+
+  /* top: platform download buttons */
+  .top { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; padding: calc(env(safe-area-inset-top) + 12px) 14px 0; }
+  .brand { font-weight: 800; font-size: 18px; letter-spacing: -.2px; margin-right: auto; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+  .os { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.28); background: rgba(10,12,20,.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+  .os svg { width: 15px; height: 15px; flex: none; }
+  .os small { display: block; font-size: 9px; font-weight: 500; opacity: .75; line-height: 1; }
+  .os span { line-height: 1.1; text-align: left; }
+
+  .grow { flex: 1; min-height: 0; }
+  .bottom { position: relative; z-index: 2; padding: 0 20px calc(env(safe-area-inset-bottom) + 18px); }
+  .bubble { display: inline-block; max-width: 78%; padding: 9px 13px; border-radius: 16px 16px 16px 5px; background: rgba(30,36,55,.92); font-size: 14px; line-height: 1.4; margin-bottom: 7px; }
+  .voice { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; background: rgba(36,31,69,.95); font-size: 12px; color: #CFC8F5; }
+  .voice i { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #FF8FB0, #A78BFA); display: grid; place-items: center; }
+  .voice b { display: flex; gap: 2px; align-items: center; height: 16px; }
+  .voice b em { display: block; width: 2.5px; border-radius: 2px; background: #E9E4FF; }
+  .who { font-size: 12px; color: #AEB6C8; margin: 12px 0 14px; }
+  h1 { font-size: clamp(25px, 7.4vw, 30px); line-height: 1.28; font-weight: 800; letter-spacing: -.5px; }
+  h1 em { font-style: normal; background: linear-gradient(90deg, #FF7AA2, #B69CFF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { margin-top: 8px; font-size: 14.5px; line-height: 1.5; color: #C9CFDD; }
+  .perk { margin-top: 12px; font-size: 13px; color: #FFD7E4; font-weight: 600; }
+  .cta { margin-top: 14px; width: 100%; height: 56px; border: 0; border-radius: 16px; background: linear-gradient(90deg, #FF5C8A, #A78BFA); color: #fff; font: inherit; font-size: 17px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 24px rgba(255,92,138,.32); }
+  .fine { margin-top: 9px; text-align: center; font-size: 11px; color: #7A8296; }
+
+  /* sheet */
+  .dim { position: absolute; inset: 0; z-index: 5; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; max-height: 94%; overflow: auto; padding: 22px 20px calc(env(safe-area-inset-bottom) + 18px); border-radius: 24px 24px 0 0; background: #141A2B; transform: translateY(105%); transition: transform .28s cubic-bezier(.2,.8,.2,1); }
+  .open .dim { opacity: 1; pointer-events: auto; }
+  .open .sheet { transform: none; }
+  .x { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgba(255,255,255,.08); color: #AEB6C8; font-size: 18px; cursor: pointer; }
+  .pill { display: inline-block; padding: 5px 10px; border-radius: 999px; background: rgba(255,92,138,.16); color: #FF8FB0; font-size: 12px; font-weight: 700; }
+  .sheet h2 { margin-top: 10px; font-size: 21px; line-height: 1.35; font-weight: 800; letter-spacing: -.3px; }
+  .sheet p.sub { margin-top: 6px; font-size: 13.5px; color: #AEB6C8; line-height: 1.5; }
+  .gifts { list-style: none; margin-top: 14px; display: grid; gap: 7px; }
+  .gifts li { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 12px; background: #1C2338; font-size: 14px; line-height: 1.35; }
+  .gifts li b { font-size: 20px; }
+  .gifts li small { display: block; color: #8E96AB; font-size: 11.5px; }
+  form { margin-top: 14px; }
+  .in { width: 100%; height: 50px; padding: 0 14px; border-radius: 12px; border: 1px solid #2C3550; background: #0F1422; color: #fff; font: inherit; font-size: 16px; }
+  .in.bad { border-color: #FF5C8A; }
+  .consent { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px; font-size: 12px; line-height: 1.45; color: #AEB6C8; }
+  .consent input { margin-top: 2px; width: 17px; height: 17px; accent-color: #FF5C8A; flex: none; }
+  .consent a { color: #CFC8F5; }
+  .err { min-height: 16px; margin-top: 6px; font-size: 12px; color: #FF8FB0; }
+  .busy .cta { opacity: .6; pointer-events: none; }
+  .ask { text-align: center; }
+  .ask img { display: block; width: 62%; max-width: 220px; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 30%; margin: 4px auto 0; border-radius: 20px; }
+  .ask h2 { margin-top: 14px; }
+  .ask .cta { margin-top: 14px; }
+  .later { display: block; margin: 10px auto 0; border: 0; background: none; color: #7A8296; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="bg" role="img" aria-label="AIキャラクター ハリン"></div>
+
+  <div class="top">
+    <div class="brand">Feeler</div>
+    <button class="os" data-os="ios" type="button">
+      <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-1-2.5-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>
+      <span><small>iOS</small>ダウンロード</span>
+    </button>
+    <button class="os" data-os="android" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.8 15.4-3.4-3.4 3.4-3.4 3.9 2.2c1.1.6 1.1 1.8 0 2.4z"/><path fill="#4285F4" d="M16.8 15.4 13.4 12l-9.8 9.8c.4.2.9.2 1.4-.1z"/><path fill="#EA4335" d="M16.8 8.6 5 2.3c-.5-.3-1-.3-1.4-.1L13.4 12z"/></svg>
+      <span><small>Android</small>ダウンロード</span>
+    </button>
+  </div>
+
+  <div class="grow"></div>
+
+  <div class="bottom">
+    <div class="bubble">……私だけ最後まで待ってたんですよ。</div><br>
+    <div class="voice"><i><svg width="10" height="10" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></i><b id="wave"></b>0:05</div>
+    <p class="who">ハリン · AIキャラクター</p>
+    <h1>何週間たっても、<br><em>あなたを覚えている</em>ハリン</h1>
+    <p class="lead">キャラクター1人とあなた、2人だけの物語を長く続けていく1:1キャラクターチャット</p>
+    <p class="perk">💎 今メールアドレスを登録すると、クレジット＋ファウンダー特典</p>
+    <button class="cta" id="dl" type="button">ダウンロード</button>
+    <p class="fine">近日公開 · 人物はAIで作った架空の人物です</p>
+  </div>
+
+  <div class="dim" id="dim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="s1t">
+    <button class="x" id="close" type="button" aria-label="閉じる">✕</button>
+
+    <section id="step1">
+      <span class="pill" id="ospill">近日公開</span>
+      <h2 id="s1t">まだリリース前です！<br>メールアドレスを登録すると、リリース日にすぐお知らせします</h2>
+      <p class="sub">今登録した方全員にお贈りします（リリース時に付与）</p>
+      <ul class="gifts">
+        <li><b>💎</b><div>Feelerクレジット1万ウォン分</div></li>
+        <li><b>🏅</b><div>ファウンダー1期特典<small>ファウンダーバッジ · 限定テーマ · ID先行予約 · ベータ優先参加</small></div></li>
+              </ul>
+      <form id="prereg" novalidate>
+        <input class="in" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="メールアドレス">
+        <label class="consent"><input type="checkbox" name="consent"><span>［必須］メールアドレスはリリースのお知らせ・特典の付与・アンケートのご案内にのみ使い、リリースの6か月後に削除します。未成年の方は保護者の同意を得てから登録してください。<a href="/privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a></span></label>
+        <p class="err" aria-live="polite"></p>
+        <button class="cta" type="submit">特典つきでリリース通知に登録</button>
+      </form>
+    </section>
+
+    <section id="step2" class="ask" hidden>
+      <img src="../aegyo.jpg" alt="両手を合わせてお願いするハリン">
+      <h2>登録完了！それと…<br>アンケート、1回だけお願いできませんか？！🥺</h2>
+      <p class="sub">約6分で終わります。ハリンをもっと良くするために使います</p>
+      <a class="cta" id="survey" href="#" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">いいよ、アンケートに答える</a>
+      <button class="later" id="later" type="button">また今度</button>
+    </section>
+  </div>
+</div>
+
+<script>
+(() => {
+  const h = [6, 10, 14, 9, 16, 12, 7, 13, 15, 8, 11, 6];
+  document.getElementById('wave').innerHTML = h.map(v => `<em style="height:${v}px"></em>`).join('');
+
+  const qs = new URLSearchParams(location.search);
+  const CH = { meta: 'Instagram', ig: 'Instagram' };
+  const ch = (qs.get('ch') || '').toLowerCase();
+  const FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSe_7WTXE9f2g2lyy7BKi4-GVOd8qEUVBR0U4HOHVtSIKihNcg/viewform';
+  document.getElementById('survey').href = CH[ch] ? FORM + '?usp=pp_url&entry.1681613679=' + encodeURIComponent(CH[ch]) : FORM;
+
+  // 측정: 무작위 방문자 ID만 쓴다(개인정보 없음). Supabase landing_events에 쓰기만 한다.
+  const SB_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
+  const SB_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
+  let vid = '';
+  try { vid = localStorage.getItem('fh_vid') || ''; } catch (_) {}
+  if (!vid) {
+    vid = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2)).replace(/-/g, '').slice(0, 32);
+    try { localStorage.setItem('fh_vid', vid); } catch (_) {}
+  }
+  let refHost = '';
+  try { refHost = document.referrer ? new URL(document.referrer).hostname : ''; } catch (_) {}
+  const send = (event, extra) => {
+    try {
+      fetch(SB_URL + '/rest/v1/landing_events', {
+        method: 'POST', keepalive: true,
+        headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify(Object.assign({ vid, page: 'harin-ja', event, ch: ch.slice(0, 20) || null, ref: refHost.slice(0, 120) || null, props: {} }, extra || {})),
+      }).catch(() => {});
+    } catch (_) {}
+  };
+  send('view', { props: { w: innerWidth, h: innerHeight } });
+
+  const app = document.getElementById('app');
+  const step1 = document.getElementById('step1'), step2 = document.getElementById('step2');
+  const pill = document.getElementById('ospill');
+  let os = /android/i.test(navigator.userAgent) ? 'android' : 'ios';
+  const KEY = 'feeler_harin_ja_v1';
+  const done = () => { try { return localStorage.getItem(KEY) === '1'; } catch (_) { return false; } };
+  const open = (which) => {
+    if (which) os = which;
+    pill.textContent = (os === 'android' ? 'Android' : 'iOS') + ' · 近日公開';
+    step1.hidden = done(); step2.hidden = !done();
+    app.classList.add('open');
+  };
+  const close = () => app.classList.remove('open');
+  document.querySelectorAll('.os').forEach(b => b.addEventListener('click', () => { open(b.dataset.os); send('download_click', { os, props: { btn: 'top' } }); }));
+  document.getElementById('dl').addEventListener('click', () => { open(); send('download_click', { os, props: { btn: 'main' } }); });
+  document.getElementById('close').addEventListener('click', close);
+  document.getElementById('dim').addEventListener('click', close);
+  document.getElementById('later').addEventListener('click', () => { send('later_click', { os }); close(); });
+  document.getElementById('survey').addEventListener('click', () => send('survey_click', { os }));
+
+  // 연락처 -> Supabase feeler_prereg (anon: insert only)
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE = /^01[016789]\d{7,8}$/;
+  const normalize = (raw) => { const t = raw.trim(); return EMAIL.test(t) ? t.toLowerCase() : null; };
+  const form = document.getElementById('prereg');
+  const input = form.querySelector('[name=contact]'), consent = form.querySelector('[name=consent]'), err = form.querySelector('.err');
+  input.addEventListener('input', () => { input.classList.remove('bad'); err.textContent = ''; });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const contact = normalize(input.value);
+    if (!contact) { input.classList.add('bad'); err.textContent = 'メールアドレスを正しく入力してください'; input.focus(); return; }
+    if (!consent.checked) { err.textContent = 'プライバシーへの同意にチェックしてください'; return; }
+    form.classList.add('busy'); err.textContent = '';
+    try {
+      const source = 'feeler.kr/harin/ja' + (CH[ch] ? '?ch=' + ch : '') + '#' + os;
+      const r = await fetch(SB_URL + '/rest/v1/feeler_prereg', { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ contact, ad: null, source, vid, ua: navigator.userAgent.slice(0, 200) }) });
+      if (r.status === 201 || r.status === 409) {
+        send('contact_submit', { os, props: { kind: 'email', dup: r.status === 409 } });
+        try { localStorage.setItem(KEY, '1'); } catch (_) {}
+        step1.hidden = true; step2.hidden = false;
+      } else err.textContent = 'しばらくしてからもう一度お試しください (' + r.status + ')';
+    } catch (_) { err.textContent = 'ネットワークエラーです。しばらくしてからもう一度お試しください'; }
+    form.classList.remove('busy');
+  });
+})();
+</script>
+</body>
+</html>
