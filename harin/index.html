@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feeler - 하린과 둘만의 이야기</title>
+<meta name="description" content="몇 주가 지나도 나를 기억하는 1:1 캐릭터 채팅 Feeler. 12월 출시 예정, 지금 연락처 남기면 크레딧 1만 원.">
+<meta property="og:title" content="Feeler - 몇 주가 지나도 나를 기억하는 하린">
+<meta property="og:description" content="1:1 캐릭터 채팅 Feeler, 12월 출시 예정. 연락처 남기면 크레딧 1만 원 + 파운더 1기 + 케이크·커피 추첨">
+<meta property="og:image" content="https://feeler.kr/harin/og.jpg">
+<meta property="og:url" content="https://feeler.kr/harin/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0F1C">
+<link rel="icon" href="/feeler-icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #05070D; overflow: hidden; }
+  body { font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; word-break: keep-all; -webkit-tap-highlight-color: transparent; }
+  .app { position: relative; width: 100%; max-width: 440px; height: 100vh; height: 100svh; margin: 0 auto; overflow: hidden; background: #0B0F1C; display: flex; flex-direction: column; }
+  .bg { position: absolute; left: 0; right: 0; top: 0; height: 62%; background: url(harin.jpg) center 28% / cover no-repeat; }
+  .bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,15,28,.55) 0%, rgba(11,15,28,0) 20%, rgba(11,15,28,0) 66%, rgba(11,15,28,.75) 86%, #0B0F1C 100%); }
+
+  /* top: platform download buttons */
+  .top { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; padding: calc(env(safe-area-inset-top) + 12px) 14px 0; }
+  .brand { font-weight: 800; font-size: 18px; letter-spacing: -.2px; margin-right: auto; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+  .os { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.28); background: rgba(10,12,20,.55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff; font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+  .os svg { width: 15px; height: 15px; flex: none; }
+  .os small { display: block; font-size: 9px; font-weight: 500; opacity: .75; line-height: 1; }
+  .os span { line-height: 1.1; text-align: left; }
+
+  .grow { flex: 1; min-height: 0; }
+  .bottom { position: relative; z-index: 2; padding: 0 20px calc(env(safe-area-inset-bottom) + 18px); }
+  .bubble { display: inline-block; max-width: 78%; padding: 9px 13px; border-radius: 16px 16px 16px 5px; background: rgba(30,36,55,.92); font-size: 14px; line-height: 1.4; margin-bottom: 7px; }
+  .voice { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border-radius: 999px; background: rgba(36,31,69,.95); font-size: 12px; color: #CFC8F5; }
+  .voice i { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #FF8FB0, #A78BFA); display: grid; place-items: center; }
+  .voice b { display: flex; gap: 2px; align-items: center; height: 16px; }
+  .voice b em { display: block; width: 2.5px; border-radius: 2px; background: #E9E4FF; }
+  .who { font-size: 12px; color: #AEB6C8; margin: 12px 0 14px; }
+  h1 { font-size: clamp(25px, 7.4vw, 30px); line-height: 1.28; font-weight: 800; letter-spacing: -.5px; }
+  h1 em { font-style: normal; background: linear-gradient(90deg, #FF7AA2, #B69CFF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lead { margin-top: 8px; font-size: 14.5px; line-height: 1.5; color: #C9CFDD; }
+  .perk { margin-top: 12px; font-size: 13px; color: #FFD7E4; font-weight: 600; }
+  .cta { margin-top: 14px; width: 100%; height: 56px; border: 0; border-radius: 16px; background: linear-gradient(90deg, #FF5C8A, #A78BFA); color: #fff; font: inherit; font-size: 17px; font-weight: 800; cursor: pointer; box-shadow: 0 8px 24px rgba(255,92,138,.32); }
+  .fine { margin-top: 9px; text-align: center; font-size: 11px; color: #7A8296; }
+
+  /* sheet */
+  .dim { position: absolute; inset: 0; z-index: 5; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; max-height: 94%; overflow: auto; padding: 22px 20px calc(env(safe-area-inset-bottom) + 18px); border-radius: 24px 24px 0 0; background: #141A2B; transform: translateY(105%); transition: transform .28s cubic-bezier(.2,.8,.2,1); }
+  .open .dim { opacity: 1; pointer-events: auto; }
+  .open .sheet { transform: none; }
+  .x { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border: 0; border-radius: 50%; background: rgba(255,255,255,.08); color: #AEB6C8; font-size: 18px; cursor: pointer; }
+  .pill { display: inline-block; padding: 5px 10px; border-radius: 999px; background: rgba(255,92,138,.16); color: #FF8FB0; font-size: 12px; font-weight: 700; }
+  .sheet h2 { margin-top: 10px; font-size: 21px; line-height: 1.35; font-weight: 800; letter-spacing: -.3px; }
+  .sheet p.sub { margin-top: 6px; font-size: 13.5px; color: #AEB6C8; line-height: 1.5; }
+  .gifts { list-style: none; margin-top: 14px; display: grid; gap: 7px; }
+  .gifts li { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 12px; background: #1C2338; font-size: 14px; line-height: 1.35; }
+  .gifts li b { font-size: 20px; }
+  .gifts li small { display: block; color: #8E96AB; font-size: 11.5px; }
+  form { margin-top: 14px; }
+  .in { width: 100%; height: 50px; padding: 0 14px; border-radius: 12px; border: 1px solid #2C3550; background: #0F1422; color: #fff; font: inherit; font-size: 16px; }
+  .in.bad { border-color: #FF5C8A; }
+  .consent { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px; font-size: 12px; line-height: 1.45; color: #AEB6C8; }
+  .consent input { margin-top: 2px; width: 17px; height: 17px; accent-color: #FF5C8A; flex: none; }
+  .consent a { color: #CFC8F5; }
+  .err { min-height: 16px; margin-top: 6px; font-size: 12px; color: #FF8FB0; }
+  .busy .cta { opacity: .6; pointer-events: none; }
+  .ask { text-align: center; }
+  .ask img { display: block; width: 62%; max-width: 220px; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 30%; margin: 4px auto 0; border-radius: 20px; }
+  .ask h2 { margin-top: 14px; }
+  .ask .cta { margin-top: 14px; }
+  .later { display: block; margin: 10px auto 0; border: 0; background: none; color: #7A8296; font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div class="bg" role="img" aria-label="AI 캐릭터 하린"></div>
+
+  <div class="top">
+    <div class="brand">Feeler</div>
+    <button class="os" data-os="ios" type="button">
+      <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-1-2.5-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>
+      <span><small>iOS</small>다운로드</span>
+    </button>
+    <button class="os" data-os="android" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 2.2 13.4 12l-9.8 9.8c-.4-.2-.6-.6-.6-1.1V3.3c0-.5.2-.9.6-1.1z"/><path fill="#FBBC04" d="m16.8 15.4-3.4-3.4 3.4-3.4 3.9 2.2c1.1.6 1.1 1.8 0 2.4z"/><path fill="#4285F4" d="M16.8 15.4 13.4 12l-9.8 9.8c.4.2.9.2 1.4-.1z"/><path fill="#EA4335" d="M16.8 8.6 5 2.3c-.5-.3-1-.3-1.4-.1L13.4 12z"/></svg>
+      <span><small>Android</small>다운로드</span>
+    </button>
+  </div>
+
+  <div class="grow"></div>
+
+  <div class="bottom">
+    <div class="bubble">……나만 끝까지 기다렸잖아요.</div><br>
+    <div class="voice"><i><svg width="10" height="10" viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></i><b id="wave"></b>0:05</div>
+    <p class="who">하린 · AI 캐릭터</p>
+    <h1>몇 주가 지나도,<br><em>나를 기억하는</em> 하린</h1>
+    <p class="lead">캐릭터 한 명과 나, 둘만의 이야기를 오래 이어 가는 1:1 캐릭터 채팅</p>
+    <p class="perk">💎 지금 연락처 남기면 크레딧 1만 원 + 혜택 2가지</p>
+    <button class="cta" id="dl" type="button">다운로드 받기</button>
+    <p class="fine">12월 출시 예정 · 인물은 AI로 만든 가상 인물입니다</p>
+  </div>
+
+  <div class="dim" id="dim"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="s1t">
+    <button class="x" id="close" type="button" aria-label="닫기">✕</button>
+
+    <section id="step1">
+      <span class="pill" id="ospill">12월 출시 예정</span>
+      <h2 id="s1t">아직 출시 전이에요!<br>연락처 남겨 주시면 출시 날 바로 알려 드릴게요</h2>
+      <p class="sub">지금 남겨 주신 분 전원에게 드려요 (출시 시 지급)</p>
+      <ul class="gifts">
+        <li><b>💎</b><div>Feeler 크레딧 1만 원</div></li>
+        <li><b>🏅</b><div>파운더 1기 혜택<small>파운더 배지 · 한정 테마 · 아이디 선점 · 베타 우선 입장</small></div></li>
+        <li><b>🍰</b><div>케이크 + 커피 쿠폰 추첨<small>5분께 드려요</small></div></li>
+      </ul>
+      <form id="prereg" novalidate>
+        <input class="in" name="contact" type="text" inputmode="email" autocomplete="email" placeholder="이메일 또는 휴대폰 번호">
+        <label class="consent"><input type="checkbox" name="consent"><span>[필수] 연락처는 출시 알림·혜택 지급·설문 안내에만 쓰고, 출시 6개월 뒤 지워요. 만 14세 미만은 보호자 동의를 받은 뒤 남겨 주세요. <a href="/privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a></span></label>
+        <p class="err" aria-live="polite"></p>
+        <button class="cta" type="submit">혜택 받고 출시 알림 신청</button>
+      </form>
+    </section>
+
+    <section id="step2" class="ask" hidden>
+      <img src="aegyo.jpg" alt="두 손을 모으고 부탁하는 하린">
+      <h2>신청 완료! 그리고…<br>설문조사 한 번만 해 주시면 안 될까요?!! 🥺</h2>
+      <p class="sub">5분이면 끝나요. 하린을 더 잘 만드는 데 꼭 쓸게요</p>
+      <a class="cta" id="survey" href="#" target="_blank" rel="noopener" style="display:grid;place-items:center;text-decoration:none">좋아요, 설문 하러 가기</a>
+      <button class="later" id="later" type="button">다음에 할게요</button>
+    </section>
+  </div>
+</div>
+
+<script>
+(() => {
+  const h = [6, 10, 14, 9, 16, 12, 7, 13, 15, 8, 11, 6];
+  document.getElementById('wave').innerHTML = h.map(v => `<em style="height:${v}px"></em>`).join('');
+
+  const qs = new URLSearchParams(location.search);
+  const CH = { x: 'X(트위터)', dc: '디시인사이드', et: '에브리타임', meta: '스레드·인스타그램', ig: '스레드·인스타그램' };
+  const ch = (qs.get('ch') || '').toLowerCase();
+  const FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform';
+  document.getElementById('survey').href = CH[ch] ? FORM + '?usp=pp_url&entry.1681613679=' + encodeURIComponent(CH[ch]) : FORM;
+
+  const app = document.getElementById('app');
+  const step1 = document.getElementById('step1'), step2 = document.getElementById('step2');
+  const pill = document.getElementById('ospill');
+  let os = /android/i.test(navigator.userAgent) ? 'android' : 'ios';
+  const KEY = 'feeler_harin_v1';
+  const done = () => { try { return localStorage.getItem(KEY) === '1'; } catch (_) { return false; } };
+  const open = (which) => {
+    if (which) os = which;
+    pill.textContent = (os === 'android' ? 'Android' : 'iOS') + ' · 12월 출시 예정';
+    step1.hidden = done(); step2.hidden = !done();
+    app.classList.add('open');
+  };
+  const close = () => app.classList.remove('open');
+  document.querySelectorAll('.os').forEach(b => b.addEventListener('click', () => open(b.dataset.os)));
+  document.getElementById('dl').addEventListener('click', () => open());
+  document.getElementById('close').addEventListener('click', close);
+  document.getElementById('dim').addEventListener('click', close);
+  document.getElementById('later').addEventListener('click', close);
+
+  // 연락처 -> Supabase feeler_prereg (anon: insert only)
+  const SB_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
+  const SB_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE = /^01[016789]\d{7,8}$/;
+  const normalize = (raw) => { const t = raw.trim(); if (EMAIL.test(t)) return t.toLowerCase(); const d = t.replace(/\D/g, ''); return PHONE.test(d) ? d.replace(/^(\d{3})(\d{3,4})(\d{4})$/, '$1-$2-$3') : null; };
+  const form = document.getElementById('prereg');
+  const input = form.querySelector('[name=contact]'), consent = form.querySelector('[name=consent]'), err = form.querySelector('.err');
+  input.addEventListener('input', () => { input.classList.remove('bad'); err.textContent = ''; });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const contact = normalize(input.value);
+    if (!contact) { input.classList.add('bad'); err.textContent = '이메일 또는 휴대폰 번호(010-0000-0000)를 적어 주세요'; input.focus(); return; }
+    if (!consent.checked) { err.textContent = '개인정보 수집·이용에 동의해 주세요'; return; }
+    form.classList.add('busy'); err.textContent = '';
+    try {
+      const source = 'feeler.kr/harin' + (CH[ch] ? '?ch=' + ch : '') + '#' + os;
+      const r = await fetch(SB_URL + '/rest/v1/feeler_prereg', { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ contact, ad: null, source, ua: navigator.userAgent.slice(0, 200) }) });
+      if (r.status === 201 || r.status === 409) {
+        try { localStorage.setItem(KEY, '1'); } catch (_) {}
+        step1.hidden = true; step2.hidden = false;
+      } else err.textContent = '잠시 후 다시 시도해 주세요 (' + r.status + ')';
+    } catch (_) { err.textContent = '네트워크 오류예요. 잠시 후 다시 시도해 주세요'; }
+    form.classList.remove('busy');
+  });
+})();
+</script>
+</body>
+</html>
