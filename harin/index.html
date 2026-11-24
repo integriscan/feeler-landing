@@ -144,6 +144,28 @@
   const FORM = 'https://docs.google.com/forms/d/e/1FAIpQLSfOHMf0OIpitnzPhLal0OWthZ7Zy3aNLv9MTkIc2merU7T8AQ/viewform';
   document.getElementById('survey').href = CH[ch] ? FORM + '?usp=pp_url&entry.1681613679=' + encodeURIComponent(CH[ch]) : FORM;
 
+  // 측정: 무작위 방문자 ID만 쓴다(개인정보 없음). Supabase landing_events에 쓰기만 한다.
+  const SB_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
+  const SB_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
+  let vid = '';
+  try { vid = localStorage.getItem('fh_vid') || ''; } catch (_) {}
+  if (!vid) {
+    vid = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2)).replace(/-/g, '').slice(0, 32);
+    try { localStorage.setItem('fh_vid', vid); } catch (_) {}
+  }
+  let refHost = '';
+  try { refHost = document.referrer ? new URL(document.referrer).hostname : ''; } catch (_) {}
+  const send = (event, extra) => {
+    try {
+      fetch(SB_URL + '/rest/v1/landing_events', {
+        method: 'POST', keepalive: true,
+        headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify(Object.assign({ vid, page: 'harin', event, ch: ch.slice(0, 20) || null, ref: refHost.slice(0, 120) || null, props: {} }, extra || {})),
+      }).catch(() => {});
+    } catch (_) {}
+  };
+  send('view', { props: { w: innerWidth, h: innerHeight } });
+
   const app = document.getElementById('app');
   const step1 = document.getElementById('step1'), step2 = document.getElementById('step2');
   const pill = document.getElementById('ospill');
@@ -157,15 +179,14 @@
     app.classList.add('open');
   };
   const close = () => app.classList.remove('open');
-  document.querySelectorAll('.os').forEach(b => b.addEventListener('click', () => open(b.dataset.os)));
-  document.getElementById('dl').addEventListener('click', () => open());
+  document.querySelectorAll('.os').forEach(b => b.addEventListener('click', () => { open(b.dataset.os); send('download_click', { os, props: { btn: 'top' } }); }));
+  document.getElementById('dl').addEventListener('click', () => { open(); send('download_click', { os, props: { btn: 'main' } }); });
   document.getElementById('close').addEventListener('click', close);
   document.getElementById('dim').addEventListener('click', close);
-  document.getElementById('later').addEventListener('click', close);
+  document.getElementById('later').addEventListener('click', () => { send('later_click', { os }); close(); });
+  document.getElementById('survey').addEventListener('click', () => send('survey_click', { os }));
 
   // 연락처 -> Supabase feeler_prereg (anon: insert only)
-  const SB_URL = 'https://hcsoctvuzjwgvxfcrwtb.supabase.co';
-  const SB_KEY = 'sb_publishable_VOwY5uxysZe6XOYhMYvpYg_z35fiZiY';
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const PHONE = /^01[016789]\d{7,8}$/;
   const normalize = (raw) => { const t = raw.trim(); if (EMAIL.test(t)) return t.toLowerCase(); const d = t.replace(/\D/g, ''); return PHONE.test(d) ? d.replace(/^(\d{3})(\d{3,4})(\d{4})$/, '$1-$2-$3') : null; };
@@ -180,8 +201,9 @@
     form.classList.add('busy'); err.textContent = '';
     try {
       const source = 'feeler.kr/harin' + (CH[ch] ? '?ch=' + ch : '') + '#' + os;
-      const r = await fetch(SB_URL + '/rest/v1/feeler_prereg', { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ contact, ad: null, source, ua: navigator.userAgent.slice(0, 200) }) });
+      const r = await fetch(SB_URL + '/rest/v1/feeler_prereg', { method: 'POST', headers: { apikey: SB_KEY, 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ contact, ad: null, source, vid, ua: navigator.userAgent.slice(0, 200) }) });
       if (r.status === 201 || r.status === 409) {
+        send('contact_submit', { os, props: { kind: contact.includes('@') ? 'email' : 'phone', dup: r.status === 409 } });
         try { localStorage.setItem(KEY, '1'); } catch (_) {}
         step1.hidden = true; step2.hidden = false;
       } else err.textContent = '잠시 후 다시 시도해 주세요 (' + r.status + ')';
